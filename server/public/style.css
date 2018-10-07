@@ -1,0 +1,54 @@
+.icon:link {
+  border: gray solid 3px;
+  border-radius: 9px;
+  margin: 1%;
+  padding: 10px;
+  color: black;
+}
+
+.icon:visited {
+  border: gray solid 3px;
+  color: black;
+}
+
+.icon:hover {
+  border: lightgrey solid 3px;
+  color: black;
+  text-decoration: none;
+}
+
+.image {
+  margin-left: 50%;
+  transform: translate(-50%);
+  text-align: center;
+}
+
+@media (max-width: 575.98px) {
+  .icon:link {
+    width: 48%;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .icon:link {
+    width: 48%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .icon:link {
+    width: 32%;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .icon:link {
+    width: 19%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .icon:link {
+    width: 14%;
+  }
+}

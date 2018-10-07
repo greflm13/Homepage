@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   onResize(event) {
     this.innerWidth = window.innerWidth;
     if (this.innerWidth < 768) {
-      this.router.navigateByUrl('/m');
+      this.router.navigateByUrl('/chat/m');
     }
   }
 
@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (event.key === 'Enter' && this.texte !== '') {
       const message = { user: this.me.name, color: this.me.color, text: this.texte, time: Date.now() + 3600000 };
       const Mona = { message: message, user: this.me };
-      this.http.post('/chat', Mona).then(res => {
+      this.http.post('/chat/chat', Mona).then(res => {
         this.users = res;
       });
       this.texte = '';
@@ -43,13 +43,13 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.name = true;
       this.me.color = this.randomColor();
       const name = { name: this.me.name, color: this.me.color };
-      this.http.post('/new', name).then(res => {
+      this.http.post('/chat/new', name).then(res => {
         this.users.push({ name: res.name, id: res.id, iat: res.iat, color: res.color });
         this.me = res;
       });
       this.inter = setInterval(() => {
         this.http
-          .get('/users')
+          .get('/chat/users')
           .then(res => {
             this.users = res;
           })
@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.innerWidth = window.innerWidth;
     if (this.innerWidth < 768) {
-      this.router.navigateByUrl('/m');
+      this.router.navigateByUrl('/chat/m');
     }
     if (document.cookie !== '') {
       this.name = true;
@@ -82,7 +82,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.cookies = this.parseCookie();
       this.inter = setInterval(() => {
         this.http
-          .get('/users')
+          .get('/chat/users')
           .then(res => {
             this.users = res;
           })

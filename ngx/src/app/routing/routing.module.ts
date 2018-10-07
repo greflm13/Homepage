@@ -7,7 +7,7 @@ import { MobileComponent } from '../mobile/mobile.component';
 
 const routes: Routes = [
   { path: 'm', component: MobileComponent },
-  { path: 'chatWindow', component: ChatComponent },
+  { path: 'chat/chatWindow', component: ChatComponent },
   { path: '', component: HomeComponent },
   { path: '**', component: HomeComponent }
 ];

@@ -93,9 +93,6 @@ export class Server {
     this._express.use('/assets', express.static(path.join(__dirname, '../../ngx/dist/assets')));
     this._express.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
     this._express.use(express.static(path.join(__dirname, '../../ngx/dist/ngx')));
-    this._express.get(['/', '/chatWindow', '/m'], (req, res, next) => {
-      res.sendFile(path.join(__dirname, '../../ngx/dist/ngx/index.html'));
-    });
     this._express.use(this.error404Handler);
     this._express.use(this.errorHandler);
 

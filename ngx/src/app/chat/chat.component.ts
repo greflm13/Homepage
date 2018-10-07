@@ -15,7 +15,7 @@ export class ChatComponent implements OnInit {
 
   ngOnInit() {
     setInterval(() => {
-      this.http.get('/chat').then(res => {
+      this.http.get('/chat/chat').then(res => {
         this.chat = res;
         this.scrollToBottom();
       });
