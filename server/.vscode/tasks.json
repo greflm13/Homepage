@@ -1,0 +1,59 @@
+{
+    "version": "2.0.0",
+    "tasks": [{
+            "taskName": "build",
+            "command": "gulp",
+            "isShellCommand": true,
+            "args": ["--gulpfile", "gulpfile.js", "build"],
+            "isBuildCommand": true,
+            "showOutput": "silent",
+            "problemMatcher": [{
+                "owner": "gulp-typescript",
+                "fileLocation": ["relative", "${workspaceRoot}"],
+                "pattern": {
+                    "regexp": "(.*)\\((\\d*),(\\d*)\\): (error|warning) (.*)",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            }]
+        },
+        {
+            "taskName": "clean",
+            "command": "gulp",
+            "isShellCommand": true,
+            "args": ["--gulpfile", "gulpfile.js", "clean"],
+            "isBuildCommand": true,
+            "showOutput": "silent"
+        },
+        {
+            "taskName": "cleanAndBuild",
+            "command": "gulp",
+            "isShellCommand": true,
+            "args": ["--gulpfile", "gulpfile.js", "cleanAndBuild"],
+            "isBuildCommand": true,
+            "showOutput": "silent",
+            "problemMatcher": ["$tsc-watch"]
+        },
+        {
+            "taskName": "start",
+            "command": "npm",
+            "isShellCommand": true,
+            "args": ["start"],
+            "isBuildCommand": true,
+            "showOutput": "silent",
+            "problemMatcher": ["$tsc-watch"]
+        },
+        {
+            "taskName": "cd",
+            "command": "cd",
+            "isShellCommand": true,
+            "args": ["Git/m13-5ahme-fivu/projects/ue03"],
+            "isBuildCommand": true,
+            "showOutput": "silent",
+            "problemMatcher": ["$tsc-watch"]
+        }
+    ]
+}

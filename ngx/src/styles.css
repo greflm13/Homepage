@@ -1,0 +1,62 @@
+/* You can add global styles to this file, and also import other style files */
+html,
+body,
+app-root {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+div {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.cookies {
+  font-size: 7rem !important;
+}
+
+.cookiebtn {
+  margin-left: 50% !important;
+  transform: translate(-50%) !important;
+  padding: 1rem 4rem !important;
+  font-size: 7rem !important;
+  border-width: 2px !important;
+  border-radius: 1rem !important;
+}
+
+@media (max-width: 575.98px) {
+  html {
+    font-size: 6pt !important;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  html {
+    font-size: 8pt !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  html {
+    font-size: 10pt !important;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  html {
+    font-size: 12pt !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  html {
+    font-size: 14pt !important;
+  }
+}
+
+@media print {
+  html {
+    background-color: white !important;
+    color: white !important;
+  }
+}

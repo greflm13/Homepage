@@ -1,0 +1,25 @@
+{
+    "files.exclude": {
+        ".vscode/": false,
+        "**/node_modules/": false,
+        "**/.gitkeep": true,
+        "**/.gitignore": false,
+        "**/dist": false,
+        "**/package.json": false,
+        "**/package-lock.json": true,
+        "**/gulpfile.js": false,
+        "**/tsconfig.json": true,
+        "**/tslint.json": true,
+        "**/e2e": true,
+        "**/**.spec.**": true,
+        "**/**.conf.**": true,
+        "**/tsconfig.**": true,
+        "**/.angular-cli.json": true,
+        "**/.editorconfig": true,
+        "**/typings.d.ts": true,
+        "**/test.ts": true,
+        "**/polyfills.ts": true
+    },
+    "prettier.singleQuote": true,
+    "git.ignoreLimitWarning": true
+}

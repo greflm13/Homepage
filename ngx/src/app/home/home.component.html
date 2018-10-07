@@ -1,0 +1,44 @@
+<div *ngIf="!cookies" class="container-fluid" style="height: 100%">
+  <div class="col text-center align-middle cookies" style="padding-top: 10% !important">This Website uses Cookies!</div>
+  <button class="btn btn-outline-info btn-lg text-center cookiebtn" (click)="cookie()">OK</button>
+</div>
+<div *ngIf="cookies && name" class="row" style="height: 100%; width: 100%">
+  <div class="col-sm-6">
+    <table class="table">
+      <thead>
+        <th>Name</th>
+        <th>ID</th>
+        <th>IAT</th>
+      </thead>
+      <tr *ngFor="let user of users">
+        <th *ngIf="user.id === me.id" [style.color]="user.color">{{user.name}}</th>
+        <td *ngIf="user.id !== me.id" [style.color]="user.color">{{user.name}}</td>
+        <th *ngIf="user.id === me.id">{{user.id}}</th>
+        <td *ngIf="user.id !== me.id">{{user.id}}</td>
+        <th *ngIf="user.id === me.id">{{user.iat | date: 'dd. MMMM yyyy, HH:mm:SS': '+0100': 'de-AT'}}</th>
+        <td *ngIf="user.id !== me.id">{{user.iat | date: 'dd. MMMM yyyy, HH:mm:SS': '+0100': 'de-AT'}}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-sm-6" style="background-color: black; color: white">
+    <iframe src="/chatWindow" style="background-color: black; height: 97%; width: 100%;"></iframe>
+  </div>
+</div>
+
+
+<div *ngIf="cookies && name && emoji" style="z-index: 1070; width: 50%; left:50%; bottom: 4%" class="fixed-bottom">
+  <emoji-mart set="google" title="" emoji="" isNative="true" showPreview="false" (emojiClick)="addEmoji(emoji, $event)">
+  </emoji-mart>
+</div>
+<div *ngIf="cookies && name" class="fixed-bottom">
+  <input [(ngModel)]="texte" type="text" style="transform: translate(0, 8%); height: calc(2.25rem + 2px); width: 46% !important; margin-left:50% !important; color: white !important; background-color: black !important; margin-right: 0 !important;"
+    (keypress)="keyPress($event)" autofocus>
+  <button class="btn btn-dark" (click)="emojiPopup()" style="width: 4%">😃</button>
+</div>
+<div *ngIf="cookies && name" class="fixed-bottom" style="width: 50%;">
+  <button style="width: 100%;" class="btn btn-outline-info" (click)="changeName()">Change Name</button>
+</div>
+<div *ngIf="!name && cookies">
+  <input #myInputField type="text" placeholder="Name" class="form-control" [(ngModel)]="names" (keypress)="keyPress($event, MyInputField)"
+    autofocus>
+</div>

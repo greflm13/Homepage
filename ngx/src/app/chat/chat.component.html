@@ -1,0 +1,18 @@
+<div #scrollMe style="overflow: hidden; background-color: black; color: white; height: 100%">
+  <div style="background-color: black">
+    <p *ngFor="let message of chat" style="margin-bottom: 0; padding-bottom: 1rem; background-color: black">
+      <span style="margin-left: 5px;" [style.color]="message.color">
+        <b>{{message.user}}</b>
+      </span>
+      <span style="color: grey" class="small">
+        {{message.time | date: 'dd.MM.yy, HH:mm': '+0100': 'de-AT'}}
+      </span>:
+      <!-- <span *ngIf="!message.text.startsWith('<a>') || !message.text.endsWith('</a>')">{{message.text}}</span> -->
+      {{message.text | beforeLink}}
+      <a href="{{message.text | getLink }} " target="_blank ">{{message.text | linkText }}</a>
+      {{message.text | afterLink}}
+    </p>
+  </div>
+</div>
+
+<!-- *ngIf="message.text.startsWith('<a>') && message.text.endsWith('</a>') " -->
