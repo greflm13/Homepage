@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "express server for fuettr",
+  "description": "express",
   "main": "dist/main.js",
   "scripts": {
     "prerestart": "gulp cleanAndBuild",

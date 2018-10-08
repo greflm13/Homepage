@@ -64,3 +64,4 @@ typings/
 /dist
 server/chat.json
 */chat.json
+package-lock.json
