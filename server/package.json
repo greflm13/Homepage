@@ -6,7 +6,7 @@
   "scripts": {
     "prerestart": "gulp cleanAndBuild",
     "restart": "node dist/main.js",
-    "start": "sudo nodemon dist/main.js",
+    "start": "sudo forever start -a --killSignal=SIGTERM -c nodemon --exitcrash dist/main.js",
     "test": "nodemon --watch src -e ts --exec npm run http",
     "http": "npm run build && node dist/http.js",
     "build": "gulp cleanAndBuild"
@@ -27,6 +27,7 @@
     "debug-sx": "^0.1.7",
     "express": "^4.16.2",
     "express-request-language": "^1.1.15",
+    "forever": "^0.15.3",
     "jsonwebtoken": "^8.1.0",
     "mongodb": "^2.2.34",
     "pug": "^2.0.0-rc.4",
