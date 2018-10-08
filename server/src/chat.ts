@@ -14,7 +14,7 @@ _chat.post('/chat', (req, res, next) => newMessage(req, res, next));
 _chat.get('/users', (req, res, next) => returnUsers(req, res, next));
 _chat.get('/delete/:data', (req, res, next) => deleteUser(req, res, next));
 _chat.get('/chat', (req, res, next) => chat(req, res, next));
-_chat.get('favicon.ico', (req, res, next) => {
+_chat.get('/favicon.ico', (req, res, next) => {
   res.sendFile(path.join(__dirname, '../../ngx/dist/ngx/favicon.ico'));
 });
 _chat.get(['/', '/chatWindow', '/m'], (req, res, next) => {
