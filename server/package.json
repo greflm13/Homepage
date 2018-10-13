@@ -7,7 +7,6 @@
     "prerestart": "gulp cleanAndBuild",
     "restart": "node dist/main.js",
     "start": "sudo forever logs dist/main.js -f",
-    // start -a --killSignal=SIGTERM
     "test": "nodemon --watch src -e ts --exec npm run http",
     "http": "npm run build && node dist/http.js",
     "build": "gulp cleanAndBuild"
