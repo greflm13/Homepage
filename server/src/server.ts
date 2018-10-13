@@ -15,7 +15,7 @@ import * as debugsx from 'debug-sx';
 import { _chat } from './chat';
 
 const date = new Date();
-export const log: debugsx.IFullLogger = debugsx.createFullLogger(__filename);
+export const log: debugsx.IFullLogger = debugsx.createFullLogger('Homepage');
 const consolelogger: debugsx.IHandler = debugsx.createConsoleHandler('stdout', '*::INFO, *::FINE, *::SEVERE, *::ERR, *::WARN', '-*', [
   { level: 'INFO', color: 'green', inverse: true },
   { level: 'FINE', color: 'white', inverse: true },
