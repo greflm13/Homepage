@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "npm run build",
     "build": "ng build --prod --build-optimizer --base-href=/chat/",
-    "test": "ng test",
+    "test": "ng build --watch --base-href=/chat/",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
