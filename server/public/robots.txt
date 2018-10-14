@@ -1,4 +1,3 @@
 User-agent: *
-Disallow: /chatWindow
-Disallow: /chat
-Disallow: /users
+Disallow: /chat/chatWindow
+Disallow: /chat/users

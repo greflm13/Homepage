@@ -1,13 +1,13 @@
-import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { HttpService } from '../http.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-mobile',
-  templateUrl: './mobile.component.html',
-  styleUrls: ['./mobile.component.css']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-export class MobileComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy {
   private users: User[] = [];
   private me: User = { name: '', id: '', iat: 0, color: '' };
   private inter;
@@ -23,12 +23,12 @@ export class MobileComponent implements OnInit, OnDestroy {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.innerWidth = window.innerWidth;
-    if (this.innerWidth >= 768) {
-      this.router.navigateByUrl('/chat/');
+    if (this.innerWidth < 768) {
+      this.router.navigateByUrl('/m');
     }
   }
 
-  keyPress(event: any) {
+  keyPress(event: any, input: any) {
     if (event.key === 'Enter' && this.texte !== '') {
       const message = { user: this.me.name, color: this.me.color, text: this.texte, time: Date.now() + 3600000 };
       const Mona = { message: message, user: this.me };
@@ -73,8 +73,8 @@ export class MobileComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.innerWidth = window.innerWidth;
-    if (this.innerWidth >= 768) {
-      this.router.navigateByUrl('/chat/');
+    if (this.innerWidth < 768) {
+      this.router.navigateByUrl('/m');
     }
     if (document.cookie !== '') {
       this.name = true;
@@ -150,6 +150,19 @@ export class MobileComponent implements OnInit, OnDestroy {
     }
 
     return text;
+  }
+
+  setSelectionRange(input, selectionStart, selectionEnd) {
+    if (input.setSelectionRange) {
+      input.focus();
+      input.setSelectionRange(selectionStart, selectionEnd);
+    } else if (input.createTextRange) {
+      const range = input.createTextRange();
+      range.collapse(true);
+      range.moveEnd('character', selectionEnd);
+      range.moveStart('character', selectionStart);
+      range.select();
+    }
   }
 
   deleteCookie(cname) {

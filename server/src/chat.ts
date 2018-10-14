@@ -14,12 +14,11 @@ _chat.post('/chat', (req, res, next) => newMessage(req, res, next));
 _chat.get('/users', (req, res, next) => returnUsers(req, res, next));
 _chat.get('/delete/:data', (req, res, next) => deleteUser(req, res, next));
 _chat.get('/chat', (req, res, next) => chat(req, res, next));
-_chat.get('/favicon.ico', (req, res, next) => {
-  res.sendFile(path.join(__dirname, '../../ngx/dist/ngx/favicon.ico'));
-});
+_chat.use(express.static(path.join(__dirname, '../../chat/dist/')));
 _chat.get(['/', '/chatWindow', '/m'], (req, res, next) => {
-  res.sendFile(path.join(__dirname, '../../ngx/dist/ngx/index.html'));
+  res.sendFile(path.join(__dirname, '../../chat/dist/index.html'));
 });
+_chat.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
 
 function chat(req: express.Request, res: express.Response, next: express.NextFunction) {
   res.send(Chat);
