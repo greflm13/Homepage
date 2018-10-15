@@ -1,3 +1,5 @@
 User-agent: *
 Disallow: /chat/chatWindow
 Disallow: /chat/users
+
+SITEMAP: https://www.sorogon.eu/sitemap.xml
