@@ -102,7 +102,7 @@ function newUser(req: express.Request, res: express.Response, next: express.Next
     res.setHeader(
       'Set-Cookie',
       cookie.serialize('user', JSON.stringify({ name: req.body.name, id: id, color: req.body.color, iat: iat }), {
-        maxAge: 60 * 60 * 24 * 7 // 1 week
+        maxAge: 60 * 60 * 24 * 365 // 1 Year
       })
     );
     res.send({ name: req.body.name, color: req.body.color, id: id, iat: iat });
