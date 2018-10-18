@@ -23,6 +23,12 @@
   text-align: center;
 }
 
+.notImplemented {
+  margin-left: 50%;
+  transform: translate(-50%);
+  text-align: center;
+}
+
 @media (max-width: 575.98px) {
   .icon:link {
     width: 48%;
