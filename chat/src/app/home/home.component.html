@@ -1,4 +1,4 @@
-<div *ngIf="!mobile">
+<div *ngIf="!mobile" style="height: 100%">
   <div *ngIf="!cookies" class="container-fluid" style="height: 100%">
     <div class="col text-center align-middle cookies" style="padding-top: 10% !important">This Website uses Cookies!</div>
     <button class="btn btn-outline-info btn-lg text-center cookiebtn" (click)="cookie()">OK</button>
@@ -49,7 +49,7 @@
 
 
 
-<div *ngIf="mobile">
+<div *ngIf="mobile" style="height: 100%">
   <div *ngIf="!cookies" class="container-fluid" style="height: 100%">
     <div class="col text-center align-middle cookies" style="padding-top: 10% !important">This Website uses Cookies!</div>
     <button class="btn btn-outline-info btn-lg text-center cookiebtn" (click)="cookie()">OK</button>
