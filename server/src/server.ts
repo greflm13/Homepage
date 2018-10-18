@@ -97,7 +97,7 @@ export class Server {
 
     this._appredirect.use((req, res, next) => this.logger(req, res, next, 'Redirect'));
     this._appredirect.get('*.php', (req, res, next) => {
-      res.sendFile('/views/no.html');
+      res.sendFile(path.join(__dirname, '/views/no.html'));
     });
     this._appredirect.get('/err', (err: any, req: express.Request, res: express.Response, next: express.NextFunction) =>
       this.errorHandler(err, req, res, next)
