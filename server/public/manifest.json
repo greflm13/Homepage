@@ -1,0 +1,43 @@
+{
+  "short_name": "Sorogon",
+  "name": "Sorogon's Test Server",
+  "icons": [
+    {
+      "src": "/icons/icon_48px.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+
+    {
+      "src": "/icons/icon_72px.png",
+      "type": "image/png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "/icons/icon_96px.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "/icons/icon_144px.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "/icons/icon_192px.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icons/icon_512px.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/index.html",
+  "background_color": "#562F11",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#562F11",
+  "orientation": "portrait"
+}
