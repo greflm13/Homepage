@@ -15,14 +15,22 @@ import { HomeComponent } from './home/home.component';
 
 import { AutofocusDirective } from './autofocus.directive';
 import { FormatStringPipe } from './stringFormatPipe';
-import { MobileComponent } from './mobile/mobile.component';
 import { BeforeLinkPipe } from './before-link.pipe';
 import { AfterLinkPipe } from './after-link.pipe';
 import { LinkTextPipe } from './link-text.pipe';
 
 registerLocaleData(localeDe, 'de-AT');
 @NgModule({
-  declarations: [AppComponent, ChatComponent, HomeComponent, AutofocusDirective, FormatStringPipe, MobileComponent, BeforeLinkPipe, AfterLinkPipe, LinkTextPipe],
+  declarations: [
+    AppComponent,
+    ChatComponent,
+    HomeComponent,
+    AutofocusDirective,
+    FormatStringPipe,
+    BeforeLinkPipe,
+    AfterLinkPipe,
+    LinkTextPipe
+  ],
   imports: [BrowserModule, HttpClientModule, FormsModule, RoutingModule, PickerModule],
   providers: [HttpClient, HttpService, { provide: LOCALE_ID, useValue: 'de-AT' }],
   bootstrap: [AppComponent]

@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { HttpService } from '../http.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -16,15 +15,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   public emoji = false;
   public names = '';
   public texte = '';
+  public mobile = false;
   public innerWidth: number;
 
-  constructor(private http: HttpService, private router: Router) {}
+  constructor(private http: HttpService) {}
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.innerWidth = window.innerWidth;
     if (this.innerWidth < 768) {
-      this.router.navigateByUrl('/m');
+      this.mobile = true;
+    }
+    if (this.innerWidth >= 768) {
+      this.mobile = false;
     }
   }
 
@@ -74,7 +77,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.innerWidth = window.innerWidth;
     if (this.innerWidth < 768) {
-      this.router.navigateByUrl('/m');
+      this.mobile = true;
+    }
+    if (this.innerWidth >= 768) {
+      this.mobile = false;
     }
     if (document.cookie !== '') {
       this.name = true;
