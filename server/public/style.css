@@ -23,10 +23,9 @@
   text-align: center;
 }
 
-.notImplemented {
-  margin-left: 50%;
-  transform: translate(-50%);
-  text-align: center;
+.uc {
+  background-image: url('uc.jpg');
+  background-size: 100%;
 }
 
 @media (max-width: 575.98px) {
