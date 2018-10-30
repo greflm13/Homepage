@@ -1,0 +1,16 @@
+<p>
+  <a routerLink="/"><img src="assets/folder.svg" width="20px">..</a>
+</p>
+<span *ngFor="let folder of folders">
+  <p *ngIf="folder.type === 'd'">
+    <a routerLink="/{{current}}/{{folder.name}}"><img src="assets/folder.svg" width="20px">{{folder.name}}</a>
+  </p>
+  <p *ngIf="folder.name === 'No such file or directory'">
+    No such file or directory!
+  </p>
+</span>
+<span *ngFor="let folder of folders">
+  <p *ngIf="folder.type === '-'">
+    <a routerLink="/viewer/{{current}}/{{folder.name}}">{{folder.name}}</a>
+  </p>
+</span>

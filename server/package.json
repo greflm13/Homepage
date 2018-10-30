@@ -27,6 +27,7 @@
     "debug-sx": "^0.1.7",
     "express": "^4.16.2",
     "express-request-language": "^1.1.15",
+    "express-stream": "^0.8.0",
     "forever": "^0.15.3",
     "ftp": "^0.3.10",
     "jsonwebtoken": "^8.1.0",

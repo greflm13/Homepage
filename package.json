@@ -1,5 +1,5 @@
 {
-  "name": "@TODO",
+  "name": "TODO",
   "version": "1.0.0",
   "description": "",
   "main": "server/dist/main.js",
@@ -10,7 +10,7 @@
     "buildc": "cd ngx; ng build --prod --output-hashing none",
     "prestart": "npm run clean; npm run build",
     "start": "node server/dist/main.js",
-    "install": "cd server; npm i; cd ../x; npm i"
+    "install": "cd server && npm i && cd ../chat && npm i &&  cd ../films && npm i"
   },
   "author": "Florian Greistorfer",
   "license": "ISC",

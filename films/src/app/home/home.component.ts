@@ -12,10 +12,8 @@ export class HomeComponent implements OnInit {
   constructor(private http: HttpService) {}
 
   ngOnInit() {
-    console.log('jes');
     this.http.get('list').then(res => {
       this.folders = res;
-      console.log(this.folders);
     });
   }
 }
