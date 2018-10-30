@@ -27,10 +27,10 @@ _films.get('/list/:folder/:subFolder', (req, res, next) => listFolderSubFolder(r
 _films.get('/item/:path', (req, res, next) => getItem(req, res, next));
 _films.get('/item/:path/:subpath', (req, res, next) => getItem(req, res, next));
 _films.get('/item/:path/:subpath/:subsubpath', (req, res, next) => getItem(req, res, next));
+_films.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
 _films.get('**', (req, res, next) => {
   res.sendFile(path.join(__dirname, '../../films/dist/index.html'));
 });
-_films.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
 
 function list(req: express.Request, res: express.Response, next: express.NextFunction) {
   c.list('disk1/share/Filme/', (err, list) => {
