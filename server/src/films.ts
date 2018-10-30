@@ -20,13 +20,13 @@ setInterval(() => {
   });
 }, 60000);
 
+_films.use(express.static(path.join(__dirname, '../../films/dist/')));
 _films.get('/list', (req, res, next) => list(req, res, next));
 _films.get('/list/:folder', (req, res, next) => listFolder(req, res, next));
 _films.get('/list/:folder/:subFolder', (req, res, next) => listFolderSubFolder(req, res, next));
 _films.get('/item/:path', (req, res, next) => getItem(req, res, next));
 _films.get('/item/:path/:subpath', (req, res, next) => getItem(req, res, next));
 _films.get('/item/:path/:subpath/:subsubpath', (req, res, next) => getItem(req, res, next));
-_films.use(express.static(path.join(__dirname, '../../films/dist/')));
 _films.get('**', (req, res, next) => {
   res.sendFile(path.join(__dirname, '../../films/dist/index.html'));
 });
