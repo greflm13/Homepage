@@ -41,29 +41,33 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.texte = '';
       event.preventDefault();
     } else if (event.key === 'Enter' && this.names !== '') {
-      this.me.name = this.names;
-      this.names = '';
-      this.name = true;
-      this.me.color = this.randomColor();
-      const name = { name: this.me.name, color: this.me.color };
-      this.http.post('/chat/new', name).then(res => {
-        this.users.push({ name: res.name, id: res.id, iat: res.iat, color: res.color });
-        this.me = res;
-      });
-      this.inter = setInterval(() => {
-        this.http
-          .get('/chat/users')
-          .then(res => {
-            this.users = res;
-          })
-          .catch(err => {
-            if (err === 403) {
-              clearInterval(this.inter);
-              this.name = false;
-            }
-          });
-      }, 750);
+      this.nameEntered();
     }
+  }
+
+  nameEntered() {
+    this.me.name = this.names;
+    this.names = '';
+    this.name = true;
+    this.me.color = this.randomColor();
+    const name = { name: this.me.name, color: this.me.color };
+    this.http.post('/chat/new', name).then(res => {
+      this.users.push({ name: res.name, id: res.id, iat: res.iat, color: res.color });
+      this.me = res;
+    });
+    this.inter = setInterval(() => {
+      this.http
+        .get('/chat/users')
+        .then(res => {
+          this.users = res;
+        })
+        .catch(err => {
+          if (err === 403) {
+            clearInterval(this.inter);
+            this.name = false;
+          }
+        });
+    }, 750);
   }
 
   emojiPopup() {
