@@ -83,16 +83,16 @@
     </emoji-mart>
   </div> -->
   <div *ngIf="cookies && name" class="fixed-bottom">
-    <input [(ngModel)]="texte" type="text" style="width: 100% !important; color: white !important; background-color: black !important; margin-right: 0 !important;"
+    <input [(ngModel)]="texte" type="text" style="height: calc(2.25rem + 2px); width: 90% !important; color: white !important; background-color: black !important; margin-right: 0 !important;"
       (keypress)="keyPress($event)" autofocus>
-    <!-- <button class="btn btn-dark" (click)="emojiPopup()" style="width: 3%">😃</button> -->
+    <button class="btn btn-dark" (click)="enter()" style="width: 10%">⏎</button>
   </div>
   <div *ngIf="cookies && name" class="fixed-bottom" style="width: 100%; bottom: 51%">
     <button style="width: 100%;" class="btn btn-outline-info" (click)="changeName()">Change Name</button>
   </div>
   <div *ngIf="!name && cookies">
-    <input type="text" placeholder="Name" class="form-control" [(ngModel)]="names" (keypress)="keyPress($event)"
-      autofocus>
-    <button *ngIf="names !== ''" class="btn btn-outline-info btn-lg text-center cookiebtn" (click)="nameEntered()">OK</button>
+    <input type="text" placeholder="Name" [(ngModel)]="names" (keypress)="keyPress($event)"
+      autofocus style="height: calc(2.25rem + 2px); width: 90% !important; color: white !important; background-color: black !important; margin-right: 0 !important;">
+    <button class="btn btn-dark" (click)="nameEntered()" style="width: 10%">⏎</button>
   </div>
 </div>
