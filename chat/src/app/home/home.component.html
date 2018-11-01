@@ -93,6 +93,6 @@
   <div *ngIf="!name && cookies">
     <input type="text" placeholder="Name" class="form-control" [(ngModel)]="names" (keypress)="keyPress($event)"
       autofocus>
-    <button class="btn btn-outline-info btn-lg text-center cookiebtn" (click)="nameEntered()">OK</button>
+    <button *ngIf="names !== ''" class="btn btn-outline-info btn-lg text-center cookiebtn" (click)="nameEntered()">OK</button>
   </div>
 </div>
