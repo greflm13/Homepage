@@ -14,6 +14,7 @@ import * as debugsx from 'debug-sx';
 
 import { _chat } from './chat';
 import { _films } from './films';
+import { _discord } from './discord';
 
 const date = new Date();
 export const log: debugsx.IFullLogger = debugsx.createFullLogger('Homepage');
@@ -90,10 +91,10 @@ export class Server {
     pugEngine.locals.pretty = true;
     this._express.use((req, res, next) => this.logger(req, res, next, 'Main'));
 
-
     // Modules
     this._express.use('/chat', _chat);
     this._express.use('/films', _films);
+    this._express.use('/discord', _discord);
 
     this._express.use(express.static(path.join(__dirname, '../public')));
     this._express.use('/assets', express.static(path.join(__dirname, '../../ngx/dist/assets')));
