@@ -5,6 +5,7 @@
     [style.width]="width"
     [style.background-color]="year.color"
     [matTooltip]="year.text"
+    (onClick)="click(year.text)"
   ></div>
 </div>
 <div style="height:2%; background-color:black; transform: translate(0,2250%)" [style.width]="line"></div>
