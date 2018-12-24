@@ -15,6 +15,7 @@ import * as debugsx from 'debug-sx';
 import { _chat } from './chat';
 import { _films } from './films';
 import { _discord } from './discord';
+import { _timeline } from './timeline';
 
 const date = new Date();
 export const log: debugsx.IFullLogger = debugsx.createFullLogger('Homepage');
@@ -95,6 +96,7 @@ export class Server {
     this._express.use('/chat', _chat);
     this._express.use('/films', _films);
     this._express.use('/discord', _discord);
+    this._express.use('/timeline', _timeline);
 
     this._express.use(express.static(path.join(__dirname, '../public')));
     this._express.use('/assets', express.static(path.join(__dirname, '../../ngx/dist/assets')));
