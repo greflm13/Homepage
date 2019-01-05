@@ -149,12 +149,12 @@ export class Server {
   public start(httpport: number, httpsport?: number): Promise<Server> {
     return new Promise<Server>((resolve, reject) => {
       if (httpsport) {
-        log.info('Starting HTTPS Server');
+        log.info('Starting HTTPS Server...');
         const privKey = fs.readFileSync('/home/pi/privkey.pem', 'utf8');
         const cert = fs.readFileSync('/home/pi/fullchain.pem', 'utf8');
         const credentials = { key: privKey, cert: cert };
         const server = https.createServer(credentials, this._express).listen(httpsport, () => {
-          log.info('HTTPS Server running on port ' + httpsport);
+          log.info('HTTPS Server running on port ' + httpsport + '.');
           server.on('close', () => {
             log.fine('Server stopped.');
           });
@@ -162,8 +162,9 @@ export class Server {
             log.warn(err);
           });
         });
+        log.info('Starting HTTP Server...');
         const httpserver = http.createServer(this._appredirect).listen(httpport, () => {
-          log.info('HTTP Server running on port ' + httpport);
+          log.info('HTTP Server running on port ' + httpport + '.');
           httpserver.on('close', () => {
             log.fine('HTTP Server stopped.');
           });
@@ -172,9 +173,9 @@ export class Server {
           });
         });
       } else {
-        log.info('Starting HTTP Server');
+        log.info('Starting HTTP Server...');
         const server = http.createServer(this._express).listen(httpport, () => {
-          log.info('HTTP Server running on port ' + httpport);
+          log.info('HTTP Server running on port ' + httpport + '.');
           server.on('close', () => {
             log.fine('Server stopped.');
           });

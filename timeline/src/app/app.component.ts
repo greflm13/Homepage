@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from './http.service';
 
 @Component({
   selector: 'app-root',
@@ -7,97 +8,90 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   public msec = window.innerWidth / 3155673600000;
+  public half = window.innerHeight / 2.5 + 'px';
+  public eventHeight = window.innerHeight / 10 + 'px';
+  public lineHeight = window.innerHeight / 50 + 'px';
   public events: Event[] = [];
-  public line = '101%';
+  public line = (window.innerWidth / 100) * 99 + 'px';
+  public name: string;
+  public date: string;
+  public type: string;
+  public nameWrong: string;
+  public typeWrong: string;
+  public dateWrong: string;
+
+  constructor(private http: HttpService) {}
 
   ngOnInit() {
     console.log(this.msec);
-    const date1 = new Date(1900, 1, 1, 0, 0, 0, 0);
-    console.log(date1.getTime() + 2206314000000);
-    const date2 = new Date(2000, 1, 1, 0, 0, 0, 0);
-    console.log(date2.getTime() + 2206314000000);
     setInterval(() => {
       this.msec = window.innerWidth / 3155673600000;
+      this.half = window.innerHeight / 2.5 + 'px';
+      this.eventHeight = window.innerHeight / 10 + 'px';
+      this.lineHeight = window.innerHeight / 50 + 'px';
+      this.line = (window.innerWidth / 100) * 99 + 'px';
     }, 100);
-    this.events.push({
-      text: 'Pink Floyd - The Dark Side of the Moon',
-      date: new Date(1973, 3, 1),
-      color: 'black',
-      margin: new Date(1973, 3, 1).getTime() + 2206314000000
+    this.http.get('events').then(res => {
+      this.events = res;
     });
-    this.events.push({
-      text: 'Pink Floyd - Wish You Were Here',
-      date: new Date(1975, 9, 12),
-      color: 'black',
-      margin: new Date(1975, 9, 12).getTime() + 2206314000000
-    });
-    this.events.push({
-      text: 'Queen - Queen',
-      date: new Date(1973, 7, 13),
-      color: 'orange',
-      margin: new Date(1973, 7, 13).getTime() + 2206314000000
-    });
-    // this.years[73].color = 'yellow';
-    // this.years[73].text += ' Pink Floyd - The Dark Side of the Moon';
-    // this.years[67].color = 'yellow';
-    // this.years[67].text += ' Pink Floyd - The Pioer at the Gates of Dawn';
-    // this.years[68].color = 'yellow';
-    // this.years[68].text += ' Pink Floyd - A Saucerful of Secrets';
-    // this.years[75].color = 'yellow';
-    // this.years[75].text += ' Pink Floyd - Wish You Were Here';
-    // this.years[77].color = 'yellow';
-    // this.years[77].text += ' Pink Floyd - Animals';
-    // this.years[79].color = 'yellow';
-    // this.years[79].text += ' Pink Floyd - The Wall';
 
-    // this.years[70].color = 'red';
-    // this.years[70].text += ' The Beatles - Let It Be';
-    // this.years[63].color = 'red';
-    // this.years[63].text += ' The Beatles - PLease Please Me';
-
-    // this.years[71].color = 'blue';
-    // this.years[71].text += ' Led Zeppelin - Led Zeppelin IV';
-    // this.years[69].color = 'blue';
-    // this.years[69].text += ' Led Zeppelin - Led Zeppelin I';
-    // this.years[69].color = 'blue';
-    // this.years[69].text += ' Led Zeppelin - Led Zeppelin II';
-    // this.years[70].color = 'blue';
-    // this.years[70].text += ' Led Zeppelin - Led Zeppelin III';
-
-    // this.years[73].color = 'green';
-    // this.years[73].text += ' Queen - Queen';
-    // this.years[74].color = 'green';
-    // this.years[74].text += ' Queen - Queen II';
-    // this.years[74].color = 'green';
-    // this.years[74].text += ' Queen - Sheer Heart Attack';
+    // this.events.push({
+    //   text: 'Pink Floyd - The Dark Side of the Moon',
+    //   date: new Date(1973, 3, 1),
+    //   color: 'black',
+    //   margin: new Date(1973, 3, 1).getTime() + 2206314000000
+    // });
+    // this.events.push({
+    //   text: 'Pink Floyd - Wish You Were Here',
+    //   date: new Date(1975, 9, 12),
+    //   color: 'black',
+    //   margin: new Date(1975, 9, 12).getTime() + 2206314000000
+    // });
+    // this.events.push({
+    //   text: 'Queen - Queen',
+    //   date: new Date(1973, 7, 13),
+    //   color: 'orange',
+    //   margin: new Date(1973, 7, 13).getTime() + 2206314000000
+    // });
   }
 
   click(year: string) {}
 
-  decimalToHexString(number: number): string {
-    if (number < 0) {
-      number = 0xffffffff + number + 1;
+  newEvent() {
+    if (this.name === '' || this.name === undefined || this.name === null) {
+      this.nameWrong = 'red 3px solid';
+    } else {
+      this.nameWrong = '';
     }
-    let result = number.toString(16).toUpperCase();
-    if (result.length < 6) {
-      result += '0';
-      if (result.length < 6) {
-        result += '0';
-        if (result.length < 6) {
-          result += '0';
-          if (result.length < 6) {
-            result += '0';
-            if (result.length < 6) {
-              result += '0';
-              if (result.length < 6) {
-                result += '0';
-              }
-            }
-          }
-        }
-      }
+    if (this.type === '' || this.type === undefined || this.type === null) {
+      this.typeWrong = 'red 3px solid';
+    } else {
+      this.typeWrong = '';
     }
-    return '#' + result;
+    const event: Event = { text: this.name, date: new Date(this.date), margin: new Date(this.date).getTime() + 2206314000000, color: '' };
+    switch (this.type) {
+      case 'War':
+        event.color = 'black';
+        break;
+      case 'Album':
+        event.color = 'orange';
+        break;
+      case 'Technology':
+        event.color = 'blue';
+        break;
+      case 'Book':
+        event.color = 'green';
+        break;
+      case 'Politics':
+        event.color = 'red';
+        break;
+      case 'Death':
+        event.color = 'grey';
+        break;
+      case 'Born':
+        event.color = 'dodgerblue';
+    }
+    this.http.post('newEvent', event);
   }
 }
 

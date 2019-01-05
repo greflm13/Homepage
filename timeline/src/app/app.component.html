@@ -1,11 +1,36 @@
-<div style="white-space: nowrap; height: 10%; transform: translate(0,450%); position: relative;">
+<div style="float: left;"></div>
+<div style="white-space: nowrap; position: relative;" [style.height]="eventHeight" [style.margin-top]="half">
   <div
     *ngFor="let event of events"
     style="height: 100%; position: absolute; width: 0.3%"
     [style.margin-left]="event.margin * msec + 'px'"
     [style.background-color]="event.color"
     [matTooltip]="event.text"
-    (onClick)="click(event.text)"
+    (Click)="click(event.text)"
   ></div>
 </div>
-<div style="height:2%; background-color:black; transform: translate(0,2250%)" [style.width]="line"></div>
+<div style="background-color:black;" [style.width]="line" [style.height]="lineHeight"></div>
+<div [style.margin-top]="eventHeight">
+  <h4>New Event</h4>
+  <input type="text" placeholder="Event Name" required [(ngModel)]="name" [style.border]="nameWrong" />
+  <select required [(ngModel)]="type" [style.border]="typeWrong">
+    <option>War</option>
+    <option>Politics</option>
+    <option>Technology</option>
+    <option>Book</option>
+    <option>Album</option>
+    <option>Death</option>
+    <option>Born</option>
+  </select>
+  <input
+    type="date"
+    min="1900-01-01"
+    max="2000-01-01"
+    required
+    pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+    placeholder="yyyy-mm-dd"
+    [(ngModel)]="date"
+    [style.border]="dateWrong"
+  />
+  <button (click)="newEvent()">Submit</button>
+</div>
