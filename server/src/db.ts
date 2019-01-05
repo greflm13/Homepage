@@ -25,20 +25,22 @@ export class DB {
 
   private constructor() {}
 
-  public async getEvents(): Promise<string> {
-    const Events = await this._timeline.find().toArray();
-    return Events[0];
+  public async getEvents(): Promise<Object[]> {
+    return await this._timeline.find().toArray();
   }
 
   public async putEvent(event: Object) {
-    this._timeline.insertOne(event);
+    await this._timeline.insertOne(event);
   }
 
   private async start() {
     const url =
       'mongodb://homepage:g74775@cluster0-shard-00-00-10aya.gcp.mongodb.net:27017,cluster0-shard-00-01-10aya.gcp.mongodb.net:27017,cluster0-shard-00-02-10aya.gcp.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true';
     try {
-      const dbServer = await mongodb.MongoClient.connect(url, {socketTimeoutMS: 3.154e+11});
+      const dbServer = await mongodb.MongoClient.connect(
+        url,
+        { socketTimeoutMS: 3.154e11 }
+      );
       const db = await dbServer.db('sorogoneu');
       const collTimeline = await db.collection('timeline');
 

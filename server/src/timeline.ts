@@ -14,6 +14,7 @@ _timeline.use('/node_modules', express.static(path.join(__dirname, '../node_modu
 
 async function getEvents(req: express.Request, res: express.Response, next: express.NextFunction) {
   const events = await DB.Instance.getEvents();
+  console.log(events);
   res.send(events);
 }
 

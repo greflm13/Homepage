@@ -7,7 +7,7 @@ import { HttpService } from './http.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  public msec = window.innerWidth / 3155673600000;
+  public msec = ((window.innerWidth / 100) * 99) / 3155673600000;
   public half = window.innerHeight / 2.5 + 'px';
   public eventHeight = window.innerHeight / 10 + 'px';
   public lineHeight = window.innerHeight / 50 + 'px';
@@ -16,16 +16,15 @@ export class AppComponent implements OnInit {
   public name: string;
   public date: string;
   public type: string;
-  public nameWrong: string;
-  public typeWrong: string;
-  public dateWrong: string;
+  public nameWrong = '';
+  public typeWrong = '';
+  public dateWrong = '';
 
   constructor(private http: HttpService) {}
 
   ngOnInit() {
-    console.log(this.msec);
     setInterval(() => {
-      this.msec = window.innerWidth / 3155673600000;
+      this.msec = ((window.innerWidth / 100) * 99) / 3155673600000;
       this.half = window.innerHeight / 2.5 + 'px';
       this.eventHeight = window.innerHeight / 10 + 'px';
       this.lineHeight = window.innerHeight / 50 + 'px';
@@ -68,30 +67,42 @@ export class AppComponent implements OnInit {
     } else {
       this.typeWrong = '';
     }
-    const event: Event = { text: this.name, date: new Date(this.date), margin: new Date(this.date).getTime() + 2206314000000, color: '' };
-    switch (this.type) {
-      case 'War':
-        event.color = 'black';
-        break;
-      case 'Album':
-        event.color = 'orange';
-        break;
-      case 'Technology':
-        event.color = 'blue';
-        break;
-      case 'Book':
-        event.color = 'green';
-        break;
-      case 'Politics':
-        event.color = 'red';
-        break;
-      case 'Death':
-        event.color = 'grey';
-        break;
-      case 'Born':
-        event.color = 'dodgerblue';
+    if (this.date === '' || this.date === undefined || this.date === null) {
+      this.dateWrong = 'red 3px solid';
+    } else {
+      this.dateWrong = '';
     }
-    this.http.post('newEvent', event);
+    if (this.nameWrong === '' && this.typeWrong === '' && this.dateWrong === '') {
+      const event: Event = { text: this.name, date: new Date(this.date), margin: new Date(this.date).getTime() + 2206314000000, color: '' };
+      switch (this.type) {
+        case 'War':
+          event.color = 'black';
+          break;
+        case 'Album':
+          event.color = 'orange';
+          break;
+        case 'Technology':
+          event.color = 'blue';
+          break;
+        case 'Book':
+          event.color = 'green';
+          break;
+        case 'Politics':
+          event.color = 'red';
+          break;
+        case 'Death':
+          event.color = 'grey';
+          break;
+        case 'Born':
+          event.color = 'dodgerblue';
+      }
+      this.name = '';
+      this.type = '';
+      this.date = '';
+      this.http.post('newEvent', event).then(res => {
+        this.events = res;
+      });
+    }
   }
 }
 
