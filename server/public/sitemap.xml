@@ -9,7 +9,7 @@
 
 <url>
   <loc>https://www.sorogon.eu/</loc>
-  <lastmod>2018-11-01T15:50:49+00:00</lastmod>
+  <lastmod>2019-01-06T13:39:59+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
@@ -20,6 +20,11 @@
 <url>
   <loc>https://www.sorogon.eu/not_implemented.html</loc>
   <lastmod>2018-10-18T15:27:38+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.sorogon.eu/timeline/</loc>
+  <lastmod>2019-01-06T02:22:15+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
