@@ -1,27 +1,58 @@
-<div style="float: left;"></div>
-<div style="white-space: nowrap; position: relative;" [style.height]="eventHeight" [style.margin-top]="half">
+<div style="float: left; transform: translate(0 {{ half }})">
+  <h1>A Visualisation of the 20th Century</h1>
+  <div style="border:2px solid grey; width:10%; padding: 1%; position: relative;">
+    <h4 style="margin-top:0">Legend</h4>
+    <div style="background-color: orange; color: orange; position: absolute; right: 10%" class="unselectable">---------</div>
+    <p>Album</p>
+    <div style="background-color: green; color: green; position: absolute; right: 10%" class="unselectable">---------</div>
+    <p>Book</p>
+    <div style="background-color: dodgerblue; color: dodgerblue; position: absolute; right: 10%" class="unselectable">---------</div>
+    <p>Born</p>
+    <div style="background-color: grey; color: grey; position: absolute; right: 10%" class="unselectable">---------</div>
+    <p>Death</p>
+    <div style="background-color: red; color: red; position: absolute; right: 10%" class="unselectable">---------</div>
+    <p>Politics</p>
+    <div style="background-color: blue; color: blue; position: absolute; right: 10%" class="unselectable">---------</div>
+    <p>Technology</p>
+    <div style="background-color: black; color: black; position: absolute; right: 10%" class="unselectable">---------</div>
+    <p>War</p>
+  </div>
+</div>
+<div style="position: relative;" [style.height]="eventHeight" [style.margin-top]="half">
   <div
-    *ngFor="let event of events"
+    class="hover"
+    *ngFor="let event of events; index as i"
     style="height: 100%; position: absolute; width: 0.3%"
     [style.margin-left]="event.margin * msec + 'px'"
     [style.background-color]="event.color"
-    [matTooltip]="event.text"
-    (Click)="click(event.text)"
-  ></div>
+    (mouseenter)="enter(i)"
+    (mouseleave)="leave(i)"
+  >
+    <div
+      *ngIf="event.open"
+      style="background-color: white; padding: 100%; border: grey 1px solid; border-radius: 10px; margin-left: 150%; display: inline-block; width: 5000%"
+    >
+      <h4 style="margin-top: 0; margin-bottom: 3pt">{{ event.text }}</h4>
+      <p>{{ event.description }}</p>
+      <p style="font-size: x-small; margin-top: 3pt">{{ event.date }}</p>
+    </div>
+  </div>
 </div>
 <div style="background-color:black;" [style.width]="line" [style.height]="lineHeight"></div>
 <div [style.margin-top]="eventHeight">
   <h4>New Event</h4>
-  <input type="text" placeholder="Event Name" required [(ngModel)]="name" [style.border]="nameWrong" />
+  <input type="text" placeholder="Name" required [(ngModel)]="name" [style.border]="nameWrong" />
   <select required [(ngModel)]="type" [style.border]="typeWrong">
-    <option>War</option>
+    <option hidden>Category</option>
+    <option>Album</option>
+    <option>Book</option>
+    <option>Born</option>
+    <option>Death</option>
     <option>Politics</option>
     <option>Technology</option>
-    <option>Book</option>
-    <option>Album</option>
-    <option>Death</option>
-    <option>Born</option>
+    <option>War</option>
   </select>
+  <input type="text" placeholder="Description" required [(ngModel)]="description" [style.border]="descriptionWrong" />
   <input
     type="date"
     min="1900-01-01"

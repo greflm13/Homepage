@@ -8,24 +8,26 @@ import { HttpService } from './http.service';
 })
 export class AppComponent implements OnInit {
   public msec = ((window.innerWidth / 100) * 99) / 3155673600000;
-  public half = window.innerHeight / 2.5 + 'px';
+  public half = window.innerHeight / 10 + 'px';
   public eventHeight = window.innerHeight / 10 + 'px';
   public lineHeight = window.innerHeight / 50 + 'px';
   public events: Event[] = [];
   public line = (window.innerWidth / 100) * 99 + 'px';
   public name: string;
   public date: string;
-  public type: string;
+  public description: string;
+  public type = 'Category';
   public nameWrong = '';
   public typeWrong = '';
   public dateWrong = '';
+  public descriptionWrong = '';
 
   constructor(private http: HttpService) {}
 
   ngOnInit() {
     setInterval(() => {
       this.msec = ((window.innerWidth / 100) * 99) / 3155673600000;
-      this.half = window.innerHeight / 2.5 + 'px';
+      this.half = window.innerHeight / 10 + 'px';
       this.eventHeight = window.innerHeight / 10 + 'px';
       this.lineHeight = window.innerHeight / 50 + 'px';
       this.line = (window.innerWidth / 100) * 99 + 'px';
@@ -33,28 +35,15 @@ export class AppComponent implements OnInit {
     this.http.get('events').then(res => {
       this.events = res;
     });
-
-    // this.events.push({
-    //   text: 'Pink Floyd - The Dark Side of the Moon',
-    //   date: new Date(1973, 3, 1),
-    //   color: 'black',
-    //   margin: new Date(1973, 3, 1).getTime() + 2206314000000
-    // });
-    // this.events.push({
-    //   text: 'Pink Floyd - Wish You Were Here',
-    //   date: new Date(1975, 9, 12),
-    //   color: 'black',
-    //   margin: new Date(1975, 9, 12).getTime() + 2206314000000
-    // });
-    // this.events.push({
-    //   text: 'Queen - Queen',
-    //   date: new Date(1973, 7, 13),
-    //   color: 'orange',
-    //   margin: new Date(1973, 7, 13).getTime() + 2206314000000
-    // });
   }
 
-  click(year: string) {}
+  enter(index: number) {
+    this.events[index].open = true;
+  }
+
+  leave(index: number) {
+    this.events[index].open = false;
+  }
 
   newEvent() {
     if (this.name === '' || this.name === undefined || this.name === null) {
@@ -62,7 +51,12 @@ export class AppComponent implements OnInit {
     } else {
       this.nameWrong = '';
     }
-    if (this.type === '' || this.type === undefined || this.type === null) {
+    if (this.description === '' || this.description === undefined || this.description === null) {
+      this.descriptionWrong = 'red 3px solid';
+    } else {
+      this.descriptionWrong = '';
+    }
+    if (this.type === '' || this.type === undefined || this.type === null || this.type === 'Category') {
       this.typeWrong = 'red 3px solid';
     } else {
       this.typeWrong = '';
@@ -72,8 +66,15 @@ export class AppComponent implements OnInit {
     } else {
       this.dateWrong = '';
     }
-    if (this.nameWrong === '' && this.typeWrong === '' && this.dateWrong === '') {
-      const event: Event = { text: this.name, date: new Date(this.date), margin: new Date(this.date).getTime() + 2206314000000, color: '' };
+    if (this.nameWrong === '' && this.typeWrong === '' && this.dateWrong === '' && this.descriptionWrong === '') {
+      const event: Event = {
+        text: this.name,
+        date: new Date(this.date).toLocaleDateString(),
+        margin: new Date(this.date).getTime() + 2206314000000,
+        color: '',
+        open: false,
+        description: this.description
+      };
       switch (this.type) {
         case 'War':
           event.color = 'black';
@@ -97,8 +98,9 @@ export class AppComponent implements OnInit {
           event.color = 'dodgerblue';
       }
       this.name = '';
-      this.type = '';
+      this.type = 'Category';
       this.date = '';
+      this.description = '';
       this.http.post('newEvent', event).then(res => {
         this.events = res;
       });
@@ -108,7 +110,9 @@ export class AppComponent implements OnInit {
 
 interface Event {
   text: string;
+  description: string;
   color: string;
-  date: Date;
+  date: string;
   margin: number;
+  open: boolean;
 }
