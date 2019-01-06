@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans');
+
+html {
+  font-family: 'Fira Sans', sans-serif;
+}
 
 p {
   margin: 0.5%;
@@ -16,4 +21,13 @@ p {
 
 .hover:hover {
   z-index: 23000;
+}
+
+.years {
+  left: -4px;
+  margin-top: 10px;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  position: absolute;
 }

@@ -39,7 +39,19 @@
   </div>
 </div>
 <div style="background-color:black;" [style.width]="line" [style.height]="lineHeight"></div>
-<div [style.margin-top]="eventHeight">
+<div [style.height]="eventHeight" style="white-space: nowrap; position: relative;">
+  <div class="years"><b>1900</b></div>
+  <div class="years" style="margin-left: 10%"><b>1910</b></div>
+  <div class="years" style="margin-left: 20%"><b>1920</b></div>
+  <div class="years" style="margin-left: 30%"><b>1930</b></div>
+  <div class="years" style="margin-left: 40%"><b>1940</b></div>
+  <div class="years" style="margin-left: 50%"><b>1950</b></div>
+  <div class="years" style="margin-left: 60%"><b>1960</b></div>
+  <div class="years" style="margin-left: 70%"><b>1970</b></div>
+  <div class="years" style="margin-left: 80%"><b>1980</b></div>
+  <div class="years" style="margin-left: 90%"><b>1990</b></div>
+</div>
+<div>
   <h4>New Event</h4>
   <input type="text" placeholder="Name" required [(ngModel)]="name" [style.border]="nameWrong" />
   <select required [(ngModel)]="type" [style.border]="typeWrong">
