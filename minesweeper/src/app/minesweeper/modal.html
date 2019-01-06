@@ -1,0 +1,82 @@
+<div class="modal-header">
+  <h4 class="modal-title"><strong>Einstellungen</strong></h4>
+</div>
+<div class="modal-body">
+  <!-- (ngSubmit)="done()" -->
+  <form #init="ngForm">
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="mode" value="retarded" [(ngModel)]="mode" id="retarded" />
+      <label class="form-check-label" for="retarded">Retardedmode</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="mode" value="median" [(ngModel)]="mode" id="median" />
+      <label class="form-check-label" for="median">"Locker"</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="mode" value="mexican" [(ngModel)]="mode" id="mexican" />
+      <label class="form-check-label" for="mexican">Mexikanermode</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="mode" value="custom" [(ngModel)]="mode" id="custom" />
+      <label class="form-check-label" for="custom">custom</label>
+    </div>
+    <table *ngIf="custom">
+      <tr>
+        <td><label>Höhe: </label></td>
+        <td>
+          <input
+            style="margin-left: 10px"
+            class="form-control"
+            name="sizeX"
+            [(ngModel)]="size.sizeX"
+            placeholder="4-100"
+            required
+            min="4"
+            max="100"
+            type="number"
+            autofocus
+          />
+        </td>
+      </tr>
+      <tr>
+        <td><label>Breite: </label></td>
+        <td>
+          <input
+            style="margin-left: 10px"
+            class="form-control"
+            name="sizeY"
+            [(ngModel)]="size.sizeY"
+            placeholder="4-100"
+            required
+            min="4"
+            max="100"
+            type="number"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Anzahl der Bomben (max {{ max }}): </label>
+        </td>
+        <td>
+          <input
+            style="margin-left: 10px"
+            class="form-control"
+            name="bombs"
+            [(ngModel)]="size.bombs"
+            placeholder="2-{{ max }}"
+            required
+            min="2"
+            [max]="max"
+            type="number"
+          />
+        </td>
+      </tr>
+    </table>
+
+    <div class="text-right">
+      <button style="margin-top: 20px;" type="submit" class="btn btn-outline-success" (click)="done()">Ok</button>
+    </div>
+  </form>
+</div>
+<div class="modal-footer"></div>

@@ -1,0 +1,10 @@
+.minesweeper {
+  border: 10px solid #4a448a;
+  border-radius: 5px;
+  margin: 20px;
+}
+
+.minesweeper img {
+  margin: -1px;
+  image-rendering: pixelated;
+}

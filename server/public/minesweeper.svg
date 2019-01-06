@@ -16,7 +16,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="chat.svg">
+   sodipodi:docname="minesweeper.svg">
   <defs
      id="defs2">
     <linearGradient
@@ -72,22 +72,25 @@
      id="layer1"
      transform="translate(-24.55357,-41.704262)">
     <rect
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:28;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-       id="rect4518"
-       width="135.31548"
-       height="80.886909"
-       x="38.55357"
-       y="69.836304"
-       ry="12.095238" />
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+       id="rect824"
+       width="6.8035712"
+       height="101.67559"
+       x="103.92857"
+       y="71.972122"
+       ry="3.4017856" />
     <path
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:7.55093861;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 59.545711,191.61802 11.896346,-31.93565 29.853093,-3.26614"
-       id="path4542"
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 105.3902,72.740521 72.128298,101.08873 109.54794,125.27921 105.3902,72.740521"
+       id="path826"
        inkscape:connector-curvature="0" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:7.77325439;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 59.545711,191.61802 102.41962,155.2913"
-       id="path4544"
-       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+       id="rect828"
+       width="100.91964"
+       height="13.985119"
+       x="55.358631"
+       y="170.05695"
+       ry="3.4017742" />
   </g>
 </svg>

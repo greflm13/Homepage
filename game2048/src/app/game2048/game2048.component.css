@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One');
+
+@keyframes pop {
+  from {
+    margin-left: 50%;
+    margin-top: 50%;
+    width: 0;
+    height: 0;
+    font-size: 0;
+  }
+  to {
+    width: 56px;
+    height: 56px;
+    font-size: 40px;
+  }
+}
+
+@keyframes lose {
+  from {
+    background-color: #00000000;
+    color: #00000000;
+  }
+  to {
+    background-color: #e4e4e4e4;
+    color: #494949;
+  }
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+.h100 {
+  height: 50%;
+  position: relative;
+}
+
+.h101 {
+  height: 20%;
+  position: relative;
+}
+
+.score {
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 30px;
+  background-color: #e4e4e4;
+  color: #888888;
+  margin-bottom: 50px;
+}
+
+.lose {
+  animation-name: lose;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  position: absolute;
+  width: 248px;
+  height: 248px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.lose span {
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 20px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.pop {
+  animation-name: pop;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+
+.game2048 {
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #b8b8b8;
+}
+
+.fields {
+  border: 4px solid #b8b8b8;
+  border-radius: 4px;
+  width: 64px;
+  height: 64px;
+  margin: -1px;
+  background-color: #e4e4e4;
+}
+
+.field {
+  position: relative;
+  width: 56px;
+  height: 56px;
+}
+
+.field p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.n0 {
+  background-color: #e4e4e4;
+  color: #e4e4e4;
+}
+
+.n2 {
+  background-color: #f3e74e;
+}
+
+.n4 {
+  background-color: #acf34e;
+}
+
+.n8 {
+  background-color: #5af34e;
+}
+
+.n16 {
+  background-color: #4ef395;
+  font-size: 0.9em;
+}
+
+.n32 {
+  background-color: #4ef3e7;
+  font-size: 0.9em;
+}
+
+.n64 {
+  background-color: #4eacf3;
+  font-size: 0.9em;
+}
+
+.n128 {
+  background-color: #4e5af3;
+  font-size: 0.8em;
+}
+
+.n256 {
+  background-color: #954ef3;
+  font-size: 0.8em;
+}
+
+.n512 {
+  background-color: #e74ef3;
+  font-size: 0.8em;
+}
+
+.n1024 {
+  background-color: #f34eac;
+  font-size: 0.7em;
+}
+
+.n2048 {
+  background-color: #f34e5a;
+  font-size: 0.7em;
+}
+
+.n4096 {
+  background-color: #f3954e;
+  font-size: 0.7em;
+}
+
+.n8192 {
+  background-color: #f3e74e;
+  font-size: 0.7em;
+}
+
+.n16384 {
+  background-color: #adf34e;
+  font-size: 0.6em;
+}
+
+.n32768 {
+  background-color: #5af34e;
+  font-size: 0.6em;
+}
+
+.n65536 {
+  background-color: #4ef395;
+  font-size: 0.6em;
+}

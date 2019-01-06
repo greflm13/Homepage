@@ -1,0 +1,42 @@
+<div class="container-fluid noselect score">
+  <label (click)="save()">Save</label>
+  <span *ngIf="!mobile" style="position: absolute; left: 50%; transform: translate(-50%)">Score: {{game.score}}</span>
+  <span style="position: absolute; right: 15px;" (click)="ngOnInit()">Restart</span>
+  <p *ngIf="mobile" style="position: absolute; left: 50%; transform: translate(-50%)">Score: {{game.score}}</p>
+</div>
+<div class="container-fluid noselect" [ngClass]="height">
+  <table class="game2048">
+    <tr *ngFor="let row of game.fields">
+      <td *ngFor="let field of row">
+        <div class="fields text-center">
+          <div class="field" [ngClass]="field.color">
+            <p>
+              {{field.number}}
+            </p>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div *ngIf="game.lose" class="lose noselect" (click)="ngOnInit()">
+    <span>You lost.
+      <br>Score: {{game.score}}</span>
+  </div>
+</div>
+<div class="container-fluid">
+  <h1>Leaderboard</h1>
+  <table class="table">
+    <thead>
+      <th>Platz</th>
+      <th>Name</th>
+      <th>Score</th>
+      <th>Time</th>
+    </thead>
+    <tr *ngFor="let person of leaderboard.g2048.people; let i = index">
+      <td>{{i+1}}</td>
+      <td>{{person.name}}</td>
+      <td>{{person.score}}</td>
+      <td>{{person.time}}</td>
+    </tr>
+  </table>
+</div>

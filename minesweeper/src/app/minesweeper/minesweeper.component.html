@@ -1,0 +1,71 @@
+<table class="minesweeper">
+  <tr *ngFor="let row of game.fields">
+    <td *ngFor="let field of row">
+      <img src="assets/minesweeper/{{field.image}}.png" width="32px" (click)="check(field.x, field.y)" (contextmenu)="onRightClick($event, field.x, field.y)" (mousedown)="onClick($event, field.x, field.y)">
+    </td>
+  </tr>
+</table>
+<span class="btn btn-lg btn-outline-info" style="margin-left: 20px;">Flags: {{game.flags}}</span>
+<span class="btn btn-lg btn-outline-info" style="margin-left: 20px;">Time: {{game.time/10}}</span>
+<span class="btn btn-lg btn-outline-info" style="margin-left: 20px;" (click)="resetGame()">Reload</span>
+<span class="btn btn-lg btn-outline-info" style="margin-left: 20px;" (click)="reloadGame()">Change Field</span>
+<span *ngIf="!game.win && !game.lose" class="btn btn-lg btn-outline-info" style="margin-left: 20px;" (click)="alt()">Change Skin</span>
+<div class="container-fluid">
+  <h1 style="margin-top: 40px">Leaderboard</h1>
+  <h2 style="margin-top: 30px">Retardedmode</h2>
+  <table class="table">
+    <thead>
+      <th>Platz</th>
+      <th>Name</th>
+      <th>Zeit (s)</th>
+    </thead>
+    <tr *ngFor="let person of leaderboard.minesweeper.easy; let i = index">
+      <td>{{i+1}}</td>
+      <td>{{person.name}}</td>
+      <td>{{person.time}}</td>
+    </tr>
+  </table>
+  <h2 style="margin-top: 30px">"Locker"</h2>
+  <table class="table">
+    <thead>
+      <th>Platz</th>
+      <th>Name</th>
+      <th>Zeit (s)</th>
+    </thead>
+    <tr *ngFor="let person of leaderboard.minesweeper.medium; let i = index">
+      <td>{{i+1}}</td>
+      <td>{{person.name}}</td>
+      <td>{{person.time}}</td>
+    </tr>
+  </table>
+  <h2 style="margin-top: 30px">Mexikanermode</h2>
+  <table class="table">
+    <thead>
+      <th>Platz</th>
+      <th>Name</th>
+      <th>Zeit (s)</th>
+    </thead>
+    <tr *ngFor="let person of leaderboard.minesweeper.hard; let i = index">
+      <td>{{i+1}}</td>
+      <td>{{person.name}}</td>
+      <td>{{person.time}}</td>
+    </tr>
+  </table>
+  <h2 style="margin-top: 30px">Custom</h2>
+  <table class="table">
+    <thead>
+      <th>Platz</th>
+      <th>Name</th>
+      <th>Feldgröße</th>
+      <th>Bomben</th>
+      <th>Zeit (s)</th>
+    </thead>
+    <tr *ngFor="let person of leaderboard.minesweeper.people; let i = index">
+      <td>{{i+1}}</td>
+      <td>{{person.name}}</td>
+      <td>{{person.field_size}}</td>
+      <td>{{person.bomb_count}}</td>
+      <td>{{person.time}}</td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,17 @@
+<div class="modal-header">
+    <h4 class="modal-title">
+        <strong>You Win!</strong>
+    </h4>
+</div>
+<div class="modal-body">
+    <p>Your Time: {{time}}</p>
+    <p>Save your score to the Leaderboard?</p>
+    <label *ngIf="name.save">Name:</label>
+    <input *ngIf="name.save" type="text" name="name" [(ngModel)]="name.name" placeholder="Name" class="form-control">
+</div>
+<div class="modal-footer">
+    <button *ngIf="!name.save" type="button" class="btn btn-outline-danger" (click)="no()">No</button>
+    <button *ngIf="!name.save" type="button" class="btn btn-outline-success" (click)="yes()">Yes</button>
+    <button *ngIf="name.save" type="button" class="btn btn-outline-danger" (click)="cancel()">Cancel</button>
+    <button *ngIf="name.save" type="button" class="btn btn-outline-success" (click)="save()">Save</button>
+</div>
