@@ -28,13 +28,14 @@
     (mouseenter)="enter(i)"
     (mouseleave)="leave(i)"
   >
-    <div
-      *ngIf="event.open"
-      style="background-color: white; padding: 100%; border: grey 1px solid; border-radius: 10px; margin-left: 150%; display: inline-block; width: 5000%"
-    >
-      <h4 style="margin-top: 0; margin-bottom: 3pt">{{ event.text }}</h4>
-      <p>{{ event.description }}</p>
-      <p style="font-size: x-small; margin-top: 3pt">{{ event.date }}</p>
+    <div *ngIf="event.open" style="padding-left: 150%; width: 5000%">
+      <div
+        style="background-color: white; padding: 3%; border: grey 2px solid; border-radius: 10px; box-shadow: 2px 4px #bbbbbb; display: inline-block; width: 100%"
+      >
+        <h4 style="margin-top: 0; margin-bottom: 3pt">{{ event.text }}</h4>
+        <p>{{ event.description }}</p>
+        <p style="font-size: x-small; margin-top: 3pt">{{ event.date }}</p>
+      </div>
     </div>
   </div>
 </div>
