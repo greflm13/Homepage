@@ -10,6 +10,7 @@ export class AppComponent implements OnInit {
   public msec = ((window.innerWidth / 100) * 99) / 3155673600000;
   public half = window.innerHeight / 10 + 'px';
   public eventHeight = window.innerHeight / 10 + 'px';
+  public eventWidth = (window.innerWidth / 1000) * 3;
   public lineHeight = window.innerHeight / 50 + 'px';
   public events: Event[] = [];
   public line = (window.innerWidth / 100) * 99 + 'px';
@@ -21,6 +22,7 @@ export class AppComponent implements OnInit {
   public typeWrong = '';
   public dateWrong = '';
   public descriptionWrong = '';
+  public left = false;
 
   constructor(private http: HttpService) {}
 
@@ -31,6 +33,7 @@ export class AppComponent implements OnInit {
       this.eventHeight = window.innerHeight / 10 + 'px';
       this.lineHeight = window.innerHeight / 50 + 'px';
       this.line = (window.innerWidth / 100) * 99 + 'px';
+      this.eventWidth = (window.innerWidth / 1000) * 3;
     }, 100);
     this.http.get('events').then(res => {
       this.events = res;
@@ -38,6 +41,11 @@ export class AppComponent implements OnInit {
   }
 
   enter(index: number) {
+    if (window.innerWidth - this.events[index].margin * this.msec > this.eventWidth * 50) {
+      this.left = false;
+    } else {
+      this.left = true;
+    }
     this.events[index].open = true;
   }
 

@@ -31,3 +31,24 @@ p {
   transform: rotate(45deg);
   position: absolute;
 }
+
+/* Let's get this party started */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  background: rgba(177, 177, 177, 0.8);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(177, 177, 177, 0.4);
+}
