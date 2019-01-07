@@ -104,6 +104,13 @@ export class AppComponent implements OnInit {
           break;
         case 'Born':
           event.color = 'dodgerblue';
+          break;
+        case 'Film':
+          event.color = 'violet';
+          break;
+        default:
+          event.color = 'lightgrey';
+          break;
       }
       this.name = '';
       this.type = 'Category';
