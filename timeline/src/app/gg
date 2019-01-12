@@ -1,0 +1,7 @@
+
+  @HostListener('wheel', ['$event'])
+  Wheel(event) {
+    if (event.deltaY < 0) {
+      
+    }
+  }
