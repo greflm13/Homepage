@@ -39,7 +39,7 @@ export class DB {
     try {
       const dbServer = await mongodb.MongoClient.connect(
         url,
-        { socketTimeoutMS: 3.154e11 }
+        { socketTimeoutMS: 2147483647 }
       );
       const db = await dbServer.db('sorogoneu');
       const collTimeline = await db.collection('timeline');

@@ -100,12 +100,25 @@ export class Server {
     this._express.use('/2048', _2048);
     this._express.use('/minesweeper', _minesweeper);
 
+    // Main
+    this._express.use('/de', express.static(path.join(__dirname, '../public/de')));
+    this._express.get('/de/**', (req, res, next) => {
+      res.sendFile(path.join(__dirname, '../public/de/index.html'));
+    });
+    this._express.use('/en', express.static(path.join(__dirname, '../public/en')));
+    this._express.get('/en/**', (req, res, next) => {
+      res.sendFile(path.join(__dirname, '../public/en/index.html'));
+    });
+    this._express.get('*.php', (req, res, next) => {
+      res.sendFile(path.join(__dirname, '/views/no.html'));
+    });
     this._express.use(express.static(path.join(__dirname, '../public')));
-    this._express.use('/assets', express.static(path.join(__dirname, '../../ngx/dist/assets')));
     this._express.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
+    this._express.use('/', (req, res, next) => this.languageselector(req, res, next));
     this._express.use(this.error404Handler);
     this._express.use(this.errorHandler);
 
+    // Redirect
     this._appredirect.use((req, res, next) => this.logger(req, res, next, 'Redirect'));
     this._appredirect.get('*.php', (req, res, next) => {
       res.sendFile(path.join(__dirname, '/views/no.html'));
@@ -116,6 +129,16 @@ export class Server {
     this._appredirect.get('*', function(req, res) {
       res.redirect('https://' + req.headers.host + req.url);
     });
+  }
+
+  private languageselector(req: express.Request, res: express.Response, next: express.NextFunction) {
+    if (req.language === 'de-DE' || req.language === 'de-AT') {
+      res.redirect('/de');
+      return;
+    } else {
+      res.redirect('/en');
+      return;
+    }
   }
 
   private error404Handler(req: express.Request, res: express.Response, next: express.NextFunction) {
