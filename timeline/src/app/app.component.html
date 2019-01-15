@@ -62,18 +62,18 @@
     </div>
   </div>
 </div>
-<div style="background-color:black;" [style.width]="line" [style.height]="lineHeight"></div>
+<div style="background-color:black;" [style.width]="line + 'px'" [style.height]="lineHeight"></div>
 <div [style.height]="eventHeight" style="white-space: nowrap; position: relative;">
   <div class="years"><b>1900</b></div>
-  <div class="years" style="margin-left: 10%"><b>1910</b></div>
-  <div class="years" style="margin-left: 20%"><b>1920</b></div>
-  <div class="years" style="margin-left: 30%"><b>1930</b></div>
-  <div class="years" style="margin-left: 40%"><b>1940</b></div>
-  <div class="years" style="margin-left: 50%"><b>1950</b></div>
-  <div class="years" style="margin-left: 60%"><b>1960</b></div>
-  <div class="years" style="margin-left: 70%"><b>1970</b></div>
-  <div class="years" style="margin-left: 80%"><b>1980</b></div>
-  <div class="years" style="margin-left: 90%"><b>1990</b></div>
+  <div class="years" [style.margin-left]="line * 0.1 + 'px'"><b>1910</b></div>
+  <div class="years" [style.margin-left]="line * 0.2 + 'px'"><b>1920</b></div>
+  <div class="years" [style.margin-left]="line * 0.3 + 'px'"><b>1930</b></div>
+  <div class="years" [style.margin-left]="line * 0.4 + 'px'"><b>1940</b></div>
+  <div class="years" [style.margin-left]="line * 0.5 + 'px'"><b>1950</b></div>
+  <div class="years" [style.margin-left]="line * 0.6 + 'px'"><b>1960</b></div>
+  <div class="years" [style.margin-left]="line * 0.7 + 'px'"><b>1970</b></div>
+  <div class="years" [style.margin-left]="line * 0.8 + 'px'"><b>1980</b></div>
+  <div class="years" [style.margin-left]="line * 0.9 + 'px'"><b>1990</b></div>
 </div>
 <div>
   <h4>New Event</h4>

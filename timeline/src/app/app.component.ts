@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { HttpService } from './http.service';
 
 @Component({
@@ -7,13 +7,15 @@ import { HttpService } from './http.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  public msec = ((window.innerWidth / 100) * 99) / 3155673600000;
-  public half = window.innerHeight / 10 + 'px';
-  public eventHeight = window.innerHeight / 10 + 'px';
-  public eventWidth = (window.innerWidth / 1000) * 3;
-  public lineHeight = window.innerHeight / 50 + 'px';
+  public windowWidth = window.innerWidth;
+  public windowHeight = window.innerHeight;
+  public msec = ((this.windowWidth / 100) * 99) / 3155673600000;
+  public half = this.windowHeight / 10 + 'px';
+  public eventHeight = this.windowHeight / 10 + 'px';
+  public eventWidth = (this.windowWidth / 1000) * 3;
+  public lineHeight = this.windowHeight / 50 + 'px';
   public events: Event[] = [];
-  public line = (window.innerWidth / 100) * 99 + 'px';
+  public line = (this.windowWidth / 100) * 99;
   public name: string;
   public date: string;
   public description: string;
@@ -23,16 +25,28 @@ export class AppComponent implements OnInit {
   public dateWrong = '';
   public descriptionWrong = '';
   public left = false;
+  private zoom = 0;
 
   constructor(private http: HttpService) {}
 
+  @HostListener('wheel', ['$event'])
+  Wheel(event: WheelEvent) {
+    if (event.deltaY < 0) {
+      this.zoom++;
+    }
+    if (event.deltaY > 0) {
+      this.zoom--;
+    }
+  }
+
   ngOnInit() {
     setInterval(() => {
-      this.msec = ((window.innerWidth / 100) * 99) / 3155673600000;
-      this.half = window.innerHeight / 10 + 'px';
-      this.eventHeight = window.innerHeight / 10 + 'px';
-      this.lineHeight = window.innerHeight / 50 + 'px';
-      this.line = (window.innerWidth / 100) * 99 + 'px';
+      this.windowWidth = window.innerWidth * Math.pow(1.1, this.zoom);
+      this.msec = ((this.windowWidth / 100) * 99) / 3155673600000;
+      this.half = this.windowHeight / 10 + 'px';
+      this.eventHeight = this.windowHeight / 10 + 'px';
+      this.lineHeight = this.windowHeight / 50 + 'px';
+      this.line = (this.windowWidth / 100) * 99;
       this.eventWidth = (window.innerWidth / 1000) * 3;
     }, 100);
     this.http.get('events').then(res => {
@@ -41,7 +55,7 @@ export class AppComponent implements OnInit {
   }
 
   enter(index: number) {
-    if (window.innerWidth - this.events[index].margin * this.msec > this.eventWidth * 50) {
+    if (this.windowWidth - this.events[index].margin * this.msec > this.eventWidth * 50) {
       this.left = false;
     } else {
       this.left = true;
