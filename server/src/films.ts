@@ -6,11 +6,11 @@ import * as ftp from 'ftp';
 export let _films = express();
 let c = new ftp();
 c.connect({
-  host: 'www.sorogon.eu'
+  host: '100.0.0.102'
 });
 c.on('end', () => {
   c.connect({
-    host: 'www.sorogon.eu'
+    host: '100.0.0.102'
   });
 });
 
