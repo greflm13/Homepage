@@ -30,7 +30,7 @@ const consolelogger: debugsx.IHandler = debugsx.createConsoleHandler('stdout', '
 let filelogger: debugsx.IHandler;
 if (process.platform !== 'win32') {
   filelogger = debugsx.createFileHandler(
-    '/var/log/fuettr/' +
+    '/var/log/homepage/' +
       'server_' +
       date.toLocaleDateString() +
       '_' +
