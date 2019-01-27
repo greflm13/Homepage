@@ -17,6 +17,7 @@ import { _films } from './films';
 import { _timeline } from './timeline';
 import { _2048 } from './2048';
 import { _minesweeper } from './minesweeper';
+import { _minecraftServer } from './minecraft-server';
 
 const date = new Date();
 export const log: debugsx.IFullLogger = debugsx.createFullLogger('Homepage');
@@ -99,6 +100,7 @@ export class Server {
     this._express.use('/timeline', _timeline);
     this._express.use('/2048', _2048);
     this._express.use('/minesweeper', _minesweeper);
+    this._express.use('/minecraft', _minecraftServer);
 
     // Main
     this._express.use('/de', express.static(path.join(__dirname, '../public/de')));
