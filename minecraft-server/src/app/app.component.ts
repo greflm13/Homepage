@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
       this.http.get('status').then(res => {
         this.status = res;
       });
-    }, 10000);
+    }, 1000);
   }
 }
 
