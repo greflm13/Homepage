@@ -22,9 +22,11 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpService) {}
 
   ngOnInit() {
-    this.http.get('status').then(res => {
-      this.status = res;
-    });
+    setInterval(() => {
+      this.http.get('status').then(res => {
+        this.status = res;
+      });
+    }, 10000);
   }
 }
 
