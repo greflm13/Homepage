@@ -1,6 +1,9 @@
 <div class="container">
   <div class="server">
-    <div style="display: inline-block;"><img [src]="status.favicon" style="display:block; float: left;" /></div>
+    <div style="display: inline-block;">
+      <img *ngIf="status.online" [src]="status.favicon" style="display:block; float: left;" />
+      <img *ngIf="!status.online" src="assets/offline.png" style="display:block; float: left;" />
+    </div>
     <div style="margin-left: 10px; display: inline-block; ">
       <b>
         <p style="border-bottom: lightgrey 2px solid; font-size: larger">
