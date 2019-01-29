@@ -14,7 +14,7 @@ _minecraftServer.use('/node_modules', express.static(path.join(__dirname, '../no
 
 function status(req: express.Request, res: express.Response, next: express.NextFunction) {
   http
-    .get({ port: 80, host: 'mcapi.us', path: '/server/status?ip=sorogon.eu' }, resp => {
+    .get({ port: 80, host: 'mcapi.us', path: '/server/status?ip=minecraft.sorogon.eu' }, resp => {
       let data = '';
 
       resp.on('data', chunk => {
