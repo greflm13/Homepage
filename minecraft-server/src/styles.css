@@ -23,6 +23,20 @@ html {
   z-index: 5000;
 }
 
+.server2 {
+  padding: 20px;
+  color: lightgrey;
+  top: 300px;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, 0);
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.9);
+  border: rgba(255, 255, 255, 0.9) 2px solid;
+  border-radius: 10px;
+  z-index: 5000;
+}
+
 .outer {
 }
 
