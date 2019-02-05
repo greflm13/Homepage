@@ -1,8 +1,8 @@
 <div class="container">
   <div class="server">
     <div style="display: inline-block;">
-      <img *ngIf="minecraft.online" [src]="minecraft.favicon" style="display:block; float: left;" />
-      <img *ngIf="!minecraft.online" src="assets/offline.png" style="display:block; float: left;" />
+      <img class="icon" *ngIf="minecraft.online" [src]="minecraft.favicon" style="display:block; float: left;" />
+      <img class="icon" *ngIf="!minecraft.online" src="assets/offline.png" style="display:block; float: left;" />
     </div>
     <div style="margin-left: 10px; display: inline-block; ">
       <b>
@@ -23,8 +23,8 @@
 <div class="container">
   <div class="server2">
     <div style="display: inline-block;">
-      <img *ngIf="skylands.online" [src]="skylands.favicon" style="display:block; float: left;" />
-      <img *ngIf="!skylands.online" src="assets/offline.png" style="display:block; float: left;" />
+      <img class="icon" *ngIf="skylands.online" [src]="skylands.favicon" style="display:block; float: left;" />
+      <img class="icon" *ngIf="!skylands.online" src="assets/offline.png" style="display:block; float: left;" />
     </div>
     <div style="margin-left: 10px; display: inline-block; ">
       <b>
