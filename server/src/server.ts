@@ -30,29 +30,29 @@ const consolelogger: debugsx.IHandler = debugsx.createConsoleHandler('stdout', '
   { level: 'WARN', color: 'yellow', inverse: true }
 ]);
 let filelogger: debugsx.IHandler;
-if (process.platform !== 'win32') {
-  filelogger = debugsx.createFileHandler(
-    '/var/log/homepage/' +
-      'server_' +
-      date.toLocaleDateString() +
-      '_' +
-      date.getHours() +
-      '.' +
-      date.getMinutes() +
-      '.' +
-      date.getSeconds() +
-      '.log',
-    '*::INFO, *::FINE, *::SEVERE, *::ERR, *::WARN',
-    '-*',
-    [
-      { level: 'INFO', color: 'green', inverse: true },
-      { level: 'FINE', color: 'white', inverse: true },
-      { level: 'SEVERE', color: 'black', inverse: true },
-      { level: 'ERR', color: 'red', inverse: true },
-      { level: 'WARN', color: 'yellow', inverse: true }
-    ]
-  );
-} else {
+// if (process.platform !== 'win32') {
+//   filelogger = debugsx.createFileHandler(
+//     '/var/log/homepage/' +
+//       'server_' +
+//       date.toLocaleDateString() +
+//       '_' +
+//       date.getHours() +
+//       '.' +
+//       date.getMinutes() +
+//       '.' +
+//       date.getSeconds() +
+//       '.log',
+//     '*::INFO, *::FINE, *::SEVERE, *::ERR, *::WARN',
+//     '-*',
+//     [
+//       { level: 'INFO', color: 'green', inverse: true },
+//       { level: 'FINE', color: 'white', inverse: true },
+//       { level: 'SEVERE', color: 'black', inverse: true },
+//       { level: 'ERR', color: 'red', inverse: true },
+//       { level: 'WARN', color: 'yellow', inverse: true }
+//     ]
+//   );
+// } else {
   filelogger = debugsx.createFileHandler(
     'log/' + 'server_' + date.toLocaleDateString() + '_' + date.getHours() + '.' + date.getMinutes() + '.' + date.getSeconds() + '.log',
     '*::INFO, *::FINE, *::SEVERE, *::ERR, *::WARN',
@@ -65,7 +65,7 @@ if (process.platform !== 'win32') {
       { level: 'WARN', color: 'yellow', inverse: true }
     ]
   );
-}
+// }
 debugsx.addHandler(filelogger, consolelogger);
 
 export class Server {
