@@ -93,6 +93,7 @@ html {
 }
 
 .outer {
+  image-rendering: pixelated;
 }
 
 .top {

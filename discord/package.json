@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
+    "start": "npm run build",
+    "build": "ng build --prod --build-optimizer --base-href=/discord/",
+    "test": "ng build --watch --base-href=/discord/",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
