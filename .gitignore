@@ -61,7 +61,7 @@ typings/
 .next
 
 # build
-/dist
+# /dist
 server/chat.json
 */chat.json
 package-lock.json
