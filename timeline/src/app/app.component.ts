@@ -37,6 +37,9 @@ export class AppComponent implements OnInit {
     if (event.key === '-') {
       this.zoom--;
     }
+    if (event.key === 'r') {
+      this.zoom = 0;
+    }
   }
 
   ngOnInit() {
@@ -54,6 +57,18 @@ export class AppComponent implements OnInit {
     });
   }
 
+  plus() {
+    this.zoom++;
+  }
+
+  minus() {
+    this.zoom--;
+  }
+
+  reset() {
+    this.zoom = 0;
+  }
+
   enter(index: number) {
     if (this.windowWidth - this.events[index].margin * this.msec > this.eventWidth * 50) {
       this.left = false;
@@ -69,22 +84,22 @@ export class AppComponent implements OnInit {
 
   newEvent() {
     if (this.name === '' || this.name === undefined || this.name === null) {
-      this.nameWrong = 'red 3px solid';
+      this.nameWrong = 'red  2px solid';
     } else {
       this.nameWrong = '';
     }
     if (this.description === '' || this.description === undefined || this.description === null) {
-      this.descriptionWrong = 'red 3px solid';
+      this.descriptionWrong = 'red  2px solid';
     } else {
       this.descriptionWrong = '';
     }
     if (this.type === '' || this.type === undefined || this.type === null || this.type === 'Category') {
-      this.typeWrong = 'red 3px solid';
+      this.typeWrong = 'red  2px solid';
     } else {
       this.typeWrong = '';
     }
     if (this.date === '' || this.date === undefined || this.date === null) {
-      this.dateWrong = 'red 3px solid';
+      this.dateWrong = 'red  2px solid';
     } else {
       this.dateWrong = '';
     }

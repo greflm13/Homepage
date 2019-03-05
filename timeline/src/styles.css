@@ -10,6 +10,28 @@ p {
   margin: 0.5%;
 }
 
+.zoombutton {
+  margin-bottom: 30px;
+  font-size: xx-large;
+  width: 190px;
+  height: 60px;
+  background: none;
+  color: cornflowerblue;
+  border: 2px solid cornflowerblue;
+  border-radius: 10px;
+}
+
+.zoombutton:hover {
+  background-color: cornflowerblue;
+  color: white;
+}
+
+.zoombutton:focus {
+  background-color: cornflowerblue;
+  color: white;
+  outline: 0;
+}
+
 .unselectable {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -51,4 +73,30 @@ p {
 }
 ::-webkit-scrollbar-thumb:window-inactive {
   background: rgba(177, 177, 177, 0.4);
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  /*safari and chrome*/
+  select {
+    height: 35px;
+    line-height: 35px;
+  }
+}
+select::-moz-focus-inner {
+  /*Remove button padding in FF*/
+  border: 0;
+  padding: 0;
+}
+@-moz-document url-prefix() {
+  /* targets Firefox only */
+  select {
+    padding: 15px 0 !important;
+  }
+}
+@media screen\0 {
+  /* IE Hacks: targets IE 8, 9 and 10 */
+  select {
+    height: 30px;
+    line-height: 30px;
+  }
 }
