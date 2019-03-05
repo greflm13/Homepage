@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "restart": "npm run build",
-    "postrestart": "scp -r dist/* pi@100.0.0.103:/home/pi/server",
+    "prerestart": "npm run build",
+    "restart": "scp -r dist/* $HOST:/home/pi/server",
     "start": "npm run build",
     "build": "ng build --prod --build-optimizer --base-href=/minesweeper/",
     "test": "ng build --watch --base-href=/minesweeper/",

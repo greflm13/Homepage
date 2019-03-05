@@ -5,7 +5,7 @@
   "main": "dist/main.js",
   "scripts": {
     "prerestart": "gulp cleanAndBuild",
-    "restart": "scp -r dist/* pi@100.0.0.103:/home/pi/server",
+    "restart": "scp -r dist/* $HOST:/home/pi/server",
     "start": "sudo forever dist/http.js",
     "test": "nodemon --watch src -e ts --exec npm run http",
     "http": "npm run build && node dist/http.js",
