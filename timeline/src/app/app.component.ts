@@ -29,12 +29,12 @@ export class AppComponent implements OnInit {
 
   constructor(private http: HttpService) {}
 
-  @HostListener('wheel', ['$event'])
-  Wheel(event: WheelEvent) {
-    if (event.deltaY < 0) {
+  @HostListener('document:keypress', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.key === '+') {
       this.zoom++;
     }
-    if (event.deltaY > 0) {
+    if (event.key === '-') {
       this.zoom--;
     }
   }
