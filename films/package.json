@@ -4,6 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "npm run build",
+    "restart": "npm run build",
+    "postrestart": "scp -r dist/* pi@100.0.0.103:/home/pi/server",
     "build": "ng build --prod --build-optimizer --base-href=/films/",
     "test": "ng build --watch --base-href=/films/",
     "lint": "ng lint",

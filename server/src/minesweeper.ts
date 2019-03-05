@@ -4,11 +4,11 @@ import * as fs from 'fs';
 
 export let _minesweeper = express();
 
-_minesweeper.use(express.static(path.join(__dirname, '../../minesweeper/dist/minesweeper/')));
+_minesweeper.use(express.static(path.join(__dirname, 'minesweeper/')));
 _minesweeper.post('/leaderboard', postLeaderboard);
 _minesweeper.get('/leaderboard', getLeaderboard);
 _minesweeper.get(['/'], (req, res, next) => {
-  res.sendFile(path.join(__dirname, '../../minesweeper/dist/minesweeper/index.html'));
+  res.sendFile(path.join(__dirname, 'minesweeper/index.html'));
 });
 _minesweeper.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
 
@@ -31,7 +31,7 @@ function postLeaderboard(req: express.Request, res: express.Response, next: expr
 }
 
 function getLeaderboard(req: express.Request, res: express.Response, next: express.NextFunction) {
-  res.send(JSON.stringify(JSON.parse(fs.readFileSync(path.join(__dirname, '../leaderboardMinesweeper.json')).toString())));
+  res.send(JSON.stringify(JSON.parse(fs.readFileSync(path.join(__dirname, './leaderboardMinesweeper.json')).toString())));
 }
 
 interface Leaderboard {

@@ -122,18 +122,18 @@ export class Server {
     this._express.use('/discord', _discord);
 
     // Main
-    this._express.use('/de', express.static(path.join(__dirname, '../public/de')));
+    this._express.use('/de', express.static(path.join(__dirname, './public/de')));
     this._express.get('/de/**', (req, res, next) => {
-      res.sendFile(path.join(__dirname, '../public/de/index.html'));
+      res.sendFile(path.join(__dirname, './public/de/index.html'));
     });
-    this._express.use('/en', express.static(path.join(__dirname, '../public/en')));
+    this._express.use('/en', express.static(path.join(__dirname, './public/en')));
     this._express.get('/en/**', (req, res, next) => {
-      res.sendFile(path.join(__dirname, '../public/en/index.html'));
+      res.sendFile(path.join(__dirname, './public/en/index.html'));
     });
     this._express.get('*.php', (req, res, next) => {
       res.sendFile(path.join(__dirname, '/views/no.html'));
     });
-    this._express.use(express.static(path.join(__dirname, '../public')));
+    this._express.use(express.static(path.join(__dirname, './public')));
     this._express.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
     this._express.use('/', (req, res, next) => this.languageselector(req, res, next));
     this._express.use(this.error404Handler);
@@ -165,7 +165,7 @@ export class Server {
   private error404Handler(req: express.Request, res: express.Response, next: express.NextFunction) {
     const clientSocket = req.socket.remoteAddress + ':' + req.socket.remotePort;
     log.warn('Error 404 for %s %s from %s', req.method, req.url, clientSocket);
-    res.status(404).sendFile(path.join(__dirname, 'views/error404.html'));
+    res.status(404).sendFile(path.join(__dirname, './views/error404.html'));
   }
 
   private errorHandler(err: express.Errback, req: express.Request, res: express.Response, next: express.NextFunction) {

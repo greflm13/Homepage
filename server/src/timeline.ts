@@ -4,9 +4,9 @@ import { DB } from './db';
 
 export let _timeline = express();
 
-_timeline.use(express.static(path.join(__dirname, '../../timeline/dist/')));
+_timeline.use(express.static(path.join(__dirname, 'timeline/')));
 _timeline.get(['/'], (req, res, next) => {
-  res.sendFile(path.join(__dirname, '../../timeline/dist/index.html'));
+  res.sendFile(path.join(__dirname, 'timeline/index.html'));
 });
 _timeline.get('/events', (req, res, next) => getEvents(req, res, next));
 _timeline.post('/newEvent', (req, res, next) => postEvent(req, res, next));

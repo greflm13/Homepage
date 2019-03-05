@@ -7,16 +7,16 @@ export let _chat = express();
 
 let Users: User[] = [];
 let Timeouts: Out[] = [];
-let Chat: Message[] = JSON.parse(fs.readFileSync(path.join(__dirname, '../chat.json')).toString());
+let Chat: Message[] = JSON.parse(fs.readFileSync(path.join(__dirname, './chat.json')).toString());
 
 _chat.post('/new', (req, res, next) => newUser(req, res, next));
 _chat.post('/chat', (req, res, next) => newMessage(req, res, next));
 _chat.get('/users', (req, res, next) => returnUsers(req, res, next));
 _chat.get('/delete/:data', (req, res, next) => deleteUser(req, res, next));
 _chat.get('/chat', (req, res, next) => chat(req, res, next));
-_chat.use(express.static(path.join(__dirname, '../../chat/dist/')));
+_chat.use(express.static(path.join(__dirname, 'chat/')));
 _chat.get(['/', '/chatWindow', '/m'], (req, res, next) => {
-  res.sendFile(path.join(__dirname, '../../chat/dist/index.html'));
+  res.sendFile(path.join(__dirname, 'chat/index.html'));
 });
 _chat.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
 
@@ -35,7 +35,7 @@ function newMessage(req: express.Request, res: express.Response, next: express.N
       clearTimeout(Timeouts[i].out);
     }
   }
-  fs.writeFileSync(path.join(__dirname, '../chat.json'), JSON.stringify(Chat));
+  fs.writeFileSync(path.join(__dirname, './chat.json'), JSON.stringify(Chat));
   res.send(Users);
 }
 

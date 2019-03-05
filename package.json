@@ -1,0 +1,21 @@
+{
+  "name": "homepage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/dist/http.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "start": "cd chat && npm restart && cd ../discord && npm restart && cd ../films && npm restart && cd ../game2048 && npm restart && cd ../minecraft-server && npm restart && cd ../minesweeper && npm restart && cd ../server && npm restart && cd ../timeline && npm restart"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greflm13/Homepage.git"
+  },
+  "author": "Florian Greistorfer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/greflm13/Homepage/issues"
+  },
+  "homepage": "https://github.com/greflm13/Homepage#readme"
+}
