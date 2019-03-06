@@ -19,6 +19,7 @@
   "private": true,
   "repository": {},
   "dependencies": {
+    "body-parser": "^1.18.3",
     "bootstrap": "^4.0.0-beta.2",
     "cookie": "^0.3.1",
     "cookie-parser": "^1.4.3",
@@ -36,6 +37,7 @@
     "spin": "0.0.1"
   },
   "devDependencies": {
+    "@types/body-parser": "^1.17.0",
     "@types/cookie": "^0.3.1",
     "@types/cookie-parser": "^1.4.1",
     "@types/crypto-js": "^3.1.38",

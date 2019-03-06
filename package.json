@@ -6,7 +6,7 @@
   "dependencies": {},
   "devDependencies": {},
   "scripts": {
-    "prestart": "cd chat && npm run build & cd ../discord && npm run build & cd ../films && npm run build & cd ../game2048 && npm run build & cd ../minecraft-server && npm run build & cd ../minesweeper && npm run build & cd ../server && npm run build & cd ../timeline && npm run build ",
+    "prestart": "cd chat && npm run build & cd ../discord && npm run build & cd ../films && npm run build & cd ../game2048 && npm run build & cd ../minecraft-server && npm run build & cd ../minesweeper && npm run build & cd ../timeline && npm run build & cd ../server && npm run build ",
     "start": "./start.sh",
     "windows": "npm run prestart && start.sh",
     "update": "cd chat && ng update @angular/cli @angular/core & cd ../discord && ng update @angular/cli @angular/core & cd ../films && ng update @angular/cli @angular/core & cd ../game2048 && ng update @angular/cli @angular/core & cd ../minecraft-server && ng update @angular/cli @angular/core & cd ../minesweeper && ng update @angular/cli @angular/core & cd ../server && ng update @angular/cli @angular/core & cd ../timeline && ng update @angular/cli @angular/core"

@@ -9,3 +9,5 @@ cd ../minecraft-server && scp -r dist/* $HOST:/home/pi/server &&
 cd ../minesweeper && scp -r dist/* $HOST:/home/pi/server &&
 cd ../server && scp -r dist/* $HOST:/home/pi/server &&
 cd ../timeline && scp -r dist/* $HOST:/home/pi/server
+echo Done.
+read
