@@ -65,3 +65,4 @@ typings/
 server/chat.json
 */chat.json
 package-lock.json
+shrinkwrap.yaml
