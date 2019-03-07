@@ -1,13 +1,14 @@
 #!/bin/bash
-echo enter Hostname:
+echo enter IP:
 read HOST
-cd chat && scp -r dist/* $HOST:/home/pi/server &&
-cd ../discord && scp -r dist/* $HOST:/home/pi/server &&
-cd ../films && scp -r dist/* $HOST:/home/pi/server &&
-cd ../game2048 && scp -r dist/* $HOST:/home/pi/server &&
-cd ../minecraft-server && scp -r dist/* $HOST:/home/pi/server &&
-cd ../minesweeper && scp -r dist/* $HOST:/home/pi/server &&
-cd ../server && scp -r dist/* $HOST:/home/pi/server &&
-cd ../timeline && scp -r dist/* $HOST:/home/pi/server
+cd chat && scp -r dist/* pi@$HOST:/home/pi/server &
+cd ../discord && scp -r dist/* pi@$HOST:/home/pi/server &
+cd ../films && scp -r dist/* pi@$HOST:/home/pi/server &
+cd ../game2048 && scp -r dist/* pi@$HOST:/home/pi/server &
+cd ../minecraft-server && scp -r dist/* pi@$HOST:/home/pi/server &
+cd ../minesweeper && scp -r dist/* pi@$HOST:/home/pi/server &
+cd ../server && scp -r dist/* pi@$HOST:/home/pi/server &
+cd ../timeline && scp -r dist/* pi@$HOST:/home/pi/server &
+cd ../vinyl && scp -r dist/* pi@$HOST:/home/pi/server &
 echo Done.
 read
