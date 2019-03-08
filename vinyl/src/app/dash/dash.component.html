@@ -1,0 +1,5 @@
+<div class="parent">
+  <div *ngFor="let album of albums" [style.height]="imgwidth" [style.width]="imgwidth" class="child">
+    <img src="assets/{{ album.img }}" [style.width]="imgwidth" (click)="hello(album.id)" />
+  </div>
+</div>
