@@ -19,6 +19,7 @@ import { _2048 } from './2048';
 import { _minesweeper } from './minesweeper';
 import { _minecraftServer } from './minecraft-server';
 import { _discord } from './discord';
+import { _vinyl } from './vinyl';
 
 const date = new Date();
 export const log: debugsx.IFullLogger = debugsx.createFullLogger('Homepage');
@@ -120,6 +121,7 @@ export class Server {
     this._express.use('/minesweeper', _minesweeper);
     this._express.use('/minecraft', _minecraftServer);
     this._express.use('/discord', _discord);
+    this._express.use('/vinyl', _vinyl);
 
     // Main
     this._express.use('/de', express.static(path.join(__dirname, './public/de')));

@@ -1,5 +1,13 @@
 <div class="parent">
   <div *ngFor="let album of albums" [style.height]="imgwidth" [style.width]="imgwidth" class="child">
-    <img src="assets/{{ album.img }}" [style.width]="imgwidth" (click)="hello(album.id)" />
+    <img
+      src="assets/{{ album.img }}"
+      [style.width]="imgwidth"
+      [style.height]="imgwidth"
+      (click)="hello(album.id)"
+      (mouseenter)="enter(album.id)"
+      (mouseleave)="leave(album.id)"
+      (mouseover)="over(album.id)"
+    />
   </div>
 </div>
