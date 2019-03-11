@@ -6,7 +6,7 @@ import { DB } from './db';
 export let _vinyl = express();
 
 _vinyl.use(express.static(path.join(__dirname, 'vinyl/')));
-_vinyl.get(['/'], (req, res, next) => {
+_vinyl.get(['/', '/new'], (req, res, next) => {
   res.sendFile(path.join(__dirname, 'vinyl/index.html'));
 });
 _vinyl.get('/albums', (req, res, next) => getAlbums(req, res, next));
