@@ -46,7 +46,7 @@ export class DB {
     const url =
       'mongodb://homepage:g74775@cluster0-shard-00-00-10aya.gcp.mongodb.net:27017,cluster0-shard-00-01-10aya.gcp.mongodb.net:27017,cluster0-shard-00-02-10aya.gcp.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true';
     try {
-      const dbServer = await mongodb.MongoClient.connect(url, { socketTimeoutMS: 2147483647 });
+      const dbServer = await mongodb.MongoClient.connect(url, { socketTimeoutMS: 2147483647});
       const db = await dbServer.db('sorogoneu');
       const collTimeline = await db.collection('timeline');
       const collAlbums = await db.collection('albums');
