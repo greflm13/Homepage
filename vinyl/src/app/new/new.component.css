@@ -1,0 +1,28 @@
+form {
+  margin: 10px;
+}
+
+form label {
+  font-size: 18pt;
+}
+
+form input {
+  font-size: 16pt;
+}
+
+form button {
+  font-size: 16pt;
+}
+
+form input.date {
+  font-size: 14pt;
+}
+
+div {
+  margin: 20px;
+}
+
+div img {
+  border: 3px darkgrey solid;
+  border-radius: 5px;
+}

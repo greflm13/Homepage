@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Album } from '../dash/dash.component';
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-new',
@@ -8,9 +10,11 @@ import { Album } from '../dash/dash.component';
 })
 export class NewComponent implements OnInit {
   public file;
-  private album: Album = { img: '', date: new Date(Date.now()) };
+  public date;
+  public album: Album = { img: '', date: new Date(Date.now()) };
+  public imgwidth: string;
 
-  constructor() {}
+  constructor(private http: HttpService, private router: Router) {}
 
   onFileChange(event) {
     const reader = new FileReader();
@@ -23,7 +27,28 @@ export class NewComponent implements OnInit {
     }
   }
 
-  onSubmit() {}
+  onSubmit() {
+    if (this.date && this.file) {
+      this.album.date = this.date;
+      this.http.post('album', this.album).then(() => {
+        this.router.navigate(['/']);
+      });
+    }
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    setInterval(() => {
+      if (window.innerWidth > 1200) {
+        this.imgwidth = window.innerWidth / 9 + 'px';
+      } else if (window.innerWidth > 992) {
+        this.imgwidth = window.innerWidth / 8 + 'px';
+      } else if (window.innerWidth > 768) {
+        this.imgwidth = window.innerWidth / 6 + 'px';
+      } else if (window.innerWidth > 576) {
+        this.imgwidth = window.innerWidth / 4 + 'px';
+      } else {
+        this.imgwidth = window.innerWidth / 3 + 'px';
+      }
+    }, 100);
+  }
 }

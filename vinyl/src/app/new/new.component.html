@@ -1,7 +1,13 @@
 <form (ngSubmit)="onSubmit()">
-  <label for="cover">Cover</label>
-  <input type="file" [(ngModel)]="file" name="file" (change)="onFileChange($event)" required />
+  <label for="cover">Cover: </label>
+  <input type="file" id="cover" [(ngModel)]="file" name="file" (change)="onFileChange($event)" required />
+  <label for="date">Date: </label>
+  <input type="date" id="date" name="date" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" placeholder="yyyy-mm-dd" [(ngModel)]="date" class="date" required />
   <button type="submit">
     Submit
   </button>
 </form>
+<div>
+  <h2>Preview:</h2>
+  <img [src]="album.img" [style.width]="imgwidth" [style.height]="imgwidth" alt="No file chosen" />
+</div>
