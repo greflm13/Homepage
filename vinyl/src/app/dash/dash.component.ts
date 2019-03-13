@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
 
+import { Album } from '../new/new.component';
+
 @Component({
   selector: 'app-dash',
   templateUrl: './dash.component.html',
@@ -8,7 +10,7 @@ import { HttpService } from '../http.service';
 })
 export class DashComponent implements OnInit {
   public imgwidth: string;
-  public albums = [];
+  public albums: Album[] = [];
 
   constructor(private http: HttpService) {}
 
@@ -26,7 +28,7 @@ export class DashComponent implements OnInit {
         this.imgwidth = window.innerWidth / 3 + 'px';
       }
     }, 100);
-    this.http.get('albums').then((res) => {
+    this.http.get('albums').then(res => {
       this.albums = res;
     });
   }
@@ -37,22 +39,15 @@ export class DashComponent implements OnInit {
 
   enter(id: number) {
     this.albums.forEach(album => {
-      if (album.id === id) {
-        album.hover = true;
+      if (album._id === id) {
       }
     });
   }
 
   leave(id: number) {
     this.albums.forEach(album => {
-      if (album.id === id) {
-        album.hover = false;
+      if (album._id === id) {
       }
     });
   }
-}
-
-export interface Album {
-  img: string;
-  date: Date;
 }

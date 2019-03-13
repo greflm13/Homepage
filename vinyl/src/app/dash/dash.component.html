@@ -1,12 +1,12 @@
 <div class="parent">
   <div *ngFor="let album of albums" [style.height]="imgwidth" [style.width]="imgwidth" class="child">
     <img
-      [src]="album.img"
+      [src]="album.cover"
       [style.width]="imgwidth"
       [style.height]="imgwidth"
-      (click)="hello(album.id)"
-      (mouseenter)="enter(album.id)"
-      (mouseleave)="leave(album.id)"
+      (click)="hello(album._id)"
+      (mouseenter)="enter(album._id)"
+      (mouseleave)="leave(album._id)"
     />
   </div>
 </div>

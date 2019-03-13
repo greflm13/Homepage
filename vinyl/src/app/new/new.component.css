@@ -1,5 +1,6 @@
 form {
-  margin: 10px;
+  margin: 20px;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 form label {
@@ -8,6 +9,7 @@ form label {
 
 form input {
   font-size: 16pt;
+  margin-top: 5px;
 }
 
 form button {
@@ -18,11 +20,29 @@ form input.date {
   font-size: 14pt;
 }
 
-div {
+.pre {
   margin: 20px;
 }
 
 div img {
   border: 3px darkgrey solid;
   border-radius: 5px;
+}
+
+.sep {
+  border-top: 2px solid darkgrey;
+  width: 40%;
+  display: inline-block;
+}
+
+.side {
+  margin-left: 30px;
+}
+
+.song {
+  margin-left: 30px;
+}
+
+div {
+  font-family: 'Ubuntu', sans-serif;
 }

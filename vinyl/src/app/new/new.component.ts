@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Album } from '../dash/dash.component';
 import { HttpService } from '../http.service';
 
 @Component({
@@ -9,31 +8,60 @@ import { HttpService } from '../http.service';
   styleUrls: ['./new.component.css']
 })
 export class NewComponent implements OnInit {
-  public file;
   public date;
-  public album: Album = { img: '', date: new Date(Date.now()) };
+  public cover;
+  public sides = [[null, null]];
+  public album: Album = {
+    artist: '',
+    album: '',
+    cover: '',
+    date: new Date(Date.now()),
+    lp_count: 1,
+    lps: [{ sides: [{ song_count: 1, songs: [''] }, { song_count: 1, songs: [''] }] }]
+  };
   public imgwidth: string;
 
   constructor(private http: HttpService, private router: Router) {}
 
-  onFileChange(event) {
+  onFileChange(event, lp: number, side: number) {
     const reader = new FileReader();
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
       reader.readAsDataURL(file);
       reader.onload = (e: any) => {
-        this.album.img = e.target.result;
+        if (lp === 0) {
+          this.album.cover = e.target.result;
+        } else {
+          // this.album.lps[lp - 1].sides[side].picture = e.target.result;
+        }
       };
     }
   }
 
-  onSubmit() {
-    if (this.date && this.file) {
-      this.album.date = this.date;
-      this.http.post('album', this.album).then(() => {
-        this.router.navigate(['/']);
-      });
+  onLpNrChange() {
+    this.album.lps = [];
+    this.sides = [];
+    for (let i = 0; i < this.album.lp_count; i++) {
+      this.album.lps.push({ sides: [{ song_count: 1, songs: [''] }, { song_count: 1, songs: [''] }] });
+      this.sides.push([null, null]);
     }
+  }
+
+  onSongNrChange(lp: number, side: number) {
+    this.album.lps[lp].sides[side].songs = [];
+    for (let i = 0; i < this.album.lps[lp].sides[side].song_count; i++) {
+      this.album.lps[lp].sides[side].songs.push('');
+    }
+  }
+  onSubmit() {
+    this.album.date = this.date;
+    this.http.post('album', this.album).then(() => {
+      this.router.navigate(['/']);
+    });
+  }
+
+  trackByFn(index: any, item: any) {
+    return index;
   }
 
   ngOnInit() {
@@ -51,4 +79,24 @@ export class NewComponent implements OnInit {
       }
     }, 100);
   }
+}
+
+export interface Album {
+  artist: string;
+  album: string;
+  cover: string;
+  lp_count: number;
+  lps: Lp[];
+  date: Date;
+  _id?: any;
+}
+
+interface Lp {
+  sides: Side[];
+}
+
+interface Side {
+  // picture: string;
+  songs: string[];
+  song_count: number;
 }
