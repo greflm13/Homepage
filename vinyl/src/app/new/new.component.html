@@ -4,10 +4,15 @@
   <label for="talbum">Album: </label>
   <input type="text" id="talbum" [(ngModel)]="album.album" name="talbum" required /><br />
   <label for="cover">Cover: </label>
-  <input type="file" id="cover" name="cover" [(ngModel)]="cover" (change)="onFileChange($event, 0, 0)" accept=".png,.jpg,.jpeg" required /><br /><span
-    class="sep"
-  ></span
-  ><br />
+  <input
+    type="file"
+    id="cover"
+    name="cover"
+    [(ngModel)]="cover"
+    (change)="onFileChange($event, 0, 0)"
+    accept=".png,.jpg,.jpeg"
+    required
+  /><br /><span class="sep"></span><br />
   <label for="lps">Number of LPs: </label>
   <input type="number" id="lps" [(ngModel)]="album.lp_count" name="nrlps" required min="1" (change)="onLpNrChange()" /><br /><span
     class="sep"
@@ -26,7 +31,7 @@
         [(ngModel)]="album.lps[j].sides[i].song_count"
         name="songs"
         required
-        min="1"
+        min="0"
         (change)="onSongNrChange(j, i)"
       /><br />
       <div class="song" *ngFor="let song of side.songs; let k = index; trackBy: trackByFn">
@@ -61,8 +66,8 @@
 <div class="pre" [hidden]="newAlbum.form.invalid">
   <h2>Preview:</h2>
   <img [src]="album.cover" [style.width]="imgwidth" [style.height]="imgwidth" alt="No Cover" />
-  <span *ngFor="let lp of album.lps">
-    <h3>LPs:</h3>
+  <span *ngFor="let lp of album.lps; let a = index">
+    <h3>LP {{ a + 1 }}:</h3>
     <h4>Side 1:</h4>
     <!-- <img [src]="lp.sides[0].picture" [style.width]="imgwidth" [style.height]="imgwidth" alt="No Picture" /><br /> -->
     <span *ngFor="let song of lp.sides[0].songs; let i = index">#{{ i + 1 }} {{ song }}<br /></span>

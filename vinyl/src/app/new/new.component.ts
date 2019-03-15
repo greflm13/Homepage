@@ -55,6 +55,7 @@ export class NewComponent implements OnInit {
   }
   onSubmit() {
     this.album.date = this.date;
+    // console.log(this.album);
     this.http.post('album', this.album).then(() => {
       this.router.navigate(['/']);
     });

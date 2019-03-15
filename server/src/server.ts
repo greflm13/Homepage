@@ -77,8 +77,8 @@ export class Server {
   private _appredirect = express();
 
   private constructor() {
-    this._express.use(bodyparser.json());
-    this._express.use(bodyparser.urlencoded({ extended: true }));
+    this._express.use(bodyparser.json({ limit: '1mb' }));
+    this._express.use(bodyparser.urlencoded({ limit: '1mb', extended: true }));
     this._express.use(cookieparser());
     this._express.use(requestLanguage({ languages: ['en-GB', 'en-US', 'de-DE', 'de-AT'] }));
     this._express.set('views', path.join(__dirname, '/views'));
@@ -103,9 +103,6 @@ export class Server {
       res.sendFile(path.join(__dirname, '/views/no.html'));
     });
     this._express.use(express.static(path.join(__dirname, './public')));
-    this._express.get('/fancy', (req, res, next) =>
-      res.sendFile(path.join(__dirname, './node_modules/bootstrap/dist/css/bootstrap.min.css'))
-    );
     this._express.use('/', (req, res, next) => this.languageselector(req, res, next));
     this._express.use(this.error404Handler);
     this._express.use(this.errorHandler);

@@ -9,6 +9,7 @@ import { Album } from '../new/new.component';
   styleUrls: ['./dash.component.css']
 })
 export class DashComponent implements OnInit {
+  public loading = true;
   public imgwidth: string;
   public albums: Album[] = [];
 
@@ -30,6 +31,7 @@ export class DashComponent implements OnInit {
     }, 100);
     this.http.get('albums').then(res => {
       this.albums = res;
+      this.loading = false;
     });
   }
 
