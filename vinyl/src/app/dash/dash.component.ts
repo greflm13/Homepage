@@ -20,9 +20,6 @@ export class DashComponent implements OnInit {
     setInterval(() => {
       this.imgWidth()
     }, 100);
-    this.albums.push({album: 'a', artist: 'a', cover: '', date: new Date(Date.now()), lp_count: 1, lps:[]});
-    this.albums.push({album: 'a', artist: 'a', cover: '', date: new Date(Date.now()), lp_count: 1, lps:[]});
-    this.loading = false;
     this.http.get('albums').then(res => {
       this.albums = res;
       this.loading = false;
