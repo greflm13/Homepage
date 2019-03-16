@@ -16,40 +16,42 @@ export class DashComponent implements OnInit {
   constructor(private http: HttpService) {}
 
   ngOnInit() {
+    this.imgWidth();
     setInterval(() => {
-      if (window.innerWidth > 1200) {
-        this.imgwidth = window.innerWidth / 9 + 'px';
-      } else if (window.innerWidth > 992) {
-        this.imgwidth = window.innerWidth / 8 + 'px';
-      } else if (window.innerWidth > 768) {
-        this.imgwidth = window.innerWidth / 6 + 'px';
-      } else if (window.innerWidth > 576) {
-        this.imgwidth = window.innerWidth / 4 + 'px';
-      } else {
-        this.imgwidth = window.innerWidth / 3 + 'px';
-      }
+      this.imgWidth()
     }, 100);
+    this.albums.push({album: 'a', artist: 'a', cover: '', date: new Date(Date.now()), lp_count: 1, lps:[]});
+    this.albums.push({album: 'a', artist: 'a', cover: '', date: new Date(Date.now()), lp_count: 1, lps:[]});
+    this.loading = false;
     this.http.get('albums').then(res => {
       this.albums = res;
       this.loading = false;
     });
   }
 
-  hello(id: number) {
-    console.log('click : ' + id);
+  imgWidth() {if (window.innerWidth > 1200) {
+    this.imgwidth = window.innerWidth / 9 + 'px';
+  } else if (window.innerWidth > 992) {
+    this.imgwidth = window.innerWidth / 8 + 'px';
+  } else if (window.innerWidth > 768) {
+    this.imgwidth = window.innerWidth / 6 + 'px';
+  } else if (window.innerWidth > 576) {
+    this.imgwidth = window.innerWidth / 4 + 'px';
+  } else {
+    this.imgwidth = window.innerWidth / 3 + 'px';
+  }}
+
+  hello(el) {
+    console.log(el);
   }
 
-  enter(id: number) {
-    this.albums.forEach(album => {
-      if (album._id === id) {
-      }
-    });
+  enter(e) {
+    console.log(e.target.x);
+    console.log(e.target.y);
   }
 
-  leave(id: number) {
-    this.albums.forEach(album => {
-      if (album._id === id) {
-      }
-    });
+  leave(e) {
+    console.log(e.target.x);
+    console.log(e.target.y);
   }
 }
