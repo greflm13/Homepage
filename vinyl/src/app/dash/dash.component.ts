@@ -52,11 +52,11 @@ export class DashComponent implements OnInit {
     }
   }
 
-  hello(e) {
+  hello(e: Event) {
     console.log(e);
   }
 
-  enter(e) {
+  enter(e: any) {
     const target = e.target || e.srcElement;
     this.hov = true;
     this.hovleft = window.pageXOffset + target.getBoundingClientRect().left - this.imgWidth() * 0.05 + 'px';
@@ -64,7 +64,7 @@ export class DashComponent implements OnInit {
     this.hovsrc = target.src;
   }
 
-  leave(e) {
+  leave(e: Event) {
     this.hov = false;
   }
 

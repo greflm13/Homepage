@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   keyPress(event: any, input: any) {
     if (event.key === 'Enter') {
-      this.enter()
+      this.enter();
     } else if (event.key === 'Enter') {
       this.nameEntered();
     }
