@@ -27,14 +27,15 @@ export class DashComponent implements OnInit {
       this.imgwidth = this.imgWidth() + 'px';
       this.hovwidth = this.imgWidth() * 1.1 + 'px';
     }, 100);
-    // this.loading = false;
-    // this.albums.push({ album: 'a', artist: 'a', cover: 'assets/ph.png', date: new Date(Date.now()), lp_count: 1, lps: [] });
-    // this.albums.push({ album: 'a', artist: 'a', cover: 'assets/ph.png', date: new Date(Date.now()), lp_count: 1, lps: [] });
-    // this.albums.push({ album: 'a', artist: 'a', cover: 'assets/ph.png', date: new Date(Date.now()), lp_count: 1, lps: [] });
-    this.http.get('albums').then(res => {
-      this.albums = res;
-      this.loading = false;
-    });
+    this.http
+      .get('albums')
+      .then(res => {
+        this.albums = res;
+        this.loading = false;
+      })
+      .catch(() => {
+        this.mockData();
+      });
   }
 
   imgWidth(): number {
@@ -64,5 +65,12 @@ export class DashComponent implements OnInit {
 
   leave(e) {
     this.hov = false;
+  }
+
+  mockData() {
+    this.loading = false;
+    this.albums.push({ album: 'a', artist: 'a', cover: 'assets/ph.png', date: new Date(Date.now()), lp_count: 1, lps: [] });
+    this.albums.push({ album: 'a', artist: 'a', cover: 'assets/ph.png', date: new Date(Date.now()), lp_count: 1, lps: [] });
+    this.albums.push({ album: 'a', artist: 'a', cover: 'assets/ph.png', date: new Date(Date.now()), lp_count: 1, lps: [] });
   }
 }
