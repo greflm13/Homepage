@@ -57,10 +57,11 @@ export class DashComponent implements OnInit {
   }
 
   enter(e) {
+    const target = e.target || e.srcElement;
     this.hov = true;
-    this.hovleft = window.pageXOffset + e.target.x - this.imgWidth() * 0.05 + 'px';
-    this.hovtop = window.pageYOffset + e.target.y - this.imgWidth() * 0.05 + 'px';
-    this.hovsrc = e.target.src;
+    this.hovleft = window.pageXOffset + target.getBoundingClientRect().left - this.imgWidth() * 0.05 + 'px';
+    this.hovtop = window.pageYOffset + target.getBoundingClientRect().top - this.imgWidth() * 0.05 + 'px';
+    this.hovsrc = target.src;
   }
 
   leave(e) {
