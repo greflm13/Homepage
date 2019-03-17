@@ -9,17 +9,19 @@ import { HttpService } from '../http.service';
 })
 export class NewComponent implements OnInit {
   public date;
-  public cover;
+  public release;
+  public cover: string;
   public sides = [[null, null]];
+  public imgwidth: string;
   public album: Album = {
     artist: '',
     album: '',
     cover: '',
     date: new Date(Date.now()),
+    release: new Date(Date.now()),
     lp_count: 1,
     lps: [{ sides: [{ song_count: 1, songs: [''] }, { song_count: 1, songs: [''] }] }]
   };
-  public imgwidth: string;
 
   constructor(private http: HttpService, private router: Router) {}
 
@@ -55,6 +57,7 @@ export class NewComponent implements OnInit {
   }
   onSubmit() {
     this.album.date = this.date;
+    this.album.release = this.release;
     // console.log(this.album);
     this.http.post('album', this.album).then(() => {
       this.router.navigate(['/']);
@@ -88,6 +91,7 @@ export interface Album {
   cover: string;
   lp_count: number;
   lps: Lp[];
+  release: Date;
   date: Date;
   _id?: any;
 }

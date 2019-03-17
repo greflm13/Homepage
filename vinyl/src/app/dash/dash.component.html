@@ -1,7 +1,7 @@
 <div class="parent" *ngIf="!loading">
   <div *ngFor="let album of albums" [style.height]="imgwidth" [style.width]="imgwidth" class="child">
-    <img [src]="album.cover" [style.width]="imgwidth" [style.height]="imgwidth" (click)="hello($event)" (mouseenter)="enter($event)" />
+    <img [src]="album.cover" [style.width]="imgwidth" [style.height]="imgwidth" (click)="hello($event)" (mouseenter)="enter($event)" (mouseleave)="leave($event)" />
   </div>
-  <img *ngIf="hov" class="hover" [src]="hovsrc" [style.width]="hovwidth" [style.height]="hovwidth" [style.top]="hovtop" [style.left]="hovleft" (mouseleave)="leave($event)">
+  <img *ngIf="hov" class="hover" [src]="hovsrc" [style.width]="hovwidth" [style.height]="hovwidth" [style.top]="hovtop" [style.left]="hovleft">
 </div>
 <img src="assets/load.gif" *ngIf="loading" class="load" [style.height]="imgwidth" [style.width]="imgwidth" />

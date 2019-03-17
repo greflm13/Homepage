@@ -58,6 +58,17 @@
     [(ngModel)]="date"
     class="date"
     required
+  /><br />
+  <label for="date">Release: </label>
+  <input
+    type="date"
+    id="release"
+    name="release"
+    pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+    placeholder="yyyy-mm-dd"
+    [(ngModel)]="release"
+    class="date"
+    required
   /><br /><br />
   <button type="submit" [disabled]="newAlbum.form.invalid">
     Submit

@@ -31,6 +31,7 @@ export class DashComponent implements OnInit {
       .get('albums')
       .then(res => {
         this.albums = res;
+        this.sort();
         this.loading = false;
       })
       .catch(() => {
@@ -68,10 +69,38 @@ export class DashComponent implements OnInit {
     this.hov = false;
   }
 
+  sort() {
+    this.albums.sort(
+      (leftSide, rightSide): number => {
+        if (leftSide.artist > rightSide.artist) {
+          return 1;
+        }
+        if (leftSide.artist < rightSide.artist) {
+          return -1;
+        }
+        if (leftSide.release > rightSide.release) {
+          return 1;
+        }
+        if (leftSide.release < rightSide.release) {
+          return -1;
+        }
+        return 0;
+      }
+    );
+  }
+
   mockData() {
     this.loading = false;
     for (let i = 0; i < 60; i++) {
-      this.albums.push({ album: 'a', artist: 'a', cover: 'assets/ph.png', date: new Date(Date.now()), lp_count: 1, lps: [] });
+      this.albums.push({
+        album: 'a',
+        artist: 'a',
+        cover: 'assets/ph.png',
+        date: new Date(Date.now()),
+        release: new Date(Date.now()),
+        lp_count: 1,
+        lps: []
+      });
     }
   }
 }
