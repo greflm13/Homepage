@@ -10,4 +10,5 @@ cd ../server && scp -r dist/* net@%HOST%:/home/net/server &
 cd ../timeline && scp -r dist/* net@%HOST%:/home/net/server &
 cd ../vinyl && scp -r dist/* net@%HOST%:/home/net/server &
 cd ..
+ssh net@%HOST% "cd server && ./restart.sh"
 set /p temp=Done.
