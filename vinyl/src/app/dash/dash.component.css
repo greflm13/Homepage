@@ -9,3 +9,13 @@
   position: absolute;
   pointer-events: none;
 }
+
+.parent { 
+  font-size: 0;
+}
+
+.child {
+  display: inline-block;
+  font-size: initial;
+  position: relative;
+}

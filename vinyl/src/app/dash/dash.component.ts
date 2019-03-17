@@ -58,8 +58,8 @@ export class DashComponent implements OnInit {
 
   enter(e) {
     this.hov = true;
-    this.hovleft = e.target.x - this.imgWidth() * 0.05 + 'px';
-    this.hovtop = e.target.y - this.imgWidth() * 0.05 + 'px';
+    this.hovleft = window.pageXOffset + e.target.x - this.imgWidth() * 0.05 + 'px';
+    this.hovtop = window.pageYOffset + e.target.y - this.imgWidth() * 0.05 + 'px';
     this.hovsrc = e.target.src;
   }
 
@@ -69,8 +69,8 @@ export class DashComponent implements OnInit {
 
   mockData() {
     this.loading = false;
-    this.albums.push({ album: 'a', artist: 'a', cover: 'assets/ph.png', date: new Date(Date.now()), lp_count: 1, lps: [] });
-    this.albums.push({ album: 'a', artist: 'a', cover: 'assets/ph.png', date: new Date(Date.now()), lp_count: 1, lps: [] });
-    this.albums.push({ album: 'a', artist: 'a', cover: 'assets/ph.png', date: new Date(Date.now()), lp_count: 1, lps: [] });
+    for (let i = 0; i < 60; i++) {
+      this.albums.push({ album: 'a', artist: 'a', cover: 'assets/ph.png', date: new Date(Date.now()), lp_count: 1, lps: [] });
+    }
   }
 }

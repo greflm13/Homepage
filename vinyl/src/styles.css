@@ -6,20 +6,10 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
-  overflow-y: scroll;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE 10+ */
 }
 
-.parent {
-  font-size: 0;
-}
-
-.child {
-  display: inline-block;
-  font-size: initial;
-}
-
 ::-webkit-scrollbar {
-  width: 0;
+  width: 0; /* Chrome */
 }
