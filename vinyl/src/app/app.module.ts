@@ -8,9 +8,10 @@ import { AppComponent } from './app.component';
 import { DashComponent } from './dash/dash.component';
 import { NewComponent } from './new/new.component';
 import { HttpService } from './http.service';
+import { DetailComponent } from './detail/detail.component';
 
 @NgModule({
-  declarations: [AppComponent, DashComponent, NewComponent],
+  declarations: [AppComponent, DashComponent, NewComponent, DetailComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
   providers: [HttpService, HttpClient],
   bootstrap: [AppComponent]
