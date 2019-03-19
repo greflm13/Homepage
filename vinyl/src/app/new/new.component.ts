@@ -11,7 +11,6 @@ export class NewComponent implements OnInit {
   public date;
   public release;
   public cover: string;
-  public sides = [[null, null]];
   public imgwidth: string;
   public album: Album = {
     artist: '',
@@ -41,18 +40,26 @@ export class NewComponent implements OnInit {
   }
 
   onLpNrChange() {
+    const temp = this.album.lps;
     this.album.lps = [];
-    this.sides = [];
     for (let i = 0; i < this.album.lp_count; i++) {
-      this.album.lps.push({ sides: [{ song_count: 1, songs: [''] }, { song_count: 1, songs: [''] }] });
-      this.sides.push([null, null]);
+      if (temp[i]) {
+        this.album.lps.push(temp[i]);
+      } else {
+        this.album.lps.push({ sides: [{ song_count: 1, songs: [''] }, { song_count: 1, songs: [''] }] });
+      }
     }
   }
 
   onSongNrChange(lp: number, side: number) {
+    const temp = this.album.lps[lp].sides[side].songs;
     this.album.lps[lp].sides[side].songs = [];
     for (let i = 0; i < this.album.lps[lp].sides[side].song_count; i++) {
-      this.album.lps[lp].sides[side].songs.push('');
+      if (temp[i]) {
+        this.album.lps[lp].sides[side].songs.push(temp[i]);
+      } else {
+        this.album.lps[lp].sides[side].songs.push('');
+      }
     }
   }
   onSubmit() {

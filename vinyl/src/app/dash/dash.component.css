@@ -10,8 +10,9 @@
   pointer-events: none;
 }
 
-.parent { 
+.parent {
   font-size: 0;
+  overflow: hidden;
 }
 
 .child {
