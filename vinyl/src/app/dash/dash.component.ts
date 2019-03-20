@@ -95,7 +95,7 @@ export class DashComponent implements OnInit {
       this.albums.push({
         album: 'a',
         artist: 'a',
-        cover: 'assets/ph.png',
+        cover: 'assets/placeholder.png',
         date: new Date(Date.now()),
         release: new Date(Date.now()),
         lp_count: 1,
