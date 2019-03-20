@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../http.service';
+import { Router } from '@angular/router';
 
 import { Album } from '../new/new.component';
+import { AlbumsService } from '../albums.service';
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-dash',
@@ -18,7 +20,7 @@ export class DashComponent implements OnInit {
   public hovsrc: string;
   public albums: Album[] = [];
 
-  constructor(private http: HttpService) {}
+  constructor(private albumService: AlbumsService, private router: Router, private http: HttpService) {}
 
   ngOnInit() {
     this.imgwidth = this.imgWidth() + 'px';
@@ -32,6 +34,7 @@ export class DashComponent implements OnInit {
       .then(res => {
         this.albums = res;
         this.sort();
+        this.albumService.setAlbums(this.albums);
         this.loading = false;
       })
       .catch(() => {
@@ -53,8 +56,8 @@ export class DashComponent implements OnInit {
     }
   }
 
-  hello(e: Event) {
-    console.log(e);
+  click(id: any) {
+    this.router.navigateByUrl('/detail/' + id);
   }
 
   enter(e: any) {

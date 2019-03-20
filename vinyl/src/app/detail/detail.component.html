@@ -1,3 +1,4 @@
-<p>
-  detail works!
-</p>
+<div class="detail">
+  <h1>{{ album.artist }}</h1>
+</div>
+<img src="assets/load.gif" *ngIf="loading" class="load" [style.height]="imgwidth" [style.width]="imgwidth" />

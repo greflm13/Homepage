@@ -7,7 +7,8 @@ import { DetailComponent } from './detail/detail.component';
 const routes: Routes = [
   { path: '', component: DashComponent, pathMatch: 'full' },
   { path: 'new', component: NewComponent, pathMatch: 'full' },
-  { path: 'detail', component: DetailComponent, pathMatch: 'full' }
+  { path: 'detail', redirectTo: '', pathMatch: 'full' },
+  { path: 'detail/:album', component: DetailComponent, pathMatch: 'full' }
 ];
 
 @NgModule({
