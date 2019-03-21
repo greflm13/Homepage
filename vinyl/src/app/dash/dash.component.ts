@@ -20,7 +20,7 @@ export class DashComponent implements OnInit {
   public hovsrc: string;
   public albums: Album[] = [];
 
-  constructor(private albumService: AlbumsService, private router: Router, private http: HttpService) {}
+  constructor(private albumService: AlbumsService, private router: Router) {}
 
   ngOnInit() {
     this.imgwidth = this.imgWidth() + 'px';
@@ -29,17 +29,10 @@ export class DashComponent implements OnInit {
       this.imgwidth = this.imgWidth() + 'px';
       this.hovwidth = this.imgWidth() * 1.1 + 'px';
     }, 100);
-    this.http
-      .get('albums')
-      .then(res => {
-        this.albums = res;
-        this.sort();
-        this.albumService.setAlbums(this.albums);
-        this.loading = false;
-      })
-      .catch(() => {
-        this.mockData();
-      });
+    this.albumService.getAlbums().then(res => {
+      this.albums = res;
+      this.loading = false;
+    });
   }
 
   imgWidth(): number {
@@ -70,40 +63,5 @@ export class DashComponent implements OnInit {
 
   leave(e: Event) {
     this.hov = false;
-  }
-
-  sort() {
-    this.albums.sort(
-      (leftSide, rightSide): number => {
-        if (leftSide.artist > rightSide.artist) {
-          return 1;
-        }
-        if (leftSide.artist < rightSide.artist) {
-          return -1;
-        }
-        if (leftSide.release > rightSide.release) {
-          return 1;
-        }
-        if (leftSide.release < rightSide.release) {
-          return -1;
-        }
-        return 0;
-      }
-    );
-  }
-
-  mockData() {
-    this.loading = false;
-    for (let i = 0; i < 60; i++) {
-      this.albums.push({
-        album: 'a',
-        artist: 'a',
-        cover: 'assets/placeholder.png',
-        date: new Date(Date.now()),
-        release: new Date(Date.now()),
-        lp_count: 1,
-        lps: []
-      });
-    }
   }
 }

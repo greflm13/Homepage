@@ -12,30 +12,34 @@ import { AlbumsService } from '../albums.service';
 export class DetailComponent implements OnInit {
   public album: Album = { album: null, artist: null, cover: null, date: null, lp_count: null, lps: null, release: null };
   public loading = true;
-  public imgwidth = window.innerWidth/9+'px';
+  public imgwidth: string;
 
   constructor(private route: ActivatedRoute, private location: Location, private albumService: AlbumsService) {}
 
   ngOnInit() {
+    this.imgwidth = this.imgWidth() + 'px';
     const id = this.route.snapshot.paramMap.get('album');
-    if (this.albumService.getAlbums() !== undefined) {
-      this.albumService.getAlbums().forEach(album => {
+    this.albumService.getAlbums().then(res => {
+      res.forEach(album => {
         if (album._id === id) {
           this.album = album;
           this.loading = false;
-          console.log(album);
         }
       });
+    });
+  }
+
+  imgWidth(): number {
+    if (window.innerWidth > 1200) {
+      return window.innerWidth / 9;
+    } else if (window.innerWidth > 992) {
+      return window.innerWidth / 8;
+    } else if (window.innerWidth > 768) {
+      return window.innerWidth / 6;
+    } else if (window.innerWidth > 576) {
+      return window.innerWidth / 4;
     } else {
-      this.albumService.initAlbums().then(res => {
-        res.forEach(album => {
-          if (album._id === id) {
-            this.album = album;
-            this.loading = false;
-            console.log(album);
-          }
-        });
-      });
+      return window.innerWidth / 3;
     }
   }
 }

@@ -1,4 +1,4 @@
-<div class="detail">
-  <h1>{{ album.artist }}</h1>
+<div class="detail" *ngIf="!loading">
+  <h1>{{ album.artist }} - {{ album.album }}</h1>
 </div>
 <img src="assets/load.gif" *ngIf="loading" class="load" [style.height]="imgwidth" [style.width]="imgwidth" />
