@@ -4,6 +4,7 @@ div {
 
 .detail {
   margin: 10px;
+  color: rgb(36, 36, 36);
 }
 
 .load {
@@ -11,4 +12,38 @@ div {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.lp {
+  border-bottom: 2px rgb(58, 58, 58) solid;
+}
+
+@media (max-width: 575.98px) {
+  .cover {
+    width: 200px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .cover {
+    width: 250px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .cover {
+    width: 250px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .cover {
+    width: 300px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .cover {
+    width: 350px;
+  }
 }

@@ -56,7 +56,11 @@ export class AlbumsService {
         date: new Date(Date.now()),
         release: new Date(Date.now()),
         lp_count: 1,
-        lps: [],
+        lps: [
+          { sides: [{ song_count: 6, songs: ['1', '2', '3', '4', '5', '6'] }, { song_count: 5, songs: ['1', '2', '3', '4', '5'] }] },
+          { sides: [{ song_count: 6, songs: ['1', '2', '3', '4', '5', '6'] }, { song_count: 5, songs: ['1', '2', '3', '4', '5'] }] },
+          { sides: [{ song_count: 6, songs: ['1', '2', '3', '4', '5', '6'] }, { song_count: 5, songs: ['1', '2', '3', '4', '5'] }] }
+        ],
         _id: '' + i
       });
     }

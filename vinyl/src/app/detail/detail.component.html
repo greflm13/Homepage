@@ -1,4 +1,12 @@
 <div class="detail" *ngIf="!loading">
   <h1>{{ album.artist }} - {{ album.album }}</h1>
+  <img [src]="album.cover" class="cover" />
+  <span *ngFor="let lp of album.lps; let i = index">
+    <h2 class="lp">LP {{ i + 1 }}</h2>
+    <div *ngFor="let side of lp.sides; let j = index" style="display: inline-block" [style.width]="lpwidth">
+      <h3>Side {{ j + 1 }}</h3>
+      <h4 *ngFor="let song of side.songs; trackBy: trackByFn">{{ song }}</h4>
+    </div>
+  </span>
 </div>
 <img src="assets/load.gif" *ngIf="loading" class="load" [style.height]="imgwidth" [style.width]="imgwidth" />
