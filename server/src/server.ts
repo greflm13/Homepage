@@ -87,6 +87,10 @@ export class Server {
     this._express.use((req, res, next) => this.logger(req, res, next, 'Main'));
 
     // Modules
+    this._express.use(function(req, res, next) {
+      res.set('X-Clacks-Overhead', 'GNU Terry Pratchett');
+      next();
+    });
     this._express.use('/chat', _chat);
     this._express.use('/films', _films);
     this._express.use('/timeline', _timeline);
