@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
     server: { name: '', protocol: 0 },
     status: ''
   };
-  public skylands: Status = {
+  public neuland: Status = {
     duration: 0,
     error: '',
     favicon: '',
@@ -42,12 +42,12 @@ export class AppComponent implements OnInit {
         this.minecraft = res;
       });
     }, 1000);
-    this.http.get('status/skylands').then(res => {
-      this.skylands = res;
+    this.http.get('status/neuland').then(res => {
+      this.neuland = res;
     });
     setInterval(() => {
-      this.http.get('status/skylands').then(res => {
-        this.skylands = res;
+      this.http.get('status/neuland').then(res => {
+        this.neuland = res;
       });
     }, 1000);
   }
