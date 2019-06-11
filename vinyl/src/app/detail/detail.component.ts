@@ -18,7 +18,7 @@ export class DetailComponent implements OnInit {
   public imgwidth: string;
   public lpwidth: string;
 
-  constructor(private route: ActivatedRoute, private location: Location, private albumService: AlbumsService) {}
+  constructor(private route: ActivatedRoute, private location: Location, private albumService: AlbumsService) { }
 
   ngOnInit() {
     this.imgwidth = this.imgWidth() + 'px';
@@ -32,8 +32,22 @@ export class DetailComponent implements OnInit {
         if (album._id === id) {
           this.album = album;
           this.loading = false;
-          this.bgheight = this.elementView.nativeElement.offsetHeight * 1.2 + 'px';
-          console.log(this.bgheight);
+          const elheight = this.elementView.nativeElement.offsetHeight + 20;
+          const height = window.innerHeight;
+          if (elheight > height) {
+            this.bgheight = elheight + 'px';
+          } else {
+            this.bgheight = height + 'px';
+          }
+          setInterval(() => {
+            const elheight = this.elementView.nativeElement.offsetHeight + 20;
+            const height = window.innerHeight;
+            if (elheight > height) {
+              this.bgheight = elheight + 'px';
+            } else {
+              this.bgheight = height + 'px';
+            }
+          }, 100);
         }
       });
     });

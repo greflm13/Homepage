@@ -1,17 +1,28 @@
 div {
   font-family: 'Ubuntu', sans-serif;
+  overflow: hidden;
+}
+
+.container {
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
 }
 
 .bg {
-  position: absolute;
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
-  top: -5%;
-  left: -5%;
-  width: 110%;
+  -webkit-filter: blur(16px);
+  -moz-filter: blur(16px);
+  -o-filter: blur(16px);
+  -ms-filter: blur(16px);
+  filter: blur(16px);
+  width: 100%;
+  height: 100%;
+  transform: scale(1.1);
 
-  background-position: center;
-  background-repeat: no-repeat;
+  background: no-repeat center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
 }
 
