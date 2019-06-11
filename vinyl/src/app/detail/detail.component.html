@@ -1,4 +1,5 @@
-<div class="detail" *ngIf="!loading">
+<div class="bg" *ngIf="!loading" [style.background-image]="'url(' + album.cover + ')'" [style.height]="bgheight"></div>
+<div class="detail" #detail *ngIf="!loading">
   <h1>{{ album.artist }} - {{ album.album }}</h1>
   <img [src]="album.cover" class="cover" />
   <span *ngFor="let lp of album.lps; let i = index">

@@ -7,7 +7,12 @@ export let _chat = express();
 
 let Users: User[] = [];
 let Timeouts: Out[] = [];
-let Chat: Message[] = JSON.parse(fs.readFileSync(path.join(__dirname, './chat.json')).toString());
+let Chat: Message[] = [];
+try {
+  Chat = JSON.parse(fs.readFileSync(path.join(__dirname, './chat.json')).toString());
+} catch {
+  Chat = [];
+}
 
 _chat.post('/new', (req, res, next) => newUser(req, res, next));
 _chat.post('/chat', (req, res, next) => newMessage(req, res, next));

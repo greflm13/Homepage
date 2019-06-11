@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Album } from '../new/new.component';
@@ -10,8 +10,11 @@ import { AlbumsService } from '../albums.service';
   styleUrls: ['./detail.component.css']
 })
 export class DetailComponent implements OnInit {
+  @ViewChild('detail') elementView: ElementRef;
+
   public album: Album = { album: null, artist: null, cover: null, date: null, lp_count: null, lps: null, release: null };
   public loading = true;
+  public bgheight: string;
   public imgwidth: string;
   public lpwidth: string;
 
@@ -29,6 +32,8 @@ export class DetailComponent implements OnInit {
         if (album._id === id) {
           this.album = album;
           this.loading = false;
+          this.bgheight = this.elementView.nativeElement.offsetHeight * 1.2 + 'px';
+          console.log(this.bgheight);
         }
       });
     });
