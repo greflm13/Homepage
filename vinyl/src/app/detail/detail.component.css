@@ -31,7 +31,6 @@ div {
   top: 0;
   left: 0;
   margin: 10px;
-  color: rgb(36, 36, 36);
 }
 
 .load {
@@ -42,7 +41,7 @@ div {
 }
 
 .lp {
-  border-bottom: 2px rgb(58, 58, 58) solid;
+  border-bottom: 2px solid;
 }
 
 @media (max-width: 575.98px) {

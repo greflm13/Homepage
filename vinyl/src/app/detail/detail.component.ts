@@ -17,6 +17,7 @@ export class DetailComponent implements OnInit {
   public bgheight: string;
   public imgwidth: string;
   public lpwidth: string;
+  public textColor: string;
 
   constructor(private route: ActivatedRoute, private location: Location, private albumService: AlbumsService) { }
 
@@ -32,13 +33,15 @@ export class DetailComponent implements OnInit {
         if (album._id === id) {
           this.album = album;
           this.loading = false;
-          const elheight = this.elementView.nativeElement.offsetHeight + 20;
-          const height = window.innerHeight;
-          if (elheight > height) {
-            this.bgheight = elheight + 'px';
-          } else {
-            this.bgheight = height + 'px';
-          }
+          this.getImageLightness(album.cover, (brightness: number) => {
+            if (brightness > 150) {
+              this.textColor = 'rgb(24, 24, 24)';
+            } else if (brightness < 80) {
+              this.textColor = 'rgb(224, 224, 224)';
+            } else {
+              this.textColor = 'rgb(174, 174, 174)';
+            }
+          });
           setInterval(() => {
             const elheight = this.elementView.nativeElement.offsetHeight + 20;
             const height = window.innerHeight;
@@ -80,4 +83,46 @@ export class DetailComponent implements OnInit {
       return window.innerWidth;
     }
   }
+
+
+  getImageLightness(imageSrc: string, callback: (arg0: number) => void) {
+    const img = document.createElement('img');
+    img.src = imageSrc;
+    img.style.display = 'none';
+    document.body.appendChild(img);
+
+    let colorSum = 0;
+
+    img.onload = function () {
+      // create canvas
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      let r: number;
+      let g: number;
+      let b: number;
+      let avg: number;
+
+      for (let x = 0, len = data.length; x < len; x += 4) {
+        r = data[x];
+        g = data[x + 1];
+        b = data[x + 2];
+
+        avg = Math.floor((r + g + b) / 3);
+        colorSum += avg;
+      }
+
+      const brightness = Math.floor(colorSum / (img.width * img.height));
+      callback(brightness);
+    };
+  }
+
+
+
 }
