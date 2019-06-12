@@ -7,6 +7,7 @@ div {
   position: absolute;
   width: 100%;
   overflow: hidden;
+  z-index: -1000;
 }
 
 .bg {
@@ -27,7 +28,8 @@ div {
 }
 
 .detail {
-  position: absolute;
+  /* position: absolute; */
+  z-index: 2000;
   top: 0;
   left: 0;
   margin: 10px;

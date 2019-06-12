@@ -34,12 +34,10 @@ export class DetailComponent implements OnInit {
           this.album = album;
           this.loading = false;
           this.getImageLightness(album.cover, (brightness: number) => {
-            if (brightness > 150) {
-              this.textColor = 'rgb(24, 24, 24)';
-            } else if (brightness < 80) {
-              this.textColor = 'rgb(224, 224, 224)';
+            if (brightness > 80) {
+              this.textColor = 'black';
             } else {
-              this.textColor = 'rgb(174, 174, 174)';
+              this.textColor = 'white';
             }
           });
           setInterval(() => {
@@ -57,30 +55,30 @@ export class DetailComponent implements OnInit {
   }
 
   imgWidth(): number {
-    if (window.innerWidth > 1200) {
-      return window.innerWidth / 9;
-    } else if (window.innerWidth > 992) {
-      return window.innerWidth / 8;
-    } else if (window.innerWidth > 768) {
-      return window.innerWidth / 6;
-    } else if (window.innerWidth > 576) {
-      return window.innerWidth / 4;
+    if (window.screen.width > 1200) {
+      return window.screen.width / 9;
+    } else if (window.screen.width > 992) {
+      return window.screen.width / 8;
+    } else if (window.screen.width > 768) {
+      return window.screen.width / 6;
+    } else if (window.screen.width > 576) {
+      return window.screen.width / 4;
     } else {
-      return window.innerWidth / 3;
+      return window.screen.width / 3;
     }
   }
 
   lpWidth(): number {
-    if (window.innerWidth > 1200) {
-      return window.innerWidth / 2.1;
-    } else if (window.innerWidth > 992) {
-      return window.innerWidth / 2.1;
-    } else if (window.innerWidth > 768) {
-      return window.innerWidth / 2.1;
-    } else if (window.innerWidth > 576) {
-      return window.innerWidth;
+    if (window.screen.width > 1200) {
+      return window.screen.width / 2.1;
+    } else if (window.screen.width > 992) {
+      return window.screen.width / 2.1;
+    } else if (window.screen.width > 768) {
+      return window.screen.width / 2.1;
+    } else if (window.screen.width > 576) {
+      return window.screen.width;
     } else {
-      return window.innerWidth;
+      return window.screen.width;
     }
   }
 
@@ -93,7 +91,7 @@ export class DetailComponent implements OnInit {
 
     let colorSum = 0;
 
-    img.onload = function () {
+    img.onload = () => {
       // create canvas
       const canvas = document.createElement('canvas');
       canvas.width = img.width;

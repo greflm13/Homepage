@@ -20,7 +20,7 @@ export class DashComponent implements OnInit {
   public hovsrc: string;
   public albums: Album[] = [];
 
-  constructor(private albumService: AlbumsService, private router: Router) {}
+  constructor(private albumService: AlbumsService, private router: Router) { }
 
   ngOnInit() {
     this.imgwidth = this.imgWidth() + 'px';
