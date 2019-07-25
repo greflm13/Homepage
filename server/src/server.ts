@@ -20,6 +20,7 @@ import { _minesweeper } from './minesweeper';
 import { _minecraftServer } from './minecraft-server';
 import { _discord } from './discord';
 import { _vinyl } from './vinyl';
+import { _minecraftRender } from './minecraft-render';
 
 const date = new Date();
 export const log: debugsx.IFullLogger = debugsx.createFullLogger('Homepage');
@@ -33,20 +34,20 @@ const consolelogger: debugsx.IHandler = debugsx.createConsoleHandler('stdout', '
 let filelogger: debugsx.IHandler;
 filelogger = debugsx.createFileHandler(
   __dirname +
-    '/log/' +
-    'server_' +
-    date.getDate() +
-    '-' +
-    date.getMonth() +
-    '-' +
-    date.getFullYear() +
-    '_' +
-    date.getHours() +
-    '.' +
-    date.getMinutes() +
-    '.' +
-    date.getSeconds() +
-    '.log',
+  '/log/' +
+  'server_' +
+  date.getDate() +
+  '-' +
+  date.getMonth() +
+  '-' +
+  date.getFullYear() +
+  '_' +
+  date.getHours() +
+  '.' +
+  date.getMinutes() +
+  '.' +
+  date.getSeconds() +
+  '.log',
   '*::INFO, *::FINE, *::SEVERE, *::ERR, *::WARN',
   '-*',
   [
@@ -87,7 +88,7 @@ export class Server {
     this._express.use((req, res, next) => this.logger(req, res, next, 'Main'));
 
     // Modules
-    this._express.use(function(req, res, next) {
+    this._express.use(function (req, res, next) {
       res.set('X-Clacks-Overhead', 'GNU Terry Pratchett');
       next();
     });
@@ -99,6 +100,7 @@ export class Server {
     this._express.use('/minecraft', _minecraftServer);
     this._express.use('/discord', _discord);
     this._express.use('/vinyl', _vinyl);
+    this._express.use('/neuland', _minecraftRender);
 
     // Main
     this._express.use('/de', express.static(path.join(__dirname, './public/de')));
@@ -119,7 +121,7 @@ export class Server {
     this._appredirect.get('/err', (err: any, req: express.Request, res: express.Response, next: express.NextFunction) =>
       this.errorHandler(err, req, res, next)
     );
-    this._appredirect.get('*', function(req, res) {
+    this._appredirect.get('*', function (req, res) {
       res.redirect('https://' + req.headers.host + req.url);
     });
   }
