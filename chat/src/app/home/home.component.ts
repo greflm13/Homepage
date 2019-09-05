@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   public mobile = false;
   public innerWidth: number;
 
-  constructor(private http: HttpService) {}
+  constructor(private http: HttpService) { }
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -31,28 +31,27 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  keyPress(event: any, input: any) {
+  keyPress(event: any) {
     if (event.key === 'Enter') {
       this.enter();
-    } else if (event.key === 'Enter') {
-      this.nameEntered();
     }
   }
 
   enter() {
-    if(this.texte !== '') {
+    if (this.texte !== '') {
       const message = { user: this.me.name, color: this.me.color, text: this.texte, time: Date.now() + 3600000 };
       const Mona = { message: message, user: this.me };
       this.http.post('/chat/chat', Mona).then(res => {
         this.users = res;
       });
       this.texte = '';
-      event.preventDefault();
+    } else if (this.me.id !== '') {
+      this.nameEntered();
     }
   }
 
   nameEntered() {
-    if(this.names !== '') {
+    if (this.names !== '') {
       this.me.name = this.names;
       this.names = '';
       this.name = true;
