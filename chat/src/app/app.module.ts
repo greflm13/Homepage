@@ -31,7 +31,7 @@ registerLocaleData(localeDe, 'de-AT');
     AfterLinkPipe,
     LinkTextPipe
   ],
-  imports: [BrowserModule, HttpClientModule, FormsModule, RoutingModule, PickerModule],
+  imports: [BrowserModule.withServerTransition({ appId: 'serverApp' }), HttpClientModule, FormsModule, RoutingModule, PickerModule],
   providers: [HttpClient, HttpService, { provide: LOCALE_ID, useValue: 'de-AT' }],
   bootstrap: [AppComponent]
 })

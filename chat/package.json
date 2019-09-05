@@ -4,12 +4,16 @@
   "scripts": {
     "ng": "ng",
     "prerestart": "npm run build",
-    "restart": "scp -r dist/* $HOST:/home/pi/server",
+    "restart": "scp -r dist/* $HOST:/home/net/server",
     "start": "npm run build",
     "build": "ng build --prod --build-optimizer --base-href=/chat/",
     "test": "ng build --watch --base-href=/chat/",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "compile:server": "webpack --config webpack.server.config.js --progress --colors",
+    "serve:ssr": "node dist/server",
+    "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
+    "build:client-and-server-bundles": "ng build --prod && ng run ngx:server:production --bundleDependencies all"
   },
   "private": true,
   "dependencies": {
@@ -21,13 +25,17 @@
     "@angular/http": "^7.2.8",
     "@angular/platform-browser": "^8.2.5",
     "@angular/platform-browser-dynamic": "^8.2.5",
+    "@angular/platform-server": "^8.2.5",
     "@angular/pwa": "^0.803.3",
     "@angular/router": "^8.2.5",
     "@ctrl/ngx-emoji-mart": "^1.0.1",
     "@nguniversal/express-engine": "^8.1.1",
+    "@nguniversal/module-map-ngfactory-loader": "8.1.1",
+    "@types/core-js": "^2.5.2",
     "bootstrap": "^4.3.1",
     "classlist.js": "^1.1.20150312",
     "core-js": "^3.2.1",
+    "express": "^4.15.2",
     "rxjs": "^6.5.3",
     "zone.js": "^0.10.2"
   },
@@ -48,8 +56,10 @@
     "karma-jasmine": "^2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "protractor": "^5.4.2",
+    "ts-loader": "^5.2.0",
     "ts-node": "^8.0.2",
     "tslint": "^5.19.0",
-    "typescript": "<3.6"
+    "typescript": "<3.6",
+    "webpack-cli": "^3.1.0"
   }
 }

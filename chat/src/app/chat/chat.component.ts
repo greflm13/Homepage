@@ -7,7 +7,7 @@ import { HttpService } from '../http.service';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  @ViewChild('scrollMe')
+  @ViewChild('scrollMe', { static: true })
   private myScrollContainer: ElementRef;
   chat: Message[] = [];
 
