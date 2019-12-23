@@ -8,7 +8,7 @@ import { HttpService } from './http.service';
 export class AlbumsService {
   private albums: Album[] = [];
 
-  constructor(private http: HttpService) {}
+  constructor(private http: HttpService) { }
 
   async getAlbums(): Promise<Album[]> {
     if (this.albums.length === 0) {
@@ -48,14 +48,14 @@ export class AlbumsService {
   }
 
   mockData() {
-    for (let i = 0; i < 60; i++) {
+    for (let i = 0; i < 63; i++) {
       this.albums.push({
         album: '#' + i,
         artist: '#' + i,
         cover: 'assets/placeholder.png',
         date: new Date(Date.now()),
         release: new Date(Date.now()),
-        lp_count: 1,
+        lp_count: 3,
         lps: [
           { sides: [{ song_count: 6, songs: ['1', '2', '3', '4', '5', '6'] }, { song_count: 5, songs: ['1', '2', '3', '4', '5'] }] },
           { sides: [{ song_count: 6, songs: ['1', '2', '3', '4', '5', '6'] }, { song_count: 5, songs: ['1', '2', '3', '4', '5'] }] },

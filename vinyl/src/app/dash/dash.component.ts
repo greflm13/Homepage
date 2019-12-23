@@ -3,10 +3,9 @@ import { Router } from '@angular/router';
 
 import { Album } from '../new/new.component';
 import { AlbumsService } from '../albums.service';
-import { HttpService } from '../http.service';
 
 @Component({
-  selector: 'app-dash',
+  selector: 'vinyl-dash',
   templateUrl: './dash.component.html',
   styleUrls: ['./dash.component.css']
 })
@@ -55,10 +54,10 @@ export class DashComponent implements OnInit {
 
   enter(e: any) {
     const target = e.target || e.srcElement;
-    this.hov = true;
+    this.hovsrc = target.src;
     this.hovleft = window.pageXOffset + target.getBoundingClientRect().left - this.imgWidth() * 0.05 + 'px';
     this.hovtop = window.pageYOffset + target.getBoundingClientRect().top - this.imgWidth() * 0.05 + 'px';
-    this.hovsrc = target.src;
+    this.hov = true;
   }
 
   leave(e: Event) {

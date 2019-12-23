@@ -5,11 +5,11 @@ import { Album } from '../new/new.component';
 import { AlbumsService } from '../albums.service';
 
 @Component({
-  selector: 'vinyl-detail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.css']
+  selector: 'vinyl-small',
+  templateUrl: './small.component.html',
+  styleUrls: ['./small.component.css']
 })
-export class DetailComponent implements OnInit {
+export class SmallComponent implements OnInit {
   @ViewChild('detail', { static: false }) elementView: ElementRef;
 
   public album: Album = { album: null, artist: null, cover: null, date: null, lp_count: null, lps: null, release: null, _id: 0 };
@@ -18,6 +18,8 @@ export class DetailComponent implements OnInit {
   public imgwidth: string;
   public lpwidth: string;
   public textColor: string;
+  public nLPs: number;
+  public nSongs = 0;
 
   constructor(private route: ActivatedRoute, private location: Location, private albumService: AlbumsService) { }
 
@@ -32,7 +34,12 @@ export class DetailComponent implements OnInit {
       res.forEach(album => {
         if (album._id === id) {
           this.album = album;
-          this.loading = false;
+          this.nLPs = this.album.lp_count;
+          this.album.lps.forEach(lp => {
+            lp.sides.forEach(side => {
+              this.nSongs += side.song_count;
+            })
+          })
           this.getImageLightness(album.cover, (brightness: number) => {
             if (brightness > 80) {
               this.textColor = 'black';
@@ -49,6 +56,7 @@ export class DetailComponent implements OnInit {
               this.bgheight = height + 'px';
             }
           }, 100);
+          this.loading = false;
         }
       });
     });
@@ -120,7 +128,4 @@ export class DetailComponent implements OnInit {
       callback(brightness);
     };
   }
-
-
-
 }

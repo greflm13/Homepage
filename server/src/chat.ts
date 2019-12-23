@@ -5,8 +5,8 @@ import * as cookie from 'cookie';
 
 export let _chat = express();
 
-let Users: User[] = [];
-let Timeouts: Out[] = [];
+const Users: User[] = [];
+const Timeouts: Out[] = [];
 let Chat: Message[] = [];
 try {
   Chat = JSON.parse(fs.readFileSync(path.join(__dirname, './chat.json')).toString());
@@ -88,7 +88,7 @@ function newUser(req: express.Request, res: express.Response, next: express.Next
   if (req.cookies.user === undefined || req.cookies.user === '' || req.cookies.user === null) {
     let exists = false;
     let id = '';
-    let iat = Date.now() + 3600000;
+    const iat = Date.now() + 3600000;
     do {
       const possible = '0123456789';
 

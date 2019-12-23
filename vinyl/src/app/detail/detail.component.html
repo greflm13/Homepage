@@ -9,8 +9,10 @@
     <h2 class="lp" [style.border-bottom-color]="textColor">LP {{ i + 1 }}</h2>
     <div *ngFor="let side of lp.sides; let j = index" style="display: inline-block" [style.width]="lpwidth">
       <h3>Side {{ j + 1 }}</h3>
-      <h4 *ngFor="let song of side.songs; trackBy: trackByFn">{{ song }}</h4>
+      <h4 *ngFor="let song of side.songs; ">{{ song }}</h4>
     </div>
   </span>
 </div>
 <img src="assets/load.gif" *ngIf="loading" class="load" [style.height]="imgwidth" [style.width]="imgwidth" />
+
+<!-- trackBy: trackByFn -->

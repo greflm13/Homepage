@@ -1,0 +1,7 @@
+<div class="containero">
+  <h2>If you can't decide what to listen to:</h2>
+  <button (click)="randomAlbum()">Click here for a random Album!</button>
+  <div>
+    <iframe class="frame" *ngIf="loaded" [src]="randAlb | safe" [width]="width" [height]="height"></iframe>
+  </div>
+</div>

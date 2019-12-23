@@ -9,9 +9,12 @@ import { DashComponent } from './dash/dash.component';
 import { NewComponent } from './new/new.component';
 import { HttpService } from './http.service';
 import { DetailComponent } from './detail/detail.component';
+import { RandomComponent } from './random/random.component';
+import { SafePipe } from './safe.pipe';
+import { SmallComponent } from './small/small.component';
 
 @NgModule({
-  declarations: [AppComponent, DashComponent, NewComponent, DetailComponent],
+  declarations: [AppComponent, DashComponent, NewComponent, DetailComponent, RandomComponent, SafePipe, SmallComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
   providers: [HttpService, HttpClient],
   bootstrap: [AppComponent]

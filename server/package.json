@@ -34,7 +34,8 @@
     "jsonwebtoken": "^8.1.0",
     "mongodb": "^2.2.36",
     "pug": "^2.0.0-rc.4",
-    "spin": "0.0.1"
+    "spin": "0.0.1",
+    "tslint": "^5.20.1"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.0",

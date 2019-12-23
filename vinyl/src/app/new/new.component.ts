@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { HttpService } from '../http.service';
 
 @Component({
-  selector: 'app-new',
+  selector: 'vinyl-new',
   templateUrl: './new.component.html',
   styleUrls: ['./new.component.css']
 })

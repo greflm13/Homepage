@@ -126,46 +126,6 @@ export class Server {
     });
   }
 
-  private languageselector(req: express.Request, res: express.Response, next: express.NextFunction) {
-    if (req.language === 'de-DE' || req.language === 'de-AT') {
-      res.redirect('/de');
-      return;
-    } else {
-      res.redirect('/en');
-      return;
-    }
-  }
-
-  private error404Handler(req: express.Request, res: express.Response, next: express.NextFunction) {
-    const clientSocket = req.socket.remoteAddress + ':' + req.socket.remotePort;
-    log.warn('Error 404 for %s %s from %s', req.method, req.url, clientSocket);
-    res.status(404).sendFile(path.join(__dirname, './views/error404.html'));
-  }
-
-  private errorHandler(err: express.Errback, req: express.Request, res: express.Response, next: express.NextFunction) {
-    const ts = new Date().toLocaleString();
-    if (err.toString().startsWith('Error: ENOENT')) {
-      res.sendFile(path.join(__dirname, './views/update.html'));
-      log.warn('Update deploying...');
-    } else {
-      log.severe('Error %s\n%e', ts, err);
-      res.status(500).render('error500.pug', {
-        time: ts,
-        err: err,
-        href:
-          'mailto:sorogon.developer@gmail.com?subject=Server failed;&body=https://www.sorogon.eu/ failed at ' + ts + ' with Error: ' + err,
-        serveradmin: 'Florian Greistorfer'
-      });
-      process.abort();
-    }
-  }
-
-  private logger(req: express.Request, res: express.Response, next: express.NextFunction, server: string) {
-    const clientSocket = req.socket.remoteAddress + ':' + req.socket.remotePort;
-    log.info(server + ':', req.method, req.url, clientSocket);
-    next();
-  }
-
   public start(httpport: number, httpsport?: number): Promise<Server> {
     return new Promise<Server>((resolve, reject) => {
       if (httpsport) {
@@ -205,5 +165,45 @@ export class Server {
         });
       }
     });
+  }
+
+  private languageselector(req: express.Request, res: express.Response, next: express.NextFunction) {
+    if (req.language === 'de-DE' || req.language === 'de-AT') {
+      res.redirect('/de');
+      return;
+    } else {
+      res.redirect('/en');
+      return;
+    }
+  }
+
+  private error404Handler(req: express.Request, res: express.Response, next: express.NextFunction) {
+    const clientSocket = req.socket.remoteAddress + ':' + req.socket.remotePort;
+    log.warn('Error 404 for %s %s from %s', req.method, req.url, clientSocket);
+    res.status(404).sendFile(path.join(__dirname, './views/error404.html'));
+  }
+
+  private errorHandler(err: express.Errback, req: express.Request, res: express.Response, next: express.NextFunction) {
+    const ts = new Date().toLocaleString();
+    if (err.toString().startsWith('Error: ENOENT')) {
+      res.sendFile(path.join(__dirname, './views/update.html'));
+      log.warn('Update deploying...');
+    } else {
+      log.severe('Error %s\n%e', ts, err);
+      res.status(500).render('error500.pug', {
+        time: ts,
+        err: err,
+        href:
+          'mailto:sorogon.developer@gmail.com?subject=Server failed;&body=https://www.sorogon.eu/ failed at ' + ts + ' with Error: ' + err,
+        serveradmin: 'Florian Greistorfer'
+      });
+      process.abort();
+    }
+  }
+
+  private logger(req: express.Request, res: express.Response, next: express.NextFunction, server: string) {
+    const clientSocket = req.socket.remoteAddress + ':' + req.socket.remotePort;
+    log.info(server + ':', req.method, req.url, clientSocket);
+    next();
   }
 }

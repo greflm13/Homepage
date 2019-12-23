@@ -3,7 +3,7 @@ echo Enter name:
 read name
 ng new $name --skipInstall=true --prefix=$name --routing=true --skipGit=true --style=css
 echo Installing dependencies...
-npm i -g pnpm
+sudo npm i -g pnpm
 cd $name
 pnpm install
 echo Done.
