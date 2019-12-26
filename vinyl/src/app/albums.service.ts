@@ -57,9 +57,67 @@ export class AlbumsService {
         release: new Date(Date.now()),
         lp_count: 3,
         lps: [
-          { sides: [{ song_count: 6, songs: ['1', '2', '3', '4', '5', '6'] }, { song_count: 5, songs: ['1', '2', '3', '4', '5'] }] },
-          { sides: [{ song_count: 6, songs: ['1', '2', '3', '4', '5', '6'] }, { song_count: 5, songs: ['1', '2', '3', '4', '5'] }] },
-          { sides: [{ song_count: 6, songs: ['1', '2', '3', '4', '5', '6'] }, { song_count: 5, songs: ['1', '2', '3', '4', '5'] }] }
+          {
+            sides: [{
+              song_count: 6, songs: [
+                'Songy songiness',
+                'Songy songiness',
+                'Songy songiness',
+                'Songy songiness',
+                'Songy songiness',
+                'Songy songiness'
+              ]
+            },
+            {
+              song_count: 5, songs: [
+                'Songy songiness',
+                'Songy songiness',
+                'Songy songiness',
+                'Songy songiness',
+                'Songy songiness'
+              ]
+            }]
+          }, {
+            sides: [{
+              song_count: 6, songs: [
+                'Songy songiness',
+                'Songy songiness',
+                'Songy songiness',
+                'Songy songiness',
+                'Songy songiness',
+                'Songy songiness'
+              ]
+            },
+            {
+              song_count: 5, songs: [
+                'Songy songiness',
+                'Songy songiness',
+                'Songy songiness',
+                'Songy songiness',
+                'Songy songiness'
+              ]
+            }]
+          }, {
+            sides: [{
+              song_count: 6, songs: [
+                'Songy songiness',
+                'Songy songiness',
+                'Songy songiness',
+                'Songy songiness',
+                'Songy songiness',
+                'Songy songiness'
+              ]
+            },
+            {
+              song_count: 5, songs: [
+                'Songy songiness',
+                'Songy songiness',
+                'Songy songiness',
+                'Songy songiness',
+                'Songy songiness'
+              ]
+            }]
+          }
         ],
         _id: '' + i
       });

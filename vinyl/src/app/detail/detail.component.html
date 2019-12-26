@@ -8,7 +8,7 @@
   <span *ngFor="let lp of album.lps; let i = index" [style.color]="textColor">
     <h2 class="lp" [style.border-bottom-color]="textColor">LP {{ i + 1 }}</h2>
     <div *ngFor="let side of lp.sides; let j = index" style="display: inline-block" [style.width]="lpwidth">
-      <h3>Side {{ j + 1 }}</h3>
+      <h3><u>Side {{ j + 1 }}</u></h3>
       <h4 *ngFor="let song of side.songs; ">{{ song }}</h4>
     </div>
   </span>

@@ -1,8 +1,9 @@
 #!/bin/bash
 echo enter IP:
 read HOST
+. ./projects
 cd server && scp -r dist/* net@$HOST:/home/net/server
-for APP in chat discord films game2048 minecraft-server minesweeper timeline vinyl
+for APP in $PROJECTS
 do
     echo ""
     echo "deploying $APP..."
