@@ -1,0 +1,53 @@
+.game {
+  border-style: solid;
+  border-width: 5px;
+}
+
+.controls {
+  margin-left: 150px;
+  margin-top: 50px;
+  white-space: nowrap;
+  position: relative;
+}
+
+.btn {
+  font-size: xx-large;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+}
+
+.left {
+  top: 50px;
+}
+
+.up {
+  left: 100px;
+}
+
+.down {
+  top: 100px;
+  left: 100px;
+}
+
+.right {
+  top: 50px;
+  left: 200px;
+}
+
+.lost {
+  position: absolute;
+  top: 300px;
+  left: 300px;
+  transform: translate(-50%, -50%);
+}
+
+.constain {
+  position: relative;
+}
+
+.score {
+  position: absolute;
+  top: 0;
+  left: 520px;
+}

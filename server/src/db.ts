@@ -24,7 +24,7 @@ export class DB {
   private _timeline: mongodb.Collection;
   private _albums: mongodb.Collection;
 
-  private constructor() {}
+  private constructor() { }
 
   public async getEvents(): Promise<Object[]> {
     return await this._timeline.find().toArray();

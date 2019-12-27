@@ -1,0 +1,15 @@
+<div class="contain">
+  <canvas class="game" (click)="start()" #canvas width="600" height="600"></canvas>
+  <div class="controls">
+    <button class="btn left" (click)="mobile('left')">←</button>
+    <button class="btn up" (click)="mobile('up')">↑</button>
+    <button class="btn down" (click)="mobile('down')">↓</button>
+    <button class="btn right" (click)="mobile('right')">→</button>
+  </div>
+  <div *ngIf="lost" class="lost">
+    <h1>Game Over. Try Again?</h1>
+  </div>
+  <div class="score">
+    <h3>Score: {{score}}</h3>
+  </div>
+</div>
