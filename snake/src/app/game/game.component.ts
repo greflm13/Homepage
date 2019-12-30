@@ -213,11 +213,11 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   submit() {
+    this.lost = false;
     if (this.player.name !== '') {
       this.http.post('leaderboard', this.player).then(res => {
         this.leaderboard = res;
         this.player.name = '';
-        this.lost = false;
       });
     }
   }
