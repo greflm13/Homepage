@@ -1,4 +1,5 @@
 import { Component, ViewChild, ElementRef, OnInit, OnDestroy, NgZone, HostListener } from '@angular/core';
+import { HttpService } from '../http.service';
 import { Square } from './square';
 
 @Component({
@@ -8,20 +9,27 @@ import { Square } from './square';
 })
 export class GameComponent implements OnInit, OnDestroy {
   @ViewChild('canvas', { static: true }) canvas: ElementRef<HTMLCanvasElement>;
-  ctx: CanvasRenderingContext2D;
-  requestId: number;
-  gameLoop;
-  squares: Square[] = [];
-  food: Square[] = [];
+  private ctx: CanvasRenderingContext2D;
+  private requestId: number;
+  private gameLoop;
+  private squares: Square[] = [];
+  private food: Square[] = [];
   private directionArchive: Direction[] = [{ direction: 'right', age: 0 }];
   private direction = 'right';
   private age = 0;
   private gametick = 0;
+  private timeKeeper;
   public lost = false;
   public score = 0;
+  public time = 0;
+  public leaderwidth: string;
+  public leaderboard: Leaderboard = { people: [] };
+  public player: People = { name: '', score: 0, time: 0 };
+
 
   @HostListener('window:keyup', ['$event'])
   async keyup(event: KeyboardEvent) {
+    event.preventDefault();
     switch (event.key) {
       case 'ArrowUp':
         if (this.direction !== 'down' && this.direction !== 'up') {
@@ -75,14 +83,75 @@ export class GameComponent implements OnInit, OnDestroy {
           }
         }
         break;
+      case 'w':
+        if (this.direction !== 'down' && this.direction !== 'up') {
+          if (this.directionArchive.length > 0) {
+            if (this.gametick !== this.directionArchive[this.directionArchive.length - 1].age) {
+              this.direction = 'up';
+              this.directionArchive.push({ direction: 'up', age: this.gametick });
+            }
+          } else {
+            this.direction = 'up';
+            this.directionArchive.push({ direction: 'up', age: this.gametick });
+          }
+        }
+        break;
+      case 's':
+        if (this.direction !== 'up' && this.direction !== 'down') {
+          if (this.directionArchive.length > 0) {
+            if (this.gametick !== this.directionArchive[this.directionArchive.length - 1].age) {
+              this.direction = 'down';
+              this.directionArchive.push({ direction: 'down', age: this.gametick });
+            }
+          } else {
+            this.direction = 'down';
+            this.directionArchive.push({ direction: 'down', age: this.gametick });
+          }
+        }
+        break;
+      case 'a':
+        if (this.direction !== 'right' && this.direction !== 'left') {
+          if (this.directionArchive.length > 0) {
+            if (this.gametick !== this.directionArchive[this.directionArchive.length - 1].age) {
+              this.direction = 'left';
+              this.directionArchive.push({ direction: 'left', age: this.gametick });
+            }
+          } else {
+            this.direction = 'left';
+            this.directionArchive.push({ direction: 'left', age: this.gametick });
+          }
+        }
+        break;
+      case 'd':
+        if (this.direction !== 'left' && this.direction !== 'right') {
+          if (this.directionArchive.length > 0) {
+            if (this.gametick !== this.directionArchive[this.directionArchive.length - 1].age) {
+              this.direction = 'right';
+              this.directionArchive.push({ direction: 'right', age: this.gametick });
+            }
+          } else {
+            this.direction = 'right';
+            this.directionArchive.push({ direction: 'right', age: this.gametick });
+          }
+        }
+        break;
     }
   }
 
-  constructor(private ngZone: NgZone) { }
+  constructor(private ngZone: NgZone, private http: HttpService) { }
 
   ngOnInit() {
     this.ctx = this.canvas.nativeElement.getContext('2d');
-    // this.ctx.fillStyle = 'red';
+    this.http.get('leaderboard').then(res => {
+      this.leaderboard = res;
+    });
+    setInterval(() => {
+      if (window.innerWidth < 1200) {
+        this.leaderwidth = window.innerWidth - 40 + 'px';
+      } else {
+        this.leaderwidth = window.innerWidth - 650 + 'px';
+      }
+    }, 500);
   }
 
   tick() {
@@ -136,7 +205,21 @@ export class GameComponent implements OnInit, OnDestroy {
   lose() {
     clearInterval(this.gameLoop);
     this.gameLoop = undefined;
+    clearInterval(this.timeKeeper);
+    this.timeKeeper = undefined;
+    this.player.score = this.score;
+    this.player.time = this.time;
     this.lost = true;
+  }
+
+  submit() {
+    if (this.player.name !== '') {
+      this.http.post('leaderboard', this.player).then(res => {
+        this.leaderboard = res;
+        this.player.name = '';
+        this.lost = false;
+      });
+    }
   }
 
   snakeLonger(x: number, y: number) {
@@ -158,6 +241,7 @@ export class GameComponent implements OnInit, OnDestroy {
       this.food = [];
       this.gametick = 0;
       this.score = 0;
+      this.time = 0;
       this.play();
     }
   }
@@ -170,6 +254,7 @@ export class GameComponent implements OnInit, OnDestroy {
     this.gameLoop = setInterval(() => {
       this.tick();
     }, 150);
+    this.timeKeeper = setInterval(() => { this.time++; }, 1000);
   }
 
   newFood() {
@@ -187,7 +272,9 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   randomColor() {
-    return '#' + this.random(0, 16581375).toString(16).toUpperCase();
+    return '#' + this.random(0, 250).toString(16).toUpperCase()
+      + this.random(0, 250).toString(16).toUpperCase()
+      + this.random(0, 250).toString(16).toUpperCase();
   }
 
   mobile(direction: string) {
@@ -253,3 +340,14 @@ interface Direction {
   direction: string;
   age: number;
 }
+
+interface People {
+  name: string;
+  score: number;
+  time: number;
+}
+
+interface Leaderboard {
+  people: People[];
+}
+

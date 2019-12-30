@@ -1,9 +1,14 @@
+@import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
 .game {
+  font-family: 'Roboto', sans-serif !important;
   border-style: solid;
   border-width: 5px;
 }
 
 .controls {
+  font-family: 'Roboto', sans-serif !important;
   margin-left: 150px;
   margin-top: 50px;
   white-space: nowrap;
@@ -11,6 +16,7 @@
 }
 
 .btn {
+  font-family: 'Roboto', sans-serif !important;
   font-size: xx-large;
   width: 100px;
   height: 100px;
@@ -36,18 +42,40 @@
 }
 
 .lost {
+  font-family: 'Roboto', sans-serif !important;
   position: absolute;
   top: 300px;
   left: 300px;
   transform: translate(-50%, -50%);
 }
 
-.constain {
+.contain {
+  font-family: 'Roboto', sans-serif !important;
   position: relative;
+  width: 610px;
+  height: 870px;
+}
+
+.leaderboard {
+  font-family: 'Roboto', sans-serif !important;
+  height: 870px;
 }
 
 .score {
+  font-family: 'Roboto', sans-serif !important;
   position: absolute;
-  top: 0;
-  left: 520px;
+  top: 5px;
+  left: 470px;
+}
+
+@media (min-width: 1200px) {
+  .contain {
+    display: inline-block;
+  }
+
+  .leaderboard {
+    position: absolute;
+    display: inline-block;
+    margin-left: 10px;
+  }
 }

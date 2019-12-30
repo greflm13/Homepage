@@ -189,7 +189,7 @@ export class Server {
     const ts = new Date().toLocaleString();
     if (err.toString().startsWith('Error: ENOENT')) {
       res.sendFile(path.join(__dirname, './views/update.html'));
-      log.warn('Update deploying...');
+      log.warn('Update deploying...', err);
     } else {
       log.severe('Error %s\n%e', ts, err);
       res.status(500).render('error500.pug', {

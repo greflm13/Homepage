@@ -1,15 +1,36 @@
 <div class="contain">
   <canvas class="game" (click)="start()" #canvas width="600" height="600"></canvas>
   <div class="controls">
-    <button class="btn left" (click)="mobile('left')">←</button>
-    <button class="btn up" (click)="mobile('up')">↑</button>
-    <button class="btn down" (click)="mobile('down')">↓</button>
-    <button class="btn right" (click)="mobile('right')">→</button>
+    <button class="btn btn-outline-dark left" (click)="mobile('left')">←</button>
+    <button class="btn btn-outline-dark up" (click)="mobile('up')">↑</button>
+    <button class="btn btn-outline-dark down" (click)="mobile('down')">↓</button>
+    <button class="btn btn-outline-dark right" (click)="mobile('right')">→</button>
   </div>
   <div *ngIf="lost" class="lost">
-    <h1>Game Over. Try Again?</h1>
+    <h1>Game Over</h1>
+    <label for="name">Name: </label>
+    <input type="text" id="name" [(ngModel)]="player.name">
+    <button class="btn-outline-success" (click)="submit()">Submit</button>
+    <button class="btn-outline-dark" (click)="start()">Retry</button>
   </div>
   <div class="score">
     <h3>Score: {{score}}</h3>
   </div>
+</div>
+<div class="leaderboard" [ngStyle]="{'width': leaderwidth}">
+  <h1>Leaderboard</h1>
+  <table class="table">
+    <thead>
+      <th>Place</th>
+      <th>Name</th>
+      <th>Score</th>
+      <th>Time</th>
+    </thead>
+    <tr *ngFor="let person of leaderboard.people; let i = index">
+      <td>{{i+1}}</td>
+      <td>{{person.name}}</td>
+      <td>{{person.score}}</td>
+      <td>{{person.time}}</td>
+    </tr>
+  </table>
 </div>
