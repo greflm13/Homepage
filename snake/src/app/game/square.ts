@@ -28,11 +28,11 @@ export class Square {
       default:
         break;
     }
-    this.draw(this.color);
+    this.draw();
   }
 
-  private draw(color: string) {
-    this.ctx.fillStyle = color;
+  private draw() {
+    this.ctx.fillStyle = this.color;
     this.ctx.fillRect(this.z * this.x, this.z * this.y, this.z, this.z);
   }
 }

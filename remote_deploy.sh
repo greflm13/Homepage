@@ -14,4 +14,3 @@ done
 ssh net@$HOST "cd server && ./restart.sh"
 echo ""
 echo Done.
-read

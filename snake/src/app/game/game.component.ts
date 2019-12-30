@@ -25,27 +25,56 @@ export class GameComponent implements OnInit, OnDestroy {
     switch (event.key) {
       case 'ArrowUp':
         if (this.direction !== 'down' && this.direction !== 'up') {
-          this.direction = 'up';
-          this.directionArchive.push({ direction: 'up', age: this.gametick });
+          if (this.directionArchive.length > 0) {
+            if (this.gametick !== this.directionArchive[this.directionArchive.length - 1].age) {
+              this.direction = 'up';
+              this.directionArchive.push({ direction: 'up', age: this.gametick });
+            }
+          } else {
+            this.direction = 'up';
+            this.directionArchive.push({ direction: 'up', age: this.gametick });
+          }
         }
         break;
       case 'ArrowDown':
         if (this.direction !== 'up' && this.direction !== 'down') {
-          this.direction = 'down';
-          this.directionArchive.push({ direction: 'down', age: this.gametick });
+          if (this.directionArchive.length > 0) {
+            if (this.gametick !== this.directionArchive[this.directionArchive.length - 1].age) {
+              this.direction = 'down';
+              this.directionArchive.push({ direction: 'down', age: this.gametick });
+            }
+          } else {
+            this.direction = 'down';
+            this.directionArchive.push({ direction: 'down', age: this.gametick });
+          }
         }
         break;
       case 'ArrowLeft':
         if (this.direction !== 'right' && this.direction !== 'left') {
-          this.direction = 'left';
-          this.directionArchive.push({ direction: 'left', age: this.gametick });
+          if (this.directionArchive.length > 0) {
+            if (this.gametick !== this.directionArchive[this.directionArchive.length - 1].age) {
+              this.direction = 'left';
+              this.directionArchive.push({ direction: 'left', age: this.gametick });
+            }
+          } else {
+            this.direction = 'left';
+            this.directionArchive.push({ direction: 'left', age: this.gametick });
+          }
         }
         break;
       case 'ArrowRight':
         if (this.direction !== 'left' && this.direction !== 'right') {
-          this.direction = 'right';
-          this.directionArchive.push({ direction: 'right', age: this.gametick });
+          if (this.directionArchive.length > 0) {
+            if (this.gametick !== this.directionArchive[this.directionArchive.length - 1].age) {
+              this.direction = 'right';
+              this.directionArchive.push({ direction: 'right', age: this.gametick });
+            }
+          } else {
+            this.direction = 'right';
+            this.directionArchive.push({ direction: 'right', age: this.gametick });
+          }
         }
+        break;
         break;
     }
   }
@@ -54,26 +83,23 @@ export class GameComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.ctx = this.canvas.nativeElement.getContext('2d');
-    this.ctx.fillStyle = 'red';
+    // this.ctx.fillStyle = 'red';
   }
 
   tick() {
+    if (this.squares[0].x > 59 || this.squares[0].x < 0 || this.squares[0].y > 59 || this.squares[0].y < 0) {
+      this.lose();
+    }
     this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
     this.squares.forEach((square: Square) => {
+      if (this.squares[0].age !== square.age && this.squares[0].x === square.x && this.squares[0].y === square.y) {
+        this.lose();
+      }
       if (square.age === 0) {
         square.direction = this.direction;
         if (square.x === this.food[0].x && square.y === this.food[0].y) {
           this.food.pop();
           this.snakeLonger(square.x, square.y);
-        } else {
-          if (square.x > 59 || square.x < 0 || square.y > 59 || square.y < 0) {
-            this.lose();
-          }
-          this.squares.forEach(squary => {
-            if (square.age !== squary.age && square.x === squary.x && square.y === squary.y) {
-              this.lose();
-            }
-          })
         }
       } else {
         if (square.direction === 'wait') {
@@ -118,7 +144,7 @@ export class GameComponent implements OnInit, OnDestroy {
     this.age++;
     this.score++;
     const lastSquare = this.squares[this.squares.length - 1]
-    const square = new Square(this.ctx, lastSquare.x, lastSquare.y, 'red', 'wait', this.age, lastSquare.direction);
+    const square = new Square(this.ctx, lastSquare.x, lastSquare.y, this.randomColor(), 'wait', this.age, lastSquare.direction);
     this.squares.push(square);
     this.newFood();
   }
@@ -148,7 +174,7 @@ export class GameComponent implements OnInit, OnDestroy {
   }
 
   newFood() {
-    const food = new Square(this.ctx, this.random(0, 59), this.random(0, 59), 'green', 'no', 0, this.direction);
+    const food = new Square(this.ctx, this.random(0, 59), this.random(0, 59), '#2CAC07', 'no', 0, this.direction);
     this.food.push(food);
   }
 
@@ -159,6 +185,10 @@ export class GameComponent implements OnInit, OnDestroy {
 
   random(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  randomColor() {
+    return '#' + this.random(0, 16581375).toString(16).toUpperCase();
   }
 
   mobile(direction: string) {
