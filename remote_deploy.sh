@@ -2,6 +2,8 @@
 echo enter IP:
 read HOST
 . ./projects
+echo ""
+echo "deploying server..."
 cd server && scp -r dist/* net@$HOST:/home/net/server
 for APP in $PROJECTS
 do

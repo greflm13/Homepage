@@ -21,6 +21,7 @@ import { _minecraftServer } from './minecraft-server';
 import { _discord } from './discord';
 import { _vinyl } from './vinyl';
 import { _minecraftRender } from './minecraft-render';
+import { _snake } from './snake';
 
 const date = new Date();
 export const log: debugsx.IFullLogger = debugsx.createFullLogger('Homepage');
@@ -101,6 +102,7 @@ export class Server {
     this._express.use('/discord', _discord);
     this._express.use('/vinyl', _vinyl);
     this._express.use('/neuland', _minecraftRender);
+    this._express.use('/snake', _snake);
 
     // Main
     this._express.use('/de', express.static(path.join(__dirname, './public/de')));
