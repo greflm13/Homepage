@@ -108,7 +108,7 @@ export class GameComponent implements OnInit, OnDestroy {
           if (this.gametick - square.age === direction.age) {
             square.direction = direction.direction;
           }
-        }))
+        }));
       }
       if (square.age === 0 && square.x === this.food[0].x && square.y === this.food[0].y) {
         this.food.pop();
@@ -142,7 +142,7 @@ export class GameComponent implements OnInit, OnDestroy {
   snakeLonger(x: number, y: number) {
     this.age++;
     this.score++;
-    const lastSquare = this.squares[this.squares.length - 1]
+    const lastSquare = this.squares[this.squares.length - 1];
     const square = new Square(this.ctx, lastSquare.x, lastSquare.y, this.randomColor(), 'wait', this.age, lastSquare.direction);
     this.squares.push(square);
     this.newFood();
