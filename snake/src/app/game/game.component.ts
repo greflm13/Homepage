@@ -75,7 +75,6 @@ export class GameComponent implements OnInit, OnDestroy {
           }
         }
         break;
-        break;
     }
   }
 
@@ -195,26 +194,54 @@ export class GameComponent implements OnInit, OnDestroy {
     switch (direction) {
       case 'up':
         if (this.direction !== 'down' && this.direction !== 'up') {
-          this.direction = 'up';
-          this.directionArchive.push({ direction: 'up', age: this.gametick });
+          if (this.directionArchive.length > 0) {
+            if (this.gametick !== this.directionArchive[this.directionArchive.length - 1].age) {
+              this.direction = 'up';
+              this.directionArchive.push({ direction: 'up', age: this.gametick });
+            }
+          } else {
+            this.direction = 'up';
+            this.directionArchive.push({ direction: 'up', age: this.gametick });
+          }
         }
         break;
       case 'down':
         if (this.direction !== 'up' && this.direction !== 'down') {
-          this.direction = 'down';
-          this.directionArchive.push({ direction: 'down', age: this.gametick });
+          if (this.directionArchive.length > 0) {
+            if (this.gametick !== this.directionArchive[this.directionArchive.length - 1].age) {
+              this.direction = 'down';
+              this.directionArchive.push({ direction: 'down', age: this.gametick });
+            }
+          } else {
+            this.direction = 'down';
+            this.directionArchive.push({ direction: 'down', age: this.gametick });
+          }
         }
         break;
       case 'left':
         if (this.direction !== 'right' && this.direction !== 'left') {
-          this.direction = 'left';
-          this.directionArchive.push({ direction: 'left', age: this.gametick });
+          if (this.directionArchive.length > 0) {
+            if (this.gametick !== this.directionArchive[this.directionArchive.length - 1].age) {
+              this.direction = 'left';
+              this.directionArchive.push({ direction: 'left', age: this.gametick });
+            }
+          } else {
+            this.direction = 'left';
+            this.directionArchive.push({ direction: 'left', age: this.gametick });
+          }
         }
         break;
       case 'right':
         if (this.direction !== 'left' && this.direction !== 'right') {
-          this.direction = 'right';
-          this.directionArchive.push({ direction: 'right', age: this.gametick });
+          if (this.directionArchive.length > 0) {
+            if (this.gametick !== this.directionArchive[this.directionArchive.length - 1].age) {
+              this.direction = 'right';
+              this.directionArchive.push({ direction: 'right', age: this.gametick });
+            }
+          } else {
+            this.direction = 'right';
+            this.directionArchive.push({ direction: 'right', age: this.gametick });
+          }
         }
         break;
     }
