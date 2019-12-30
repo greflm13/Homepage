@@ -1,18 +1,18 @@
-import * as express from 'express';
-import * as path from 'path';
-import * as fs from 'fs';
+import express from 'express';
+import path from 'path';
+import fs from 'fs';
 
 export let _minesweeper = express();
 
 _minesweeper.use(express.static(path.join(__dirname, 'minesweeper/')));
 _minesweeper.post('/leaderboard', postLeaderboard);
 _minesweeper.get('/leaderboard', getLeaderboard);
-_minesweeper.get(['/'], (req, res, next) => {
+_minesweeper.get(['/'], (_req, res, _next) => {
   res.sendFile(path.join(__dirname, 'minesweeper/index.html'));
 });
 _minesweeper.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
 
-function postLeaderboard(req: express.Request, res: express.Response, next: express.NextFunction) {
+function postLeaderboard(req: express.Request, res: express.Response, _next: express.NextFunction) {
   const leaderboard: Leaderboard = { minesweeper: { easy: [], medium: [], hard: [], people: [] } };
   for (let i = 0; i < 10; i++) {
     if (req.body.minesweeper.easy[i] !== null && req.body.minesweeper.easy[i] !== undefined) {
@@ -30,7 +30,7 @@ function postLeaderboard(req: express.Request, res: express.Response, next: expr
   res.send(JSON.stringify(JSON.parse(fs.readFileSync(path.join(__dirname, '../leaderboardMinesweeper.json')).toString())));
 }
 
-function getLeaderboard(req: express.Request, res: express.Response, next: express.NextFunction) {
+function getLeaderboard(_req: express.Request, res: express.Response, _next: express.NextFunction) {
   res.send(JSON.stringify(JSON.parse(fs.readFileSync(path.join(__dirname, './leaderboardMinesweeper.json')).toString())));
 }
 

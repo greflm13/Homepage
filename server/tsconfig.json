@@ -1,23 +1,34 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
+    /* Basic Options */
+    "target": "ESNEXT",
     "module": "commonjs",
-    "noImplicitAny": true,
-    "removeComments": true,
-    "preserveConstEnums": true,
-    "experimentalDecorators": true,
-    "noEmitOnError": true,
+    "jsx": "preserve",
     "sourceMap": true,
-    "target": "es6",
-    "mapRoot": "./",
-    "outDir": "./dist",
-    //"baseUrl": "src",
-    //"declaration": false,
-    //"moduleResolution": "node",
-    //"emitDecoratorMetadata": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ]
-  },
-  "include": [ "src" ]
+    "outDir": "dist",
+
+    /* Strict Type-Checking Options */
+    "strict": true,
+    "noImplicitAny": true,
+
+    /* Additional Checks */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Module Resolution Options */
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "typeRoots": ["node_modules/@types"],
+    "esModuleInterop": true,
+
+    /* Experimental Options */
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+
+    /* Advanced Options */
+    "forceConsistentCasingInFileNames": true
+  }
 }

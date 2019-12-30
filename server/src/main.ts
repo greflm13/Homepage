@@ -9,7 +9,8 @@ class Main {
   constructor() {}
 
   public async init() {
-    const db = await DB.createInstance().catch(err => {
+    // const db =
+    await DB.createInstance().catch(err => {
       log.severe(err);
       process.exit();
     });

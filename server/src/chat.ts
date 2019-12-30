@@ -1,7 +1,7 @@
-import * as express from 'express';
-import * as path from 'path';
-import * as fs from 'fs';
-import * as cookie from 'cookie';
+import express from 'express';
+import path from 'path';
+import fs from 'fs';
+import cookie from 'cookie';
 
 export let _chat = express();
 
@@ -20,16 +20,16 @@ _chat.get('/users', (req, res, next) => returnUsers(req, res, next));
 _chat.get('/delete/:data', (req, res, next) => deleteUser(req, res, next));
 _chat.get('/chat', (req, res, next) => chat(req, res, next));
 _chat.use(express.static(path.join(__dirname, 'chat/')));
-_chat.get(['/', '/chatWindow', '/m'], (req, res, next) => {
+_chat.get(['/', '/chatWindow', '/m'], (_req, res, _next) => {
   res.sendFile(path.join(__dirname, 'chat/index.html'));
 });
 _chat.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
 
-function chat(req: express.Request, res: express.Response, next: express.NextFunction) {
+function chat(_req: express.Request, res: express.Response, _next: express.NextFunction) {
   res.send(Chat);
 }
 
-function newMessage(req: express.Request, res: express.Response, next: express.NextFunction) {
+function newMessage(req: express.Request, res: express.Response, _next: express.NextFunction) {
   Chat.push(req.body.message);
   if (Chat.length > 200) {
     Chat.splice(0, 1);
@@ -44,7 +44,7 @@ function newMessage(req: express.Request, res: express.Response, next: express.N
   res.send(Users);
 }
 
-function returnUsers(req: express.Request, res: express.Response, next: express.NextFunction) {
+function returnUsers(req: express.Request, res: express.Response, _next: express.NextFunction) {
   if (req.cookies.user === undefined || req.cookies.user === '' || req.cookies.user === null) {
     res.sendStatus(403);
   } else {
@@ -76,7 +76,7 @@ function returnUsers(req: express.Request, res: express.Response, next: express.
   }
 }
 
-function deleteUser(req: express.Request, res: express.Response, next: express.NextFunction) {
+function deleteUser(req: express.Request, _res: express.Response, _next: express.NextFunction) {
   for (let i = 0; i < Users.length; i++) {
     if (req.params.data === Users[i].id) {
       Users.splice(i, 1);
@@ -84,7 +84,7 @@ function deleteUser(req: express.Request, res: express.Response, next: express.N
   }
 }
 
-function newUser(req: express.Request, res: express.Response, next: express.NextFunction) {
+function newUser(req: express.Request, res: express.Response, _next: express.NextFunction) {
   if (req.cookies.user === undefined || req.cookies.user === '' || req.cookies.user === null) {
     let exists = false;
     let id = '';

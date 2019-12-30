@@ -1,8 +1,8 @@
-import * as mongodb from 'mongodb';
+import mongodb from 'mongodb';
 import { log } from './server';
 
 export class DB {
-  public static async createInstance(socket = 'localhost:27017'): Promise<DB> {
+  public static async createInstance(_socket = 'localhost:27017'): Promise<DB> {
     if (DB._instance) {
       throw Error('instance already created');
     }
@@ -21,8 +21,8 @@ export class DB {
     return DB._instance;
   }
 
-  private _timeline: mongodb.Collection;
-  private _albums: mongodb.Collection;
+  private _timeline!: mongodb.Collection;
+  private _albums!: mongodb.Collection;
 
   private constructor() { }
 
@@ -47,9 +47,9 @@ export class DB {
       'mongodb://homepage:g74775@cluster0-shard-00-00-10aya.gcp.mongodb.net:27017,cluster0-shard-00-01-10aya.gcp.mongodb.net:27017,cluster0-shard-00-02-10aya.gcp.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true';
     try {
       const dbServer = await mongodb.MongoClient.connect(url, { socketTimeoutMS: 2147483647 });
-      const db = await dbServer.db('sorogoneu');
-      const collTimeline = await db.collection('timeline');
-      const collAlbums = await db.collection('albums');
+      const db = dbServer.db('sorogoneu');
+      const collTimeline = db.collection('timeline');
+      const collAlbums = db.collection('albums');
 
       this._timeline = collTimeline;
       this._albums = collAlbums;

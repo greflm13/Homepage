@@ -2,15 +2,15 @@ process.env['DEBUG'] = '*::INFO, *::WARN, *::ERR, *::SEVERE, *::';
 process.env['DEBUG_COLORS'] = 'true';
 process.env['DEBUG_STREAM'] = 'stdout';
 
-import * as express from 'express';
-import * as path from 'path';
-import * as bodyparser from 'body-parser';
-import * as cookieparser from 'cookie-parser';
-import * as http from 'http';
-import * as https from 'https';
-import * as fs from 'fs';
-import * as requestLanguage from 'express-request-language';
-import * as debugsx from 'debug-sx';
+import express from 'express';
+import path from 'path';
+import bodyparser from 'body-parser';
+import cookieparser from 'cookie-parser';
+import http from 'http';
+import https from 'https';
+import fs from 'fs';
+import requestLanguage from 'express-request-language';
+import debugsx from 'debug-sx';
 
 import { _chat } from './chat';
 import { _films } from './films';
@@ -88,7 +88,7 @@ export class Server {
     this._express.use((req, res, next) => this.logger(req, res, next, 'Main'));
 
     // Modules
-    this._express.use(function (req, res, next) {
+    this._express.use(function (_req, res, next) {
       res.set('X-Clacks-Overhead', 'GNU Terry Pratchett');
       next();
     });
@@ -105,7 +105,7 @@ export class Server {
     // Main
     this._express.use('/de', express.static(path.join(__dirname, './public/de')));
     this._express.use('/en', express.static(path.join(__dirname, './public/en')));
-    this._express.get('*.php', (req, res, next) => {
+    this._express.get('*.php', (_req, res, _next) => {
       res.sendFile(path.join(__dirname, '/views/no.html'));
     });
     this._express.use(express.static(path.join(__dirname, './public')));
@@ -115,7 +115,7 @@ export class Server {
 
     // Redirect
     this._appredirect.use((req, res, next) => this.logger(req, res, next, 'Redirect'));
-    this._appredirect.get('*.php', (req, res, next) => {
+    this._appredirect.get('*.php', (_req, res, _next) => {
       res.sendFile(path.join(__dirname, '/views/no.html'));
     });
     this._appredirect.get('/err', (err: any, req: express.Request, res: express.Response, next: express.NextFunction) =>
@@ -127,7 +127,7 @@ export class Server {
   }
 
   public start(httpport: number, httpsport?: number): Promise<Server> {
-    return new Promise<Server>((resolve, reject) => {
+    return new Promise<Server>((_resolve, _reject) => {
       if (httpsport) {
         log.info('Starting HTTPS Server...');
         const privKey = fs.readFileSync('/home/pi/privkey.pem', 'utf8');
@@ -167,7 +167,7 @@ export class Server {
     });
   }
 
-  private languageselector(req: express.Request, res: express.Response, next: express.NextFunction) {
+  private languageselector(req: express.Request, res: express.Response, _next: express.NextFunction) {
     if (req.language === 'de-DE' || req.language === 'de-AT') {
       res.redirect('/de');
       return;
@@ -177,13 +177,13 @@ export class Server {
     }
   }
 
-  private error404Handler(req: express.Request, res: express.Response, next: express.NextFunction) {
+  private error404Handler(req: express.Request, res: express.Response, _next: express.NextFunction) {
     const clientSocket = req.socket.remoteAddress + ':' + req.socket.remotePort;
     log.warn('Error 404 for %s %s from %s', req.method, req.url, clientSocket);
     res.status(404).sendFile(path.join(__dirname, './views/error404.html'));
   }
 
-  private errorHandler(err: express.Errback, req: express.Request, res: express.Response, next: express.NextFunction) {
+  private errorHandler(err: express.Errback, _req: express.Request, res: express.Response, _next: express.NextFunction) {
     const ts = new Date().toLocaleString();
     if (err.toString().startsWith('Error: ENOENT')) {
       res.sendFile(path.join(__dirname, './views/update.html'));
@@ -201,7 +201,7 @@ export class Server {
     }
   }
 
-  private logger(req: express.Request, res: express.Response, next: express.NextFunction, server: string) {
+  private logger(req: express.Request, _res: express.Response, next: express.NextFunction, server: string) {
     const clientSocket = req.socket.remoteAddress + ':' + req.socket.remotePort;
     log.info(server + ':', req.method, req.url, clientSocket);
     next();

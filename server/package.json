@@ -4,12 +4,12 @@
   "description": "express",
   "main": "dist/main.js",
   "scripts": {
-    "prerestart": "gulp cleanAndBuild",
+    "prerestart": "gulp build",
     "restart": "scp -r dist/* $HOST:/home/pi/server",
     "start": "sudo forever dist/http.js",
     "test": "nodemon --watch src -e ts --exec npm run http",
     "http": "npm run build && node dist/http.js",
-    "build": "gulp cleanAndBuild"
+    "build": "gulp build"
   },
   "nodemonConfig": {
     "ignore": "*.json"
@@ -34,9 +34,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "3.4.1",
     "pug": "^2.0.4",
-    "spin": "0.0.1",
-    "ts-node": "^8.5.4",
-    "tslint": "^5.20.1"
+    "spin": "0.0.1"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.1",
@@ -52,17 +50,19 @@
     "@types/gulp-sourcemaps": "^0.0.32",
     "@types/jsonwebtoken": "^7.2.8",
     "@types/mongodb": "^2.2.25",
-    "@types/node": "^8.10.59",
+    "@types/node": "^13.1.1",
     "@types/pug": "^2.0.4",
     "del": "^5.1.0",
     "gulp": "^4.0.2",
-    "gulp-changed": "^4.0.2",
+    "gulp-changed": "^4.0.1",
     "gulp-sourcemaps": "^2.6.5",
-    "gulp-typescript": "^6.0.0-alpha.1",
+    "gulp-typescript": "^5.0.1",
     "gulp-using": "^0.1.1",
-    "merge-stream": "^1.0.1",
+    "merge-stream": "^2.0.0",
     "nodemon": "^1.19.4",
     "run-sequence": "^1.2.2",
-    "typescript": "^3.2.4"
+    "ts-node": "^8.3.0",
+    "tslint": "^5.20.1",
+    "typescript": "^3.5.3"
   }
 }

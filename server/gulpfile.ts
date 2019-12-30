@@ -1,8 +1,8 @@
-import * as gulp from 'gulp';
-import * as ts from 'gulp-typescript';
-import * as sourcemaps from 'gulp-sourcemaps';
-import * as del from 'del';
-import * as changed from 'gulp-changed';
+import gulp from 'gulp';
+import ts from 'gulp-typescript';
+import sourcemaps from 'gulp-sourcemaps';
+import del from 'del';
+import changed from 'gulp-changed';
 
 // no type declaration/needs require
 const using = require('gulp-using');
@@ -59,10 +59,14 @@ export function copyFiles() {
             path: 'src/public',
             dest: 'public'
         },
-        { // Vue.js dist files
-            path: '../vue-app/dist',
-            dest: 'public/app'
+        { // pug views
+            path: 'src/views',
+            dest: 'views'
         }
+        // { // Vue.js dist files
+        //     path: '../vue-app/dist',
+        //     dest: 'public/app'
+        // }
         // { // Angular dist files
         //     path: '../test-ng/dist/test-ng',
         //     dest: 'public/app'

@@ -1,18 +1,18 @@
-import * as express from 'express';
-import * as path from 'path';
-import * as fs from 'fs';
+import express from 'express';
+import path from 'path';
+import fs from 'fs';
 
 export let _2048 = express();
 
 _2048.use(express.static(path.join(__dirname, 'game2048/')));
-_2048.get(['/'], (req, res, next) => {
+_2048.get(['/'], (_req, res, _next) => {
   res.sendFile(path.join(__dirname, 'game2048/index.html'));
 });
 _2048.post('/leaderboard', postLeaderboard);
 _2048.get('/leaderboard', getLeaderboard);
 _2048.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
 
-function postLeaderboard(req: express.Request, res: express.Response, next: express.NextFunction) {
+function postLeaderboard(req: express.Request, res: express.Response, _next: express.NextFunction) {
   const leaderboard: Leaderboard = { g2048: { people: [] } };
   for (let i = 0; i < 10; i++) {
     if (req.body.g2048.people[i] !== null && req.body.g2048.people[i] !== undefined) {
@@ -23,7 +23,7 @@ function postLeaderboard(req: express.Request, res: express.Response, next: expr
   res.send(JSON.stringify(JSON.parse(fs.readFileSync(path.join(__dirname, './leaderboard2048.json')).toString())));
 }
 
-function getLeaderboard(req: express.Request, res: express.Response, next: express.NextFunction) {
+function getLeaderboard(_req: express.Request, res: express.Response, _next: express.NextFunction) {
   res.send(JSON.stringify(JSON.parse(fs.readFileSync(path.join(__dirname, './leaderboard2048.json')).toString())));
 }
 

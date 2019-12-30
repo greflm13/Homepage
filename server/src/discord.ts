@@ -1,11 +1,10 @@
-import * as express from 'express';
-import * as path from 'path';
-import * as fs from 'fs';
+import express from 'express';
+import path from 'path';
 
 export let _discord = express();
 
 _discord.use(express.static(path.join(__dirname, 'discord/')));
-_discord.get(['/'], (req, res, next) => {
+_discord.get(['/'], (_req, res, _next) => {
   res.sendFile(path.join(__dirname, 'discord/index.html'));
 });
 _discord.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));

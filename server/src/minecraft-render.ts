@@ -1,11 +1,10 @@
-import * as express from 'express';
-import * as path from 'path';
-import * as fs from 'fs';
+import express from 'express';
+import path from 'path';
 
 export let _minecraftRender = express();
 
 _minecraftRender.use(express.static(path.join(__dirname, 'minecraft-render/')));
-_minecraftRender.get(['/'], (req, res, next) => {
+_minecraftRender.get(['/'], (_req, res, _next) => {
   res.sendFile(path.join(__dirname, 'minecraft-render/index.html'));
 });
 _minecraftRender.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));

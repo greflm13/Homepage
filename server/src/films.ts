@@ -1,7 +1,6 @@
-import * as express from 'express';
-import * as path from 'path';
-import * as fs from 'fs';
-import * as ftp from 'ftp';
+import express from 'express';
+import path from 'path';
+import ftp from 'ftp';
 
 export let _films = express();
 let c = new ftp();
@@ -15,8 +14,10 @@ c.on('end', () => {
 });
 
 setInterval(() => {
-  c.list('disk1/share/Filme/', (err, list) => {
-    if (err) throw err;
+  c.list('disk1/share/Filme/', (err, _list) => {
+    if (err) {
+      throw err;
+    }
   });
 }, 60000);
 
@@ -28,11 +29,11 @@ _films.get('/item/:path', (req, res, next) => getItem(req, res, next));
 _films.get('/item/:path/:subpath', (req, res, next) => getItem(req, res, next));
 _films.get('/item/:path/:subpath/:subsubpath', (req, res, next) => getItem(req, res, next));
 _films.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
-_films.get('**', (req, res, next) => {
+_films.get('**', (_req, res, _next) => {
   res.sendFile(path.join(__dirname, 'films/index.html'));
 });
 
-function list(req: express.Request, res: express.Response, next: express.NextFunction) {
+function list(_req: express.Request, res: express.Response, _next: express.NextFunction) {
   c.list('disk1/share/Filme/', (err, list) => {
     if (err) {
       if (err.message.includes('No such file or directory')) {
@@ -45,7 +46,7 @@ function list(req: express.Request, res: express.Response, next: express.NextFun
   });
 }
 
-function listFolder(req: express.Request, res: express.Response, next: express.NextFunction) {
+function listFolder(req: express.Request, res: express.Response, _next: express.NextFunction) {
   c.list('disk1/share/Filme/' + req.params.folder, (err, list) => {
     if (err) {
       if (err.message.includes('No such file or directory')) {
@@ -58,7 +59,7 @@ function listFolder(req: express.Request, res: express.Response, next: express.N
   });
 }
 
-function listFolderSubFolder(req: express.Request, res: express.Response, next: express.NextFunction) {
+function listFolderSubFolder(req: express.Request, res: express.Response, _next: express.NextFunction) {
   c.list('disk1/share/Filme/' + req.params.folder + '/' + req.params.subFolder, (err, list) => {
     if (err) {
       if (err.message.includes('No such file or directory')) {
@@ -71,26 +72,26 @@ function listFolderSubFolder(req: express.Request, res: express.Response, next: 
   });
 }
 
-function getItem(req: express.Request, res: express.Response, next: express.NextFunction) {
+function getItem(req: express.Request, res: express.Response, _next: express.NextFunction) {
   let fileSize: number;
   let range = req.headers.range;
   const one = req.params.path;
   const two = req.params.subpath;
   const three = req.params.subsubpath;
 
-  let path = one;
+  let pathy = one;
 
   if (two !== null && two !== undefined && two !== '') {
-    path += '/';
-    path += two;
+    pathy += '/';
+    pathy += two;
   }
   if (three !== null && three !== undefined && three !== '') {
-    path += '/';
-    path += three;
+    pathy += '/';
+    pathy += three;
   }
 
-  c.size('disk1/share/Filme/' + path, (err, size) => {
-    if (err) throw err;
+  c.size('disk1/share/Filme/' + pathy, (err, size) => {
+    if (err) { throw err; }
 
     fileSize = size;
 
@@ -107,8 +108,8 @@ function getItem(req: express.Request, res: express.Response, next: express.Next
         'Content-Type': 'video/mp4'
       };
       res.writeHead(206, head);
-      c.get('disk1/share/Filme/' + path, (err, stream) => {
-        if (err) throw err;
+      c.get('disk1/share/Filme/' + pathy, (err, stream) => {
+        if (err) { throw err; }
         stream.pipe(res);
       });
     } else {
@@ -117,8 +118,8 @@ function getItem(req: express.Request, res: express.Response, next: express.Next
         'Content-Type': 'video/mp4'
       };
       res.writeHead(200, head);
-      c.get('disk1/share/Filme/' + path, (err, stream) => {
-        if (err) throw err;
+      c.get('disk1/share/Filme/' + pathy, (err, stream) => {
+        if (err) { throw err; }
         stream.pipe(res);
       });
     }
