@@ -30,7 +30,7 @@
       <td>{{i+1}}</td>
       <td>{{person.name}}</td>
       <td>{{person.score}}</td>
-      <td>{{person.time}}</td>
+      <td>{{person.time * 1000 | date: 'mm:ss'}}</td>
     </tr>
   </table>
 </div>

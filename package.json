@@ -13,7 +13,7 @@
     "update": "cd chat && ng update @angular/cli @angular/core & cd ../discord && ng update @angular/cli @angular/core & cd ../films && ng update @angular/cli @angular/core & cd ../game2048 && ng update @angular/cli @angular/core & cd ../minecraft-server && ng update @angular/cli @angular/core & cd ../minesweeper && ng update @angular/cli @angular/core & cd ../server && ng update @angular/cli @angular/core & cd ../timeline && ng update @angular/cli @angular/core & cd ../vinyl && ng update @angular/cli @angular/core",
     "new": "./new.sh",
     "newwindows": "new.cmd",
-    "install": "cd chat && pnpm i && cd ../discord && pnpm i && cd ../films && pnpm i && cd ../game2048 && pnpm i && cd ../minecraft-server && pnpm i && cd ../minesweeper && pnpm i && cd ../timeline && pnpm i && cd ../vinyl && pnpm i && cd ../server && pnpm i"
+    "install": "./install.sh"
   },
   "repository": {
     "type": "git",
