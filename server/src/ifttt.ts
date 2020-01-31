@@ -33,8 +33,8 @@ function spotify(req: express.Request, res: express.Response, _next: express.Nex
     }
     const request = https.request(options, response => {
 
-      response.on('data', d => {
-        // process.stdout.write(d)
+      response.on('data', _d => {
+        // process.stdout.write(_d)
       })
     })
 
