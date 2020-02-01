@@ -1,24 +1,27 @@
 import express from 'express';
 import path from 'path';
 import https from 'https';
+import fs from 'fs';
 
 export let _ifttt = express();
 const regexp = /\(.+\)|\[.+\]+/g
-const Users: User[] = [{
-  user: 'sorogon',
-  key: 'fox0r0CxPR0h7fNmBKaFhKXE0JCOM1Vnf-_uCzaYyYF',
-  subreddits: [
-    'progmetal',
-    'PowerMetal',
-    'symphonicmetal',
-    'progrockmusic',
-    'BlackMetal',
-    'Deathmetal',
-    'ClassicRock',
-    'retrowave',
-    'synthwave'
-  ]
-}]
+// const Users: User[] = [{
+// user: 'sorogon',
+// key: 'fox0r0CxPR0h7fNmBKaFhKXE0JCOM1Vnf-_uCzaYyYF',
+// subreddits: [
+// 'progmetal',
+// 'PowerMetal',
+// 'symphonicmetal',
+// 'progrockmusic',
+// 'BlackMetal',
+// 'Deathmetal',
+// 'ClassicRock',
+// 'retrowave',
+// 'synthwave',
+// 'psychedelicrock/'
+// ]
+// }]
+const Users: User[] = JSON.parse(fs.readFileSync(path.join( __dirname, 'users.json')).toString());
 
 // _ifttt.use(express.static(path.join(__dirname, 'discord/')));
 // _ifttt.get(['/'], (_req, res, _next) => {
