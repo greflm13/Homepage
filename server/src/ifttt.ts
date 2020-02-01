@@ -3,7 +3,7 @@ import path from 'path';
 import https from 'https';
 
 export let _ifttt = express();
-const regexp = /\([\w-./]+\)|\[[\w-./]+\]+/g
+const regexp = /\(.+\)|\[.+\]+/g
 
 // _ifttt.use(express.static(path.join(__dirname, 'discord/')));
 // _ifttt.get(['/'], (_req, res, _next) => {
