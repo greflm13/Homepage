@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import https from 'https';
 import fs from 'fs';
+import { log } from './server';
 
 export let _ifttt = express();
 const regexp = /\(.+\)|\[.+\]+/g
@@ -21,7 +22,7 @@ const regexp = /\(.+\)|\[.+\]+/g
 // 'psychedelicrock/'
 // ]
 // }]
-const Users: User[] = JSON.parse(fs.readFileSync(path.join( __dirname, 'users.json')).toString());
+const Users: User[] = JSON.parse(fs.readFileSync(path.join(__dirname, 'users.json')).toString());
 
 // _ifttt.use(express.static(path.join(__dirname, 'discord/')));
 // _ifttt.get(['/'], (_req, res, _next) => {
@@ -32,23 +33,29 @@ _ifttt.use('/node_modules', express.static(path.join(__dirname, '../node_modules
 
 function spotify(req: express.Request, res: express.Response, _next: express.NextFunction) {
   const song = req.body;
+  log.fine('Input: ' + song.title)
   const spoti: Data = { value1: '', value2: '', value3: song.subreddit };
 
   if (song.title.includes(' - ')) {
     song.title = song.title.split(regexp).join('');
     spoti.value2 = song.title.slice(0, song.title.indexOf(' - '));
     spoti.value1 = song.title.slice(song.title.indexOf(' - ') + 3);
+    log.fine('Parsed Output: ' + spoti);
 
     Users.forEach(user => {
       webhook(spoti, user);
     })
+    res.sendStatus(200);
+  } else {
+    log.fine('Not a Song')
+    res.sendStatus(403).send('Not a Song');
   }
-  res.sendStatus(200);
 }
 
 function webhook(dataa: Data, user: User) {
   user.subreddits.forEach(subreddit => {
     if (subreddit === dataa.value3) {
+      log.fine('Sent to user ' + user.user);
       const data = JSON.stringify(dataa);
       const options = {
         hostname: 'maker.ifttt.com',
