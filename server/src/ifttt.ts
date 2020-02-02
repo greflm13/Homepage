@@ -33,7 +33,7 @@ _ifttt.use('/node_modules', express.static(path.join(__dirname, '../node_modules
 
 function spotify(req: express.Request, res: express.Response, _next: express.NextFunction) {
   const song = req.body;
-  log.fine('Input: ' + song.title + 'Subreddit: ' + song.subreddit);
+  log.fine('Input: ' + song.title + ' Subreddit: ' + song.subreddit);
   const spoti: Data = { value1: '', value2: '', value3: song.subreddit };
 
   if (song.title.includes(' - ')) {
