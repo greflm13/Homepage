@@ -33,14 +33,24 @@ _ifttt.use('/node_modules', express.static(path.join(__dirname, '../node_modules
 
 function spotify(req: express.Request, res: express.Response, _next: express.NextFunction) {
   const song = req.body;
-  log.fine('Input: ' + song.title)
+  log.fine('Input: ' + song.title + 'Subreddit: ' + song.subreddit);
   const spoti: Data = { value1: '', value2: '', value3: song.subreddit };
 
   if (song.title.includes(' - ')) {
     song.title = song.title.split(regexp).join('');
     spoti.value2 = song.title.slice(0, song.title.indexOf(' - '));
     spoti.value1 = song.title.slice(song.title.indexOf(' - ') + 3);
-    log.fine('Parsed Output: ' + spoti);
+    log.fine('Parsed Output: Artist: ' + spoti.value2 + ' Title: ' + spoti.value1 + ' Subreddit: ' + spoti.value3);
+
+    Users.forEach(user => {
+      webhook(spoti, user);
+    })
+    res.sendStatus(200);
+  } else if (song.title.includes('by')) {
+    song.title = song.title.split(regexp).join('');
+    spoti.value1 = song.title.slice(0, song.title.indexOf(' by '));
+    spoti.value2 = song.title.slice(song.title.indexOf(' by ') + 4);
+    log.fine('Parsed Output: Artist: ' + spoti.value2 + ' Title: ' + spoti.value1 + ' Subreddit: ' + spoti.value3);
 
     Users.forEach(user => {
       webhook(spoti, user);
@@ -48,7 +58,7 @@ function spotify(req: express.Request, res: express.Response, _next: express.Nex
     res.sendStatus(200);
   } else {
     log.fine('Not a Song')
-    res.sendStatus(403).send('Not a Song');
+    res.status(403).send('Not a Song');
   }
 }
 
