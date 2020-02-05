@@ -17,7 +17,6 @@ const regexp = /\(.+\)|\[.+\]+/g
 // 'BlackMetal',
 // 'Deathmetal',
 // 'ClassicRock',
-// 'retrowave',
 // 'synthwave',
 // 'psychedelicrock/'
 // ]
@@ -35,6 +34,9 @@ function spotify(req: express.Request, res: express.Response, _next: express.Nex
   let song: Req = req.body;
   log.fine('Input: ' + song.title + ', Subreddit: ' + song.subreddit);
   const spoti: Data = { value1: '', value2: '', value3: song.subreddit };
+  if(song.subreddit==='outrun' || song.subreddit==='retrowave') {
+    spoti.value3 = 'synthwave'
+  }
 
   if (song.title.includes(' - ')) {
     song.title = song.title.split(regexp).join('');
