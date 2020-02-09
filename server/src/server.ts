@@ -38,11 +38,11 @@ filelogger = debugsx.createFileHandler(
   __dirname +
   '/log/' +
   'server_' +
-  date.getDate() +
+  date.getFullYear() +
   '-' +
   date.getMonth() +
   '-' +
-  date.getFullYear() +
+  date.getDate() +
   '_' +
   date.getHours() +
   '.' +

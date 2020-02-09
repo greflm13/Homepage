@@ -2,9 +2,11 @@ import express from 'express';
 import path from 'path';
 import https from 'https';
 import fs from 'fs';
+// import cookie from 'cookie';
 import { log } from './server';
 
 export let _ifttt = express();
+// let Timeouts: [];
 const regexp = /\(.+\)|\[.+\]+/g
 // const Users: User[] = [{
 // user: 'sorogon',
@@ -34,7 +36,7 @@ function spotify(req: express.Request, res: express.Response, _next: express.Nex
   let song: Req = req.body;
   log.fine('Input: ' + song.title + ', Subreddit: ' + song.subreddit);
   const spoti: Data = { value1: '', value2: '', value3: song.subreddit };
-  if(song.subreddit==='outrun' || song.subreddit==='retrowave') {
+  if (song.subreddit === 'outrun' || song.subreddit === 'retrowave') {
     spoti.value3 = 'synthwave'
   }
 
@@ -94,6 +96,78 @@ function webhook(dataa: Data, user: User) {
     }
   })
 }
+
+// function returnUsers(req: express.Request, res: express.Response, _next: express.NextFunction) {
+//   if (req.cookies.user === undefined || req.cookies.user === '' || req.cookies.user === null) {
+//     res.sendStatus(403);
+//   } else {
+//     let match = 0;
+//     Users.forEach(user => {
+//       if (user.id === JSON.parse(req.cookies.user).id) {
+//         match++;
+//       }
+//     });
+//     if (match === 0) {
+//       Users.push(JSON.parse(req.cookies.user));
+//     }
+//     for (let i = 0; i < Timeouts.length; i++) {
+//       if (JSON.parse(req.cookies.user).id === Timeouts[i].id) {
+//         clearTimeout(Timeouts[i].out);
+//       }
+//     }
+//     Timeouts.push({
+//       out: setTimeout(() => {
+//         for (let i = 0; i < Users.length; i++) {
+//           if (JSON.parse(req.cookies.user).id === Users[i].id) {
+//             Users.splice(i, 1);
+//           }
+//         }
+//       }, 1000),
+//       id: JSON.parse(req.cookies.user).id
+//     });
+//     res.send(Users);
+//   }
+// }
+
+// function deleteUser(req: express.Request, _res: express.Response, _next: express.NextFunction) {
+//   for (let i = 0; i < Users.length; i++) {
+//     if (req.params.data === Users[i].id) {
+//       Users.splice(i, 1);
+//     }
+//   }
+// }
+
+// function newUser(req: express.Request, res: express.Response, _next: express.NextFunction) {
+//   if (req.cookies.user === undefined || req.cookies.user === '' || req.cookies.user === null) {
+//     let exists = false;
+//     let id = '';
+//     const iat = Date.now() + 3600000;
+//     do {
+//       const possible = '0123456789';
+
+//       for (let i = 0; i < 16; i++) {
+//         id += possible.charAt(Math.floor(Math.random() * possible.length));
+//       }
+
+//       for (let i = 0; i < Users.length; i++) {
+//         if (Users[i].id === id) {
+//           exists = true;
+//           id = '';
+//         }
+//       }
+//     } while (exists);
+//     Users.push({ name: req.body.name, id: id, iat: iat, color: req.body.color });
+//     res.setHeader(
+//       'Set-Cookie',
+//       cookie.serialize('user', JSON.stringify({ name: req.body.name, id: id, color: req.body.color, iat: iat }), {
+//         maxAge: 60 * 60 * 24 * 365 // 1 Year
+//       })
+//     );
+//     res.send({ name: req.body.name, color: req.body.color, id: id, iat: iat });
+//   } else {
+//     res.send(JSON.parse(decodeURIComponent(req.cookies.user)));
+//   }
+// }
 
 interface User {
   user: string,
