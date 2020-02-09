@@ -22,7 +22,7 @@ import { _discord } from './discord';
 import { _vinyl } from './vinyl';
 import { _minecraftRender } from './minecraft-render';
 import { _snake } from './snake';
-import {_ifttt} from './ifttt';
+import { _ifttt } from './ifttt';
 
 const date = new Date();
 export const log: debugsx.IFullLogger = debugsx.createFullLogger('Homepage');
@@ -40,9 +40,9 @@ filelogger = debugsx.createFileHandler(
   'server_' +
   date.getFullYear() +
   '-' +
-  date.getMonth() +
+  ('0' + (date.getMonth() + 1)).slice(-2) +
   '-' +
-  date.getDate() +
+  ('0' + date.getDate()).slice(-2) +
   '_' +
   date.getHours() +
   '.' +
