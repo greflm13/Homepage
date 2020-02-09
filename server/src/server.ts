@@ -44,11 +44,11 @@ filelogger = debugsx.createFileHandler(
   '-' +
   ('0' + date.getDate()).slice(-2) +
   '_' +
-  date.getHours() +
+  ('0' + date.getHours()).slice(-2) +
   '.' +
-  date.getMinutes() +
+  ('0' + date.getMinutes()).slice(-2) +
   '.' +
-  date.getSeconds() +
+  ('0' + date.getSeconds()).slice(-2) +
   '.log',
   '*::INFO, *::FINE, *::SEVERE, *::ERR, *::WARN',
   '-*',
