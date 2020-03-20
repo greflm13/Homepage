@@ -1,5 +1,5 @@
 export class Square {
-  private z = 10;
+  private size = 10;
 
   constructor(
     private ctx: CanvasRenderingContext2D,
@@ -33,6 +33,6 @@ export class Square {
 
   private draw() {
     this.ctx.fillStyle = this.color;
-    this.ctx.fillRect(this.z * this.x, this.z * this.y, this.z, this.z);
+    this.ctx.fillRect(this.size * this.x, this.size * this.y, this.size, this.size);
   }
 }
