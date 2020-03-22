@@ -9,7 +9,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   @ViewChild('canvas', { static: true }) canvas: ElementRef<HTMLCanvasElement>;
   private ctx: CanvasRenderingContext2D;
   private requestId: number;
-  private gameLoop: any;
+  private drawLoop: any;
   private log = false;
   public cheight: number;
   public cwidth: number;
@@ -19,43 +19,43 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(private ngZone: NgZone) { }
 
   ngOnInit(): void {
-    for (let i = 0; i <= 24; i++) {
+    for (let i = 0; i <= 26; i++) {
       this.graph2.points.push({
-        x: i, y: (Math.pow(Math.E, (0.3 * i))), stringx: i.toString()
+        x: i, y: (Math.pow(Math.E, (0.3 * i + 0.3)) + 0.6), stringx: i.toString()
       });
     }
     this.data();
     this.cheight = window.innerHeight;
     this.cwidth = window.innerWidth;
     this.ctx = this.canvas.nativeElement.getContext('2d');
-    this.ngZone.runOutsideAngular(() => this.tick());
-    this.gameLoop = setInterval(() => {
-      this.tick();
-    }, 1000);
+    this.ngZone.runOutsideAngular(() => this.loop());
+    this.drawLoop = setInterval(() => {
+      this.loop();
+    }, 100);
   }
 
   ngOnDestroy() {
-    clearInterval(this.gameLoop);
+    clearInterval(this.drawLoop);
     cancelAnimationFrame(this.requestId);
   }
 
 
-  tick() {
+  loop() {
     // x: width
     // y: height
     this.cheight = window.innerHeight;
     this.cwidth = window.innerWidth;
     this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
     this.drawCoordinateSystem('Date', 'Confirmed Cases');
-    this.drawGraph(this.graph, 2, 'red');
-    this.drawGraph(this.graph2, 2, 'blue');
+    this.drawGraph(this.graph, 2, 'red', false);
+    this.drawGraph(this.graph2, 2, 'blue', true);
 
     // this.drawSquare(10, 100, 100, 'blue');
     // this.drawText('Blau', 110, 100, 'black');
     // this.drawLine(3, 100, 100, 200, 200, 'blue');
     // this.drawCircle(5, 200, 200, 'green');
 
-    this.requestId = requestAnimationFrame(() => this.tick);
+    this.requestId = requestAnimationFrame(() => this.loop);
   }
 
   drawSquare(size: number, x: number, y: number, color: string) {
@@ -84,7 +84,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.ctx.fillText(text, x, y);
   }
 
-  drawGraph(graph: Graph, width: number, color: string) {
+  drawGraph(graph: Graph, width: number, color: string, decorations: boolean) {
     const scaleyy = [];
     graph.points.forEach(point => {
       scaleyy.push(point.y);
@@ -135,23 +135,31 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (this.log) {
       // tslint:disable-next-line: max-line-length
       this.ctx.moveTo(originx + (this.cwidth - 230) / scalex * graph.points[0].x, originy - (this.cheight - 230) / Math.log(scaley) * Math.log(graph.points[0].y));
-      // tslint:disable-next-line: max-line-length
-      this.drawSquare(5, originx + (this.cwidth - 230) / scalex * graph.points[0].x, originy - (this.cheight - 230) / Math.log(scaley) * Math.log(graph.points[0].y), 'blue');
+      if (decorations) {
+        // tslint:disable-next-line: max-line-length
+        this.drawSquare(5, originx + (this.cwidth - 230) / scalex * graph.points[0].x, originy - (this.cheight - 230) / Math.log(scaley) * Math.log(graph.points[0].y), 'blue');
+      }
       graph.points.forEach(point => {
         if (point.x !== 0) {
           // tslint:disable-next-line: max-line-length
           this.ctx.lineTo(originx + (this.cwidth - 230) / scalex * point.x, originy - (this.cheight - 230) / Math.log(scaley) * Math.log(point.y));
-          // tslint:disable-next-line: max-line-length
-          this.drawSquare(5, originx + (this.cwidth - 230) / scalex * point.x, originy - (this.cheight - 230) / Math.log(scaley) * Math.log(point.y), 'blue');
+          if (decorations) {
+            // tslint:disable-next-line: max-line-length
+            this.drawSquare(5, originx + (this.cwidth - 230) / scalex * point.x, originy - (this.cheight - 230) / Math.log(scaley) * Math.log(point.y), 'blue');
+          }
         }
       });
     } else {// tslint:disable-next-line: max-line-length
       this.ctx.moveTo(originx + (this.cwidth - 230) / scalex * graph.points[0].x, originy - (this.cheight - 230) / scaley * graph.points[0].y);
-      // tslint:disable-next-line: max-line-length
-      this.drawSquare(5, originx + (this.cwidth - 230) / scalex * graph.points[0].x, originy - (this.cheight - 230) / scaley * graph.points[0].y, 'blue');
+      if (decorations) {
+        // tslint:disable-next-line: max-line-length
+        this.drawSquare(5, originx + (this.cwidth - 230) / scalex * graph.points[0].x, originy - (this.cheight - 230) / scaley * graph.points[0].y, 'blue');
+      }
       graph.points.forEach(point => {
         if (point.x !== 0) {
-          this.drawSquare(5, originx + (this.cwidth - 230) / scalex * point.x, originy - (this.cheight - 230) / scaley * point.y, 'blue');
+          if (decorations) {
+            this.drawSquare(5, originx + (this.cwidth - 230) / scalex * point.x, originy - (this.cheight - 230) / scaley * point.y, 'blue');
+          }
           this.ctx.lineTo(originx + (this.cwidth - 230) / scalex * point.x, originy - (this.cheight - 230) / scaley * point.y);
         }
       });
@@ -282,8 +290,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.graph.points.push({ x: 20, y: 959, stringx: '16. Mrz' });
     this.graph.points.push({ x: 21, y: 1100, stringx: '17. Mrz' });
     this.graph.points.push({ x: 22, y: 1600, stringx: '18. Mrz' });
-    this.graph.points.push({ x: 23, y: 1900, stringx: '19. Mrz' });
-    this.graph.points.push({ x: 24, y: 2388, stringx: '20. Mrz' });
+    this.graph.points.push({ x: 23, y: 1600, stringx: '19. Mrz' });
+    this.graph.points.push({ x: 24, y: 1843, stringx: '20. Mrz' });
+    this.graph.points.push({ x: 25, y: 2649, stringx: '21. Mrz' });
+    this.graph.points.push({ x: 26, y: 3244, stringx: '22. Mrz' });
   }
 
 }
