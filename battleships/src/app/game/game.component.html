@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="playerField">
+        <img src="assets/2.png" height="20px" draggable="true" (dragstart)="drag($event)" id="ship0"><br>
+        <img src="assets/2.png" height="20px" draggable="true" (dragstart)="drag($event)" id="ship1"><br>
+        <img src="assets/2.png" height="20px" draggable="true" (dragstart)="drag($event)" id="ship2"><br>
+        <img src="assets/2.png" height="20px" draggable="true" (dragstart)="drag($event)" id="ship3"><br>
+        <img src="assets/3.png" height="20px" draggable="true" (dragstart)="drag($event)" id="ship4"><br>
+        <img src="assets/3.png" height="20px" draggable="true" (dragstart)="drag($event)" id="ship5"><br>
+        <img src="assets/3.png" height="20px" draggable="true" (dragstart)="drag($event)" id="ship6"><br>
+        <img src="assets/4.png" height="20px" draggable="true" (dragstart)="drag($event)" id="ship7"><br>
+        <img src="assets/4.png" height="20px" draggable="true" (dragstart)="drag($event)" id="ship8"><br>
+        <img src="assets/5.png" height="20px" draggable="true" (dragstart)="drag($event)" id="ship9">
+
+        <!-- <div (drop)="drop($event)" (dragover)="allowDrop($event)" (dragleave)="leaveDrop($event)"
+            style="width: 100px; height: 100px;"></div> -->
+        <div>
+            <table>
+                <tbody>
+                    <tr *ngFor="let row of playerField.rows">
+                        <td *ngFor="let field of row.fields" class="field">
+                            <span (drop)="drop($event, field.x,field.y)"
+                                (dragover)="allowDrop($event, field.x, field.y)"
+                                (dragleave)="leaveDrop($event, field.x,field.y)"
+                                [style.background-color]="field.highlight" [style.color]="field.highlight">
+                                MM</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="enemyField">
+        #
+    </div>
+</div>

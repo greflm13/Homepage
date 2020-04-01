@@ -23,7 +23,13 @@ const regexp = /\(.+\)|\[.+\]+/g
 // 'psychedelicrock/'
 // ]
 // }]
-const Users: User[] = JSON.parse(fs.readFileSync(path.join(__dirname, 'users.json')).toString());
+let Users: User[] = [];
+try {
+  Users = JSON.parse(fs.readFileSync(path.join(__dirname, 'users.json')).toString());
+} catch (err) {
+  Users = [];
+};
+
 
 // _ifttt.use(express.static(path.join(__dirname, 'discord/')));
 // _ifttt.get(['/'], (_req, res, _next) => {

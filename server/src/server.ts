@@ -13,7 +13,7 @@ import requestLanguage from 'express-request-language';
 import debugsx from 'debug-sx';
 
 import { _chat } from './chat';
-import { _films } from './films';
+// import { _films } from './films';
 import { _timeline } from './timeline';
 import { _2048 } from './2048';
 import { _minesweeper } from './minesweeper';
@@ -23,6 +23,7 @@ import { _vinyl } from './vinyl';
 import { _minecraftRender } from './minecraft-render';
 import { _snake } from './snake';
 import { _ifttt } from './ifttt';
+import { _battleships } from './battleships';
 
 const date = new Date();
 export const log: debugsx.IFullLogger = debugsx.createFullLogger('Homepage');
@@ -95,7 +96,7 @@ export class Server {
       next();
     });
     this._express.use('/chat', _chat);
-    this._express.use('/films', _films);
+    // this._express.use('/films', _films);
     this._express.use('/timeline', _timeline);
     this._express.use('/2048', _2048);
     this._express.use('/minesweeper', _minesweeper);
@@ -105,6 +106,7 @@ export class Server {
     this._express.use('/neuland', _minecraftRender);
     this._express.use('/snake', _snake);
     this._express.use('/ifttt', _ifttt);
+    this._express.use('/battleships', _battleships);
 
     // Main
     this._express.use('/de', express.static(path.join(__dirname, './public/de')));

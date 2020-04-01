@@ -1,0 +1,38 @@
+.playerField {
+    display: inline-block;
+    border: 1px solid slategrey;
+    padding: 8px;
+    position: absolute;
+    top: 50%;
+    left: 33%;
+    transform: translate(-50%,-50%);
+    width: 30%;
+}
+
+.enemyField {
+    display: inline-block;
+    border: 1px solid slategrey;
+    padding:8px;
+    position: absolute;
+    top: 50%;
+    left: 66%;
+    transform: translate(-50%,-50%);
+    width: 30%;
+}
+
+.container {
+    position: relative;
+    height: 100%;
+}
+
+.field {
+    border: slategrey solid 1px;
+    padding:0px; 
+    margin:0px; 
+}
+
+table {
+    border: slategrey solid 1px;
+    border-collapse:collapse;
+    border-spacing:0px;
+}

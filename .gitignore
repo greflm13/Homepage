@@ -71,3 +71,4 @@ server/leaderboardMinesweeper.json
 package-lock.json
 shrinkwrap.yaml
 pnpm-lock.yaml
+test_deploy/

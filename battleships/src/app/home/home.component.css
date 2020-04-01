@@ -1,0 +1,38 @@
+.tab {
+    background-color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid slategrey;
+    border-bottom: slategrey 3px solid;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-family: 'Baloo Thambi 2', cursive !important;
+}
+
+.tab:disabled {
+    border-bottom: 3px solid limegreen;
+    color: black;
+    outline: none;
+}
+
+.tab:active {
+    border-bottom: 3px solid royalblue;
+    color: black;
+    outline: none;
+}
+
+.tab:disabled::-moz-focus-inner { 
+    border: 0; 
+}
+
+.tab:active::-moz-focus-inner { 
+    border: 0; 
+}
+
+.select {    
+    margin-top: -1px;
+    border: 1px solid slategrey;
+    padding: 50px;
+}
