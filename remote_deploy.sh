@@ -4,13 +4,13 @@ read HOST
 . ./projects
 echo ""
 echo "deploying server..."
-cd server && scp -r dist/* net@$HOST:/home/net/server
+cd server && scp -r dist/* pi@$HOST:/home/pi/server
 for APP in $PROJECTS
 do
     echo ""
     echo "deploying $APP..."
-    cd ../$APP && scp -r dist/* net@$HOST:/home/net/server
+    cd ../$APP && scp -r dist/* pi@$HOST:/home/pi/server
 done
-ssh net@$HOST "cd server && ./restart.sh"
+ssh pi@$HOST "cd server && ./restart.sh"
 echo ""
 echo Done.

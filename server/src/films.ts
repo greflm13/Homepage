@@ -14,7 +14,7 @@ c.on('end', () => {
 });
 
 setInterval(() => {
-  c.list('disk1/share/Filme/', (err, _list) => {
+  c.list('disk1/films/', (err, _list) => {
     if (err) {
       throw err;
     }
@@ -34,7 +34,7 @@ _films.get('**', (_req, res, _next) => {
 });
 
 function list(_req: express.Request, res: express.Response, _next: express.NextFunction) {
-  c.list('disk1/share/Filme/', (err, list) => {
+  c.list('disk1/films/', (err, list) => {
     if (err) {
       if (err.message.includes('No such file or directory')) {
         res.send([{ name: 'No such file or directory' }]);
@@ -47,7 +47,7 @@ function list(_req: express.Request, res: express.Response, _next: express.NextF
 }
 
 function listFolder(req: express.Request, res: express.Response, _next: express.NextFunction) {
-  c.list('disk1/share/Filme/' + req.params.folder, (err, list) => {
+  c.list('disk1/films/' + req.params.folder, (err, list) => {
     if (err) {
       if (err.message.includes('No such file or directory')) {
         res.send([{ name: 'No such file or directory' }]);
@@ -60,7 +60,7 @@ function listFolder(req: express.Request, res: express.Response, _next: express.
 }
 
 function listFolderSubFolder(req: express.Request, res: express.Response, _next: express.NextFunction) {
-  c.list('disk1/share/Filme/' + req.params.folder + '/' + req.params.subFolder, (err, list) => {
+  c.list('disk1/films/' + req.params.folder + '/' + req.params.subFolder, (err, list) => {
     if (err) {
       if (err.message.includes('No such file or directory')) {
         res.send([{ name: 'No such file or directory' }]);
@@ -90,7 +90,7 @@ function getItem(req: express.Request, res: express.Response, _next: express.Nex
     pathy += three;
   }
 
-  c.size('disk1/share/Filme/' + pathy, (err, size) => {
+  c.size('disk1/films/' + pathy, (err, size) => {
     if (err) { throw err; }
 
     fileSize = size;
@@ -108,7 +108,7 @@ function getItem(req: express.Request, res: express.Response, _next: express.Nex
         'Content-Type': 'video/mp4'
       };
       res.writeHead(206, head);
-      c.get('disk1/share/Filme/' + pathy, (err, stream) => {
+      c.get('disk1/films/' + pathy, (err, stream) => {
         if (err) { throw err; }
         stream.pipe(res);
       });
@@ -118,7 +118,7 @@ function getItem(req: express.Request, res: express.Response, _next: express.Nex
         'Content-Type': 'video/mp4'
       };
       res.writeHead(200, head);
-      c.get('disk1/share/Filme/' + pathy, (err, stream) => {
+      c.get('disk1/films/' + pathy, (err, stream) => {
         if (err) { throw err; }
         stream.pipe(res);
       });
