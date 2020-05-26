@@ -27,7 +27,7 @@ function postLeaderboard(req: express.Request, res: express.Response, _next: exp
   }
   leaderboard.minesweeper.people = req.body.minesweeper.people;
   fs.writeFileSync(path.join(__dirname, '../leaderboardMinesweeper.json'), JSON.stringify(leaderboard));
-  res.send(JSON.stringify(JSON.parse(fs.readFileSync(path.join(__dirname, '../leaderboardMinesweeper.json')).toString())));
+  res.send(JSON.stringify(JSON.parse(fs.readFileSync(path.join(__dirname, './leaderboardMinesweeper.json')).toString())));
 }
 
 function getLeaderboard(_req: express.Request, res: express.Response, _next: express.NextFunction) {
