@@ -20,7 +20,7 @@ const reporter = ts.reporter.fullReporter();
 
 // project paths
 const srcDir = 'src/**/';
-const destDir = 'dist';
+const distDir = 'dist';
 
 export async function clean() {
     const deletedPaths = await del('dist/*');
@@ -37,11 +37,11 @@ export async function clean() {
 export function transpile() {
     const tsResult = gulp.src(srcDir + '*.ts')
         .pipe(tsProject(reporter))
-        .pipe(changed(destDir, { extension: '.js' }))
+        .pipe(changed(distDir, { extension: '.js' }))
         .pipe(using({ prefix: 'Transpiled' }))
         .pipe(sourcemaps.init())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest(destDir));
+        .pipe(gulp.dest(distDir));
 
     return tsResult;
 }
@@ -79,29 +79,29 @@ export function copyFiles() {
         if (folder.fileExtension === undefined) {
             merged.add(
                 gulp.src(folder.path + '/**/*')
-                    .pipe(changed(destDir + '/' + folder.dest, {}))
+                    .pipe(changed(distDir + '/' + folder.dest, {}))
                     .pipe(using({ prefix: 'Copied' }))
-                    .pipe(gulp.dest(destDir + '/' + folder.dest + '/')));
+                    .pipe(gulp.dest(distDir + '/' + folder.dest + '/')));
         } else {
             merged.add(
                 gulp.src(folder.path + '/**/*' + folder.fileExtension)
-                    .pipe(changed(destDir + '/' + folder.dest, { extension: folder.fileExtension }))
+                    .pipe(changed(distDir + '/' + folder.dest, { extension: folder.fileExtension }))
                     .pipe(using({ prefix: 'Copied' }))
-                    .pipe(gulp.dest(destDir + '/' + folder.dest + '/')));
+                    .pipe(gulp.dest(distDir + '/' + folder.dest + '/')));
         }
     }
 
     return merged;
 }
 
-export function copyApp() {
+export function copyJSON() {
     const merged = merge();
 
     merged.add(
-        gulp.src('../vue-app/dist/**/*')
-            .pipe(changed(destDir + '/public/app', {}))
+        gulp.src('src/json/*')
+            .pipe(changed(distDir + '/', {}))
             .pipe(using({ prefix: 'Copied' }))
-            .pipe(gulp.dest(destDir + '/public/app/')));
+            .pipe(gulp.dest(distDir + '/')));
 
     return merged;
 }
@@ -119,3 +119,4 @@ function getCurrentTime(): string {
 
 export default gulp.series(clean, transpile);
 export const build = gulp.series(clean, gulp.parallel(transpile, copyFiles));
+export const test = gulp.series(clean, gulp.parallel(transpile, copyFiles, copyJSON));

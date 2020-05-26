@@ -74,7 +74,7 @@ function spotify(req: express.Request, res: express.Response, _next: express.Nex
 
 function webhook(dataa: Data, user: User) {
   user.subreddits.forEach(subreddit => {
-    if (subreddit === dataa.value3) {
+    if (subreddit.toLowerCase() === dataa.value3.toLowerCase()) {
       log.fine('Sent to user ' + user.user);
       const data = JSON.stringify(dataa);
       const options = {

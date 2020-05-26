@@ -1,0 +1,18 @@
+[
+    {
+        "user": "dummy",
+        "key": "dummy",
+        "subreddits": [
+            "progmetal",
+            "PowerMetal",
+            "symphonicmetal",
+            "progrockmusic",
+            "BlackMetal",
+            "Deathmetal",
+            "ClassicRock",
+            "synthwave",
+            "psychedelicrock",
+            "Djent"
+        ]
+    }
+]
