@@ -68,7 +68,7 @@ function spotify(req: express.Request, res: express.Response, _next: express.Nex
     res.sendStatus(200);
   } else {
     log.fine('Not a Song')
-    res.status(403).send('Not a Song');
+    res.status(200).send('Not a Song');
   }
 }
 
