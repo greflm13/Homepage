@@ -24,6 +24,7 @@ import { _minecraftRender } from './minecraft-render';
 import { _snake } from './snake';
 import { _ifttt } from './ifttt';
 import { _battleships } from './battleships';
+import { _filehost } from './filehost';
 
 const date = new Date();
 export const log: debugsx.IFullLogger = debugsx.createFullLogger('Homepage');
@@ -107,6 +108,7 @@ export class Server {
     this._express.use('/snake', _snake);
     this._express.use('/ifttt', _ifttt);
     this._express.use('/battleships', _battleships);
+    this._express.use('/filehost', _filehost);
 
     // Main
     this._express.use('/de', express.static(path.join(__dirname, './public/de')));

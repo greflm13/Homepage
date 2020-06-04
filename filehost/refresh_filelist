@@ -1,0 +1,12 @@
+#!/bin/sh
+echo '' > list.html
+for file in *
+do
+if [ "$file" != "refresh_filelist" ]; then
+if [ "$file" != "index.html" ]; then
+if [ "$file" != "list.html" ]; then
+  echo '<a href="'${file}'">'${file}'</a><br>' >> list.html
+fi
+fi
+fi
+done

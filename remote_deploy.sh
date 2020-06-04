@@ -5,6 +5,9 @@ read HOST
 echo ""
 echo "deploying server..."
 cd server && scp -r dist/* pi@$HOST:/home/pi/server
+echo ""
+echo "deploying filehost..."
+cd ../filehost && scp -r ../filehost/ pi@$HOST:/home/pi/server
 for APP in $PROJECTS
 do
     echo ""
