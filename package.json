@@ -10,7 +10,7 @@
     "start": "./remote_deploy.sh",
     "build": "./build.sh",
     "windows": "npm run prestart && remote_deploy.cmd",
-    "update": "cd chat && ng update @angular/cli @angular/core & cd ../discord && ng update @angular/cli @angular/core & cd ../films && ng update @angular/cli @angular/core & cd ../game2048 && ng update @angular/cli @angular/core & cd ../minecraft-server && ng update @angular/cli @angular/core & cd ../minesweeper && ng update @angular/cli @angular/core & cd ../server && ng update @angular/cli @angular/core & cd ../timeline && ng update @angular/cli @angular/core & cd ../vinyl && ng update @angular/cli @angular/core",
+    "update": "./update.sh",
     "new": "./new.sh",
     "newwindows": "new.cmd",
     "install": "./install.sh"
