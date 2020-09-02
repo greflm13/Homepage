@@ -1,24 +1,57 @@
-th,
-td {
+.table th,
+.table td {
   padding: 15px;
   text-align: left;
 }
 
-tr:nth-child(even) {
+.table tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-tr:hover {
+.table tr:hover {
   background-color: #d0d7e6;
 }
 
-th {
+.table th {
   background-color: #4caf50;
   color: white;
 }
 
-table {
+.table {
   border-collapse: collapse;
   overflow-x:auto;
   width: 100%;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background-color: #4c79af;
+  width: 100%;
+}
+
+.footer input {
+  padding: 15px;
+  width: 101%;
+  text-align: left;
+  border-radius: 0;
+  border: none;
+  background-color: #4c79af;
+  color: white;
+}
+
+.footer table {
+  border-collapse: collapse;
+  overflow-x:auto;
+  width: 100%;
+}
+
+.footer button {
+  border-radius: 0;
+  border: none;
+  padding: 15px;
+  width: 100%;
+  background-color: #4c79af;
+  color: white;
 }

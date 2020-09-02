@@ -1,16 +1,29 @@
-<table>
-    <thead>
-        <th>Datum</th>
-        <th>Name</th>
-        <th>Kilometer davor</th>
-        <th>Kilometer danach</th>
-        <th>Differenz</th>
-    </thead>
-    <tr>
-        <td>test</td>
-        <td>test</td>
-        <td>test</td>
-        <td>test</td>
-        <td>test</td>
-    </tr>
+<table class="table">
+  <thead>
+    <th>Datum</th>
+    <th>Name</th>
+    <th>Kilometer davor</th>
+    <th>Kilometer danach</th>
+    <th>Differenz</th>
+  </thead>
+  <tr *ngFor="let trip of data.trips">
+    <td>{{ trip.date | date }}</td>
+    <td>{{ trip.name }}</td>
+    <td>{{ trip.before }}</td>
+    <td>{{ trip.after }}</td>
+    <td>{{ trip.diff }}</td>
+  </tr>
 </table>
+
+<form class="footer">
+  <table class="footerTable">
+    <thead>
+      <th style="width: 10%;"><input required placeholder="Datum" type="date" [(ngModel)]="date" name="date" autofocus></th>
+      <th style="width: 10%;"><input required placeholder="Name" type="text" [(ngModel)]="name" name="name"></th>
+      <th style="width: 10%;"><input required placeholder="Kilometer davor" type="number" [(ngModel)]="before" name="before"></th>
+      <th style="width: 10%;"><input required placeholder="Kilometer danach" type="number" [(ngModel)]="after" name="after"></th>
+      <th style="width: 10%;"><input required placeholder="Differenz" type="number" [(ngModel)]="diff" name="diff"></th>
+      <th style="width: 10%;"><button (click)="onSubmit()">Submit</button></th>
+    </thead>
+  </table>
+</form>

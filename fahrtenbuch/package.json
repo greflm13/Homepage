@@ -3,9 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
+    "prerestart": "npm run build",
+    "restart": "scp -r dist/* $HOST:/home/pi/server",
+    "start": "npm run build",
+    "build": "ng build --prod --build-optimizer --base-href=/fahrtenbuch/",
+    "test": "ng build --watch --base-href=/fahrtenbuch/",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

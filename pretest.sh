@@ -10,4 +10,7 @@ do
     ln -s ../../$APP/dist/$APP dist/$APP
 done
 echo ""
+echo "creating log folder"
+mkdir -p dist/log
+echo ""
 echo Done.

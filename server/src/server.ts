@@ -25,6 +25,7 @@ import { _snake } from './snake';
 import { _ifttt } from './ifttt';
 import { _battleships } from './battleships';
 import { _filehost } from './filehost';
+import { _fahrtenbuch } from './fahrtenbuch';
 
 const date = new Date();
 export const log: debugsx.IFullLogger = debugsx.createFullLogger('Homepage');
@@ -109,6 +110,7 @@ export class Server {
     this._express.use('/ifttt', _ifttt);
     this._express.use('/battleships', _battleships);
     this._express.use('/filehost', _filehost);
+    this._express.use('/fahrtenbuch', _fahrtenbuch);
 
     // Main
     this._express.use('/de', express.static(path.join(__dirname, './public/de')));
