@@ -38,6 +38,12 @@ export class AlbumsService {
             if (leftSide.release < rightSide.release) {
               return -1;
             }
+            if (leftSide.album > rightSide.album) {
+              return 1;
+            }
+            if (leftSide.album < rightSide.album) {
+              return -1;
+            }
             return 0;
           }
         );
