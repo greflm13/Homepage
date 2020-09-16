@@ -26,10 +26,10 @@ export class AlbumsService {
         this.albums = res;
         this.albums.sort(
           (leftSide, rightSide): number => {
-            if (leftSide.artist > rightSide.artist) {
+            if (leftSide.artist.toLowerCase() > rightSide.artist.toLowerCase()) {
               return 1;
             }
-            if (leftSide.artist < rightSide.artist) {
+            if (leftSide.artist.toLowerCase() < rightSide.artist.toLowerCase()) {
               return -1;
             }
             if (leftSide.release > rightSide.release) {
@@ -38,10 +38,10 @@ export class AlbumsService {
             if (leftSide.release < rightSide.release) {
               return -1;
             }
-            if (leftSide.album > rightSide.album) {
+            if (leftSide.album.toLowerCase() > rightSide.album.toLowerCase()) {
               return 1;
             }
-            if (leftSide.album < rightSide.album) {
+            if (leftSide.album.toLowerCase() < rightSide.album.toLowerCase()) {
               return -1;
             }
             return 0;
