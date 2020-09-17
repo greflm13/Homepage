@@ -1,12 +1,20 @@
-#!/bin/sh
-echo '' > list.html
+#!/bin/bash
+echo '' > ~/server/filehost/list.html
+cd ~/server/filehost
 for file in *
 do
-if [ "$file" != "refresh_filelist" ]; then
-if [ "$file" != "index.html" ]; then
-if [ "$file" != "list.html" ]; then
-  echo '<a href="'${file}'">'${file}'</a><br>' >> list.html
-fi
-fi
-fi
+    if [ "$file" != "refresh_filelist" ]; then
+        if [ "$file" != "index.html" ]; then
+            if [ "$file" != "list.html" ]; then
+                if [[ $file != small* ]]; then
+                    if [ ! -f "small.$file" ]; then
+                        convert $file -resize 320x180^ -gravity center -extent 320x180 small.$file
+                    fi
+                    echo '<a href="'${file}'" style="margin: 0"><img src="'small.${file}'" style="margin: 0"></a>' >> ~/server/filehost/list.html
+                    # echo '<a href="'${file}'">'${file}'</a><br>' >> ~/server/filehost/list.html
+                    sed -i ':a;N;$!ba;s/\n//g' ~/server/filehost/list.html
+                fi
+            fi
+        fi
+    fi
 done
