@@ -119,6 +119,8 @@ export class Server {
       res.sendFile(path.join(__dirname, '/views/no.html'));
     });
     this._express.use(express.static(path.join(__dirname, './public')));
+    this._express.use('/node_modules', express.static(path.join(__dirname, './node_modules')));
+
     this._express.use('/', (req, res, next) => this.languageselector(req, res, next));
     this._express.use(this.error404Handler);
     this._express.use(this.errorHandler);

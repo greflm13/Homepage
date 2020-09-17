@@ -10,7 +10,7 @@ do
                     if [ ! -f "small.$file" ]; then
                         convert $file -resize 320x180^ -gravity center -extent 320x180 small.$file
                     fi
-                    echo '<a href="'${file}'" style="margin: 0"><img src="'small.${file}'" style="margin: 0"></a>' >> ~/server/filehost/list.html
+                    echo '<a href="'${file}'" style="margin: 0; display: inline-block; font-size: initial; position: relative; width: 20%;"><img src="'small.${file}'" style="margin: 0; width: 100%"></a>' >> ~/server/filehost/list.html
                     # echo '<a href="'${file}'">'${file}'</a><br>' >> ~/server/filehost/list.html
                     sed -i ':a;N;$!ba;s/\n//g' ~/server/filehost/list.html
                 fi
