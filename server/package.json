@@ -34,6 +34,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "3.4.1",
     "pug": "^2.0.4",
+    "serve-static": "^1.14.1",
     "spin": "0.0.1"
   },
   "devDependencies": {

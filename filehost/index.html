@@ -34,7 +34,8 @@
                         includeHTML();
                     }
                 }
-                xhttp.open("GET", file, true);
+                var pathname = window.location.pathname;
+                xhttp.open("GET", pathname + file, true);
                 xhttp.send();
                 /* Exit the function: */
                 return;
@@ -44,7 +45,7 @@
 </script>
 
 <body style="margin: 0;">
-    <div w3-include-html="./list.html" style="font-size: 0; overflow: hidden; margin: 0"></div>
+    <div w3-include-html="list.html" style="overflow: hidden; margin: 0"></div>
     <script>
         includeHTML();
     </script>
