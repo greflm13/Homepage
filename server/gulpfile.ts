@@ -35,7 +35,8 @@ export async function clean() {
 }
 
 export function transpile() {
-    const tsResult = gulp.src(srcDir + '*.ts')
+    const tsResult = gulp
+        .src(srcDir + '*.ts')
         .pipe(tsProject(reporter))
         .pipe(changed(distDir, { extension: '.js' }))
         .pipe(using({ prefix: 'Transpiled' }))
