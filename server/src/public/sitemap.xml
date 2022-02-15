@@ -1,47 +1,84 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!--	created with www.mysitemapgenerator.com	-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-  <loc>https://www.sorogon.eu/en/</loc>
-  <lastmod>2019-01-27T17:45:51+00:00</lastmod>
-  <priority>1.00</priority>
+	<loc>https://sorogon.eu/</loc>
+	<lastmod>2022-02-15T15:32:52+01:00</lastmod>
+	<priority>1.0</priority>
 </url>
 <url>
-  <loc>https://www.sorogon.eu/chat/</loc>
-  <lastmod>2019-01-20T15:13:53+00:00</lastmod>
-  <priority>0.80</priority>
+	<loc>https://sorogon.eu/en/</loc>
+	<lastmod>2022-02-15T15:32:52+01:00</lastmod>
+	<priority>1.0</priority>
 </url>
 <url>
-  <loc>https://www.sorogon.eu/2048/</loc>
-  <lastmod>2019-01-20T14:57:44+00:00</lastmod>
-  <priority>0.80</priority>
+	<loc>https://sorogon.eu/de/</loc>
+	<lastmod>2022-02-15T15:32:52+01:00</lastmod>
+	<priority>1.0</priority>
 </url>
 <url>
-  <loc>https://www.sorogon.eu/minesweeper/</loc>
-  <lastmod>2019-01-20T15:05:37+00:00</lastmod>
-  <priority>0.80</priority>
+	<loc>https://sorogon.eu/chat</loc>
+	<lastmod>2022-02-15T15:32:52+01:00</lastmod>
+	<priority>0.8</priority>
 </url>
 <url>
-  <loc>https://www.sorogon.eu/timeline/</loc>
-  <lastmod>2019-01-20T14:59:29+00:00</lastmod>
-  <priority>0.80</priority>
+	<loc>https://sorogon.eu/2048</loc>
+	<lastmod>2022-02-15T15:32:52+01:00</lastmod>
+	<priority>0.8</priority>
 </url>
 <url>
-  <loc>https://www.sorogon.eu/minecraft/</loc>
-  <lastmod>2019-01-29T07:10:05+00:00</lastmod>
-  <priority>0.80</priority>
+	<loc>https://sorogon.eu/minesweeper</loc>
+	<lastmod>2022-02-15T15:32:52+01:00</lastmod>
+	<priority>0.8</priority>
 </url>
 <url>
-  <loc>https://www.sorogon.eu/not_implemented.html</loc>
-  <lastmod>2019-01-20T10:51:23+00:00</lastmod>
-  <priority>0.80</priority>
+	<loc>https://sorogon.eu/timeline</loc>
+	<lastmod>2022-02-15T15:32:52+01:00</lastmod>
+	<priority>0.8</priority>
 </url>
-
-
+<url>
+	<loc>https://sorogon.eu/minecraft</loc>
+	<lastmod>2022-02-15T15:32:52+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://sorogon.eu/discord</loc>
+	<lastmod>2022-02-15T15:32:52+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://sorogon.eu/vinyl</loc>
+	<lastmod>2022-02-15T15:32:52+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://sorogon.eu/neuland</loc>
+	<lastmod>2022-02-15T15:32:52+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://sorogon.eu/snake</loc>
+	<lastmod>2022-02-15T15:32:52+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://sorogon.eu/filehost</loc>
+	<lastmod>2022-02-15T15:32:52+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://sorogon.eu/not_implemented.html</loc>
+	<lastmod>2022-02-15T15:32:52+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://git.sorogon.eu/</loc>
+	<lastmod>2022-02-15T15:32:52+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://cloud.sorogon.eu/</loc>
+	<lastmod>2022-02-15T15:32:52+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
 </urlset>
