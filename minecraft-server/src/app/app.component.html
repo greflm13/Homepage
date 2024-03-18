@@ -1,20 +1,33 @@
 <div class="container">
   <div class="server">
-    <div style="display: inline-block;">
-      <img class="icon" *ngIf="minecraft.online" [src]="minecraft.favicon" style="display:block; float: left;" />
-      <img class="icon" *ngIf="!minecraft.online" src="assets/offline.png" style="display:block; float: left;" />
+    <div style="display: inline-block">
+      <img
+        class="icon"
+        *ngIf="minecraft.online"
+        [src]="minecraft.icon"
+        style="display: block; float: left"
+      />
+      <img
+        class="icon"
+        *ngIf="!minecraft.online"
+        src="assets/offline.png"
+        style="display: block; float: left"
+      />
     </div>
-    <div style="margin-left: 10px; display: inline-block; ">
+    <div style="margin-left: 10px; display: inline-block">
       <b>
         <p style="border-bottom: lightgrey 2px solid; font-size: larger">
           <span>IP: minecraft.sorogon.eu </span>
           <span style="margin-left: 100px">
-            <span *ngIf="minecraft.online" style="color:green">Online!</span
-            ><span *ngIf="!minecraft.online" style="color:red">Offline!</span>
+            <span *ngIf="minecraft.online" style="color: green">Online!</span
+            ><span *ngIf="!minecraft.online" style="color: red">Offline!</span>
           </span>
         </p>
         <p>
-          Players: <span style="color: royalblue">{{ minecraft.players.now }}/{{ minecraft.players.max }}</span>
+          Players:
+          <span style="color: royalblue"
+            >{{ minecraft.players.online }}/{{ minecraft.players.max }}</span
+          >
         </p>
       </b>
     </div>
@@ -22,20 +35,34 @@
 </div>
 <div class="container">
   <div class="server2">
-    <div style="display: inline-block;">
-      <img class="icon" *ngIf="neuland.online" [src]="neuland.favicon" style="display:block; float: left;" />
-      <img class="icon" *ngIf="!neuland.online" src="assets/offline.png" style="display:block; float: left;" />
+    <div style="display: inline-block">
+      <img
+        class="icon"
+        *ngIf="neuland.online"
+        [src]="neuland.icon"
+        style="display: block; float: left"
+      />
+      <img
+        class="icon"
+        *ngIf="!neuland.online"
+        src="assets/offline.png"
+        style="display: block; float: left"
+      />
     </div>
-    <div style="margin-left: 10px; display: inline-block; ">
+    <div style="margin-left: 10px; display: inline-block">
       <b>
         <p style="border-bottom: lightgrey 2px solid; font-size: larger">
           <span>IP: neuland.sorogon.eu </span>
           <span style="margin-left: 100px">
-            <span *ngIf="neuland.online" style="color:green">Online!</span><span *ngIf="!neuland.online" style="color:red">Offline!</span>
+            <span *ngIf="neuland.online" style="color: green">Online!</span
+            ><span *ngIf="!neuland.online" style="color: red">Offline!</span>
           </span>
         </p>
         <p>
-          Players: <span style="color: royalblue">{{ neuland.players.now }}/{{ neuland.players.max }}</span>
+          Players:
+          <span style="color: royalblue"
+            >{{ neuland.players.online }}/{{ neuland.players.max }}</span
+          >
         </p>
       </b>
     </div>
