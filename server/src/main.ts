@@ -1,6 +1,6 @@
-import { Server } from './server';
-import { DB } from './db';
-import { log } from './server';
+import { Server } from "./server";
+import { DB } from "./db";
+import { log } from "./server";
 
 const httpport = 8080;
 const httpsport = 8443;
@@ -10,11 +10,11 @@ class Main {
 
   public async init() {
     // const db =
-    await DB.createInstance().catch(err => {
+    await DB.createInstance().catch((err) => {
       log.severe(err);
       process.exit();
     });
-    Server.Instance.start(httpport, httpsport).catch(err => {
+    Server.Instance.start(httpport, httpsport).catch((err) => {
       log.severe(err);
       process.exit();
     });
