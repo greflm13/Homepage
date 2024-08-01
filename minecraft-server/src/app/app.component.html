@@ -41,6 +41,27 @@
     </div>
   </div>
 </div>
+<div class="container">
+  <div class="server3">
+    <div style="display: inline-block;">
+      <img class="icon" *ngIf="create.online" [src]="create.favicon" style="display:block; float: left;" />
+      <img class="icon" *ngIf="!create.online" src="assets/offline.png" style="display:block; float: left;" />
+    </div>
+    <div style="margin-left: 10px; display: inline-block; ">
+      <b>
+        <p style="border-bottom: lightgrey 2px solid; font-size: larger">
+          <span>IP: create.sorogon.eu </span>
+          <span style="margin-left: 100px">
+            <span *ngIf="create.online" style="color:green">Online!</span><span *ngIf="!create.online" style="color:red">Offline!</span>
+          </span>
+        </p>
+        <p>
+          Players: <span style="color: royalblue">{{ create.players.now }}/{{ create.players.max }}</span>
+        </p>
+      </b>
+    </div>
+  </div>
+</div>
 <div class="outer">
   <div class="top"></div>
   <div class="middle"></div>

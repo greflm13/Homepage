@@ -30,6 +30,18 @@ export class AppComponent implements OnInit {
     server: { name: '', protocol: 0 },
     status: ''
   };
+  public create: Status = {
+    duration: 0,
+    error: '',
+    favicon: '',
+    motd: '',
+    last_online: '',
+    last_updated: '',
+    online: false,
+    players: { max: 0, now: 0 },
+    server: { name: '', protocol: 0 },
+    status: ''
+  };
 
   constructor(private http: HttpService) {}
 
@@ -48,6 +60,14 @@ export class AppComponent implements OnInit {
     setInterval(() => {
       this.http.get('status/neuland').then(res => {
         this.neuland = res;
+      });
+    }, 1000);
+    this.http.get('status/create').then(res => {
+      this.create = res;
+    });
+    setInterval(() => {
+      this.http.get('status/create').then(res => {
+        this.create = res;
       });
     }, 1000);
   }
