@@ -7,18 +7,25 @@ import { FieldsizeService } from '../fieldsize.service';
 
 @Component({
   selector: 'app-minesweeper-modal',
-  templateUrl: './modal.html'
+  templateUrl: './modal.html',
 })
 export class MinesweeperModalComponent implements DoCheck {
-  public size: GameSize = { sizeX: undefined, sizeY: undefined, bombs: undefined };
+  public size: GameSize = {
+    sizeX: undefined,
+    sizeY: undefined,
+    bombs: undefined,
+  };
   public max: number;
-  public mode = 'retarded';
+  public mode = 'simple';
   public custom = false;
 
-  constructor(public activeModal: NgbActiveModal, private fieldService: FieldsizeService) {}
+  constructor(
+    public activeModal: NgbActiveModal,
+    private fieldService: FieldsizeService
+  ) {}
 
   ngDoCheck() {
-    if (this.mode === 'retarded') {
+    if (this.mode === 'simple') {
       this.size = { sizeX: 9, sizeY: 9, bombs: 10 };
     }
     if (this.mode === 'median') {
@@ -52,13 +59,16 @@ export class MinesweeperModalComponent implements DoCheck {
 
 @Component({
   selector: 'app-minesweeper-modal',
-  templateUrl: './save.html'
+  templateUrl: './save.html',
 })
 export class SaveComponent {
   @Input() time;
   public name: Name = { name: undefined, save: false };
 
-  constructor(public activeModal: NgbActiveModal, private fieldService: FieldsizeService) {}
+  constructor(
+    public activeModal: NgbActiveModal,
+    private fieldService: FieldsizeService
+  ) {}
 
   yes() {
     this.name.save = true;
@@ -84,7 +94,7 @@ export class SaveComponent {
 @Component({
   selector: 'app-minesweeper',
   templateUrl: './minesweeper.component.html',
-  styleUrls: ['./minesweeper.component.css']
+  styleUrls: ['./minesweeper.component.css'],
 })
 export class MinesweeperComponent implements OnInit, OnDestroy {
   public game: Game = {
@@ -98,9 +108,11 @@ export class MinesweeperComponent implements OnInit, OnDestroy {
     sizeY: undefined,
     time: 0,
     alt: false,
-    building: false
+    building: false,
   };
-  public leaderboard: Leaderboard = { minesweeper: { people: [], easy: [], medium: [], hard: [] } };
+  public leaderboard: Leaderboard = {
+    minesweeper: { people: [], easy: [], medium: [], hard: [] },
+  };
   private timeInt;
   private leaderInt;
   private clickCounter = { left: false, right: false };
@@ -111,20 +123,26 @@ export class MinesweeperComponent implements OnInit, OnDestroy {
     private modalService: NgbModal,
     private sizeService: FieldsizeService
   ) {
-    this.modalService.open(MinesweeperModalComponent, { centered: true }).result.then(() => {
-      this.game.sizeX = this.sizeService.Size.sizeX;
-      this.game.sizeY = this.sizeService.Size.sizeY;
-      this.game.bombs = this.sizeService.Size.bombs;
-      this.game.flags = this.game.bombs;
-      this.initGame();
-    });
+    this.modalService
+      .open(MinesweeperModalComponent, {
+        centered: true,
+        backdrop: 'static',
+        keyboard: false,
+      })
+      .result.then(() => {
+        this.game.sizeX = this.sizeService.Size.sizeX;
+        this.game.sizeY = this.sizeService.Size.sizeY;
+        this.game.bombs = this.sizeService.Size.bombs;
+        this.game.flags = this.game.bombs;
+        this.initGame();
+      });
   }
 
   alt() {
     this.game.alt = !this.game.alt;
     if (this.game.alt) {
-      this.game.fields.forEach(fields => {
-        fields.forEach(field => {
+      this.game.fields.forEach((fields) => {
+        fields.forEach((field) => {
           if (!field.click && !field.flag) {
             field.image = 'default_alt';
           }
@@ -181,8 +199,8 @@ export class MinesweeperComponent implements OnInit, OnDestroy {
         });
       });
     } else {
-      this.game.fields.forEach(fields => {
-        fields.forEach(field => {
+      this.game.fields.forEach((fields) => {
+        fields.forEach((field) => {
           if (!field.click && !field.flag) {
             field.image = 'default';
           }
@@ -242,11 +260,11 @@ export class MinesweeperComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.httpGet.getLeaderboard().then(res => {
+    this.httpGet.getLeaderboard().then((res) => {
       this.leaderboard = res;
     });
     this.leaderInt = setInterval(() => {
-      this.httpGet.getLeaderboard().then(res => {
+      this.httpGet.getLeaderboard().then((res) => {
         this.leaderboard = res;
       });
     }, 5000);
@@ -271,13 +289,29 @@ export class MinesweeperComponent implements OnInit, OnDestroy {
     if (this.game.alt) {
       for (let i = 0; i < this.game.sizeX; i++) {
         for (let j = this.game.fields[i].length; j < this.game.sizeY; j++) {
-          await this.game.fields[i].push({ bomb: false, click: false, flag: false, image: 'default_alt', neighbours: 0, x: i, y: j });
+          await this.game.fields[i].push({
+            bomb: false,
+            click: false,
+            flag: false,
+            image: 'default_alt',
+            neighbours: 0,
+            x: i,
+            y: j,
+          });
         }
       }
     } else {
       for (let i = 0; i < this.game.sizeX; i++) {
         for (let j = this.game.fields[i].length; j < this.game.sizeY; j++) {
-          await this.game.fields[i].push({ bomb: false, click: false, flag: false, image: 'default', neighbours: 0, x: i, y: j });
+          await this.game.fields[i].push({
+            bomb: false,
+            click: false,
+            flag: false,
+            image: 'default',
+            neighbours: 0,
+            x: i,
+            y: j,
+          });
         }
       }
     }
@@ -301,13 +335,29 @@ export class MinesweeperComponent implements OnInit, OnDestroy {
     if (this.game.alt) {
       for (let i = 0; i < this.game.sizeX; i++) {
         for (let j = this.game.fields[i].length; j < this.game.sizeY; j++) {
-          await this.game.fields[i].push({ bomb: false, click: false, flag: false, image: 'default_alt', neighbours: 0, x: i, y: j });
+          await this.game.fields[i].push({
+            bomb: false,
+            click: false,
+            flag: false,
+            image: 'default_alt',
+            neighbours: 0,
+            x: i,
+            y: j,
+          });
         }
       }
     } else {
       for (let i = 0; i < this.game.sizeX; i++) {
         for (let j = this.game.fields[i].length; j < this.game.sizeY; j++) {
-          await this.game.fields[i].push({ bomb: false, click: false, flag: false, image: 'default', neighbours: 0, x: i, y: j });
+          await this.game.fields[i].push({
+            bomb: false,
+            click: false,
+            flag: false,
+            image: 'default',
+            neighbours: 0,
+            x: i,
+            y: j,
+          });
         }
       }
     }
@@ -316,13 +366,19 @@ export class MinesweeperComponent implements OnInit, OnDestroy {
 
   async reloadGame() {
     clearInterval(this.timeInt);
-    await this.modalService.open(MinesweeperModalComponent, { centered: true }).result.then(() => {
-      this.game.sizeX = this.sizeService.Size.sizeX;
-      this.game.sizeY = this.sizeService.Size.sizeY;
-      this.game.bombs = this.sizeService.Size.bombs;
-      this.game.flags = this.game.bombs;
-      this.initGame();
-    });
+    await this.modalService
+      .open(MinesweeperModalComponent, {
+        centered: true,
+        backdrop: 'static',
+        keyboard: false,
+      })
+      .result.then(() => {
+        this.game.sizeX = this.sizeService.Size.sizeX;
+        this.game.sizeY = this.sizeService.Size.sizeY;
+        this.game.bombs = this.sizeService.Size.bombs;
+        this.game.flags = this.game.bombs;
+        this.initGame();
+      });
   }
 
   startGame(x: number, y: number) {
@@ -360,67 +416,87 @@ export class MinesweeperComponent implements OnInit, OnDestroy {
       } else {
         this.setPicture(x, y);
         this.checkAll(x, y);
-        let unopened = 0;
-        await this.game.fields.forEach(fields => {
-          fields.forEach(field => {
-            if (!field.click) {
-              unopened++;
-            }
-          });
-        });
-        if (this.game.bombs === unopened) {
-          this.game.win = true;
-          this.game.running = false;
-          clearInterval(this.timeInt);
-          const save = this.modalService.open(SaveComponent, { centered: true });
-          save.componentInstance.time = this.game.time / 10;
-          save.result.then(() => {
-            if (this.sizeService.Name.save) {
-              if (this.game.sizeX === 9 && this.game.sizeY === 9 && this.game.bombs === 10) {
-                this.leaderboard.minesweeper.easy.push({
-                  name: this.sizeService.Name.name,
-                  time: this.game.time / 10,
-                  bomb_count: this.game.bombs,
-                  x: this.game.sizeY,
-                  y: this.game.sizeX,
-                  field_size: this.game.sizeY + 'x' + this.game.sizeX
-                });
-              } else if (this.game.sizeX === 16 && this.game.sizeY === 16 && this.game.bombs === 40) {
-                this.leaderboard.minesweeper.medium.push({
-                  name: this.sizeService.Name.name,
-                  time: this.game.time / 10,
-                  bomb_count: this.game.bombs,
-                  x: this.game.sizeY,
-                  y: this.game.sizeX,
-                  field_size: this.game.sizeY + 'x' + this.game.sizeX
-                });
-              } else if (this.game.sizeX === 16 && this.game.sizeY === 30 && this.game.bombs === 99) {
-                this.leaderboard.minesweeper.hard.push({
-                  name: this.sizeService.Name.name,
-                  time: this.game.time / 10,
-                  bomb_count: this.game.bombs,
-                  x: this.game.sizeY,
-                  y: this.game.sizeX,
-                  field_size: this.game.sizeY + 'x' + this.game.sizeX
-                });
-              } else {
-                this.leaderboard.minesweeper.people.push({
-                  name: this.sizeService.Name.name,
-                  time: this.game.time / 10,
-                  bomb_count: this.game.bombs,
-                  x: this.game.sizeY,
-                  y: this.game.sizeX,
-                  field_size: this.game.sizeY + 'x' + this.game.sizeX
-                });
-              }
-              this.sorting();
-              this.httpPut.putLeaderboard(this.leaderboard).then(res => {
-                this.leaderboard = res;
-              });
-            }
+        this.checkWin();
+      }
+    }
+  }
+
+  async checkWin() {
+    let unopened = 0;
+    await this.game.fields.forEach((fields) => {
+      fields.forEach((field) => {
+        if (!field.click) {
+          unopened++;
+        }
+      });
+    });
+    if (this.game.bombs === unopened) {
+      this.game.win = true;
+      this.game.running = false;
+      clearInterval(this.timeInt);
+      const save = this.modalService.open(SaveComponent, {
+        centered: true,
+        backdrop: 'static',
+        keyboard: false,
+      });
+      save.componentInstance.time = this.game.time / 10;
+      save.result.then(() => {
+        if (this.sizeService.Name.save) {
+          if (
+            this.game.sizeX === 9 &&
+            this.game.sizeY === 9 &&
+            this.game.bombs === 10
+          ) {
+            this.leaderboard.minesweeper.easy.push({
+              name: this.sizeService.Name.name,
+              time: this.game.time / 10,
+              bomb_count: this.game.bombs,
+              x: this.game.sizeY,
+              y: this.game.sizeX,
+              field_size: this.game.sizeY + 'x' + this.game.sizeX,
+            });
+          } else if (
+            this.game.sizeX === 16 &&
+            this.game.sizeY === 16 &&
+            this.game.bombs === 40
+          ) {
+            this.leaderboard.minesweeper.medium.push({
+              name: this.sizeService.Name.name,
+              time: this.game.time / 10,
+              bomb_count: this.game.bombs,
+              x: this.game.sizeY,
+              y: this.game.sizeX,
+              field_size: this.game.sizeY + 'x' + this.game.sizeX,
+            });
+          } else if (
+            this.game.sizeX === 16 &&
+            this.game.sizeY === 30 &&
+            this.game.bombs === 99
+          ) {
+            this.leaderboard.minesweeper.hard.push({
+              name: this.sizeService.Name.name,
+              time: this.game.time / 10,
+              bomb_count: this.game.bombs,
+              x: this.game.sizeY,
+              y: this.game.sizeX,
+              field_size: this.game.sizeY + 'x' + this.game.sizeX,
+            });
+          } else {
+            this.leaderboard.minesweeper.people.push({
+              name: this.sizeService.Name.name,
+              time: this.game.time / 10,
+              bomb_count: this.game.bombs,
+              x: this.game.sizeY,
+              y: this.game.sizeX,
+              field_size: this.game.sizeY + 'x' + this.game.sizeX,
+            });
+          }
+          this.sorting();
+          this.httpPut.putLeaderboard(this.leaderboard).then((res) => {
+            this.leaderboard = res;
           });
         }
-      }
+      });
     }
   }
 
@@ -491,7 +567,7 @@ export class MinesweeperComponent implements OnInit, OnDestroy {
           this.setPicture(x + 1, y - 1);
         }
       }
-      neighbours.forEach(field => {
+      neighbours.forEach((field) => {
         this.checkAll(field.x, field.y);
       });
     }
@@ -563,7 +639,12 @@ export class MinesweeperComponent implements OnInit, OnDestroy {
   }
 
   onRightClick(event, x: number, y: number) {
-    if (!this.game.lose && !this.game.win && this.game.running && !this.game.fields[x][y].click) {
+    if (
+      !this.game.lose &&
+      !this.game.win &&
+      this.game.running &&
+      !this.game.fields[x][y].click
+    ) {
       this.game.fields[x][y].flag = !this.game.fields[x][y].flag;
       if (this.game.alt) {
         if (this.game.fields[x][y].flag) {
@@ -599,8 +680,16 @@ export class MinesweeperComponent implements OnInit, OnDestroy {
         this.clickCounter.right = false;
       }, 100);
     }
-    if (this.clickCounter.left && this.clickCounter.right && !this.game.lose && !this.game.win) {
-      if (this.game.fields[x][y].click && this.game.fields[x][y].neighbours > 0) {
+    if (
+      this.clickCounter.left &&
+      this.clickCounter.right &&
+      !this.game.lose &&
+      !this.game.win
+    ) {
+      if (
+        this.game.fields[x][y].click &&
+        this.game.fields[x][y].neighbours > 0
+      ) {
         const neighbours = [];
         if (x > 0) {
           if (!this.game.fields[x - 1][y].click) {
@@ -642,13 +731,18 @@ export class MinesweeperComponent implements OnInit, OnDestroy {
             neighbours.push(this.game.fields[x + 1][y - 1]);
           }
         }
-        await neighbours.forEach(field => {
+        await neighbours.forEach((field) => {
           if (field.bomb && !field.flag) {
             this.lose(x, y);
           }
         });
-        await neighbours.forEach(field => {
-          if (!field.bomb && !field.flag && !this.game.lose && field.neighbours === 0) {
+        await neighbours.forEach((field) => {
+          if (
+            !field.bomb &&
+            !field.flag &&
+            !this.game.lose &&
+            field.neighbours === 0
+          ) {
             this.checkAll(field.x, field.y);
           }
           if (!field.bomb && !field.flag && !this.game.lose) {
@@ -656,6 +750,7 @@ export class MinesweeperComponent implements OnInit, OnDestroy {
           }
         });
       }
+      this.checkWin();
     }
   }
 
@@ -663,8 +758,8 @@ export class MinesweeperComponent implements OnInit, OnDestroy {
     this.game.lose = true;
     this.game.running = false;
     clearInterval(this.timeInt);
-    await this.game.fields.forEach(fields => {
-      fields.forEach(field => {
+    await this.game.fields.forEach((fields) => {
+      fields.forEach((field) => {
         if (!this.game.alt) {
           if (field.bomb && !field.flag) {
             field.image = 'bomb';
@@ -733,75 +828,67 @@ export class MinesweeperComponent implements OnInit, OnDestroy {
     }
   }
 
-  random(min, max) {
+  random(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
   sorting() {
-    this.leaderboard.minesweeper.easy.sort(
-      (leftSide, rightSide): number => {
-        if (leftSide.time < rightSide.time) {
-          return -1;
-        }
-        if (leftSide.time > rightSide.time) {
-          return 1;
-        }
-        return 0;
+    this.leaderboard.minesweeper.easy.sort((leftSide, rightSide): number => {
+      if (leftSide.time < rightSide.time) {
+        return -1;
       }
-    );
-    this.leaderboard.minesweeper.medium.sort(
-      (leftSide, rightSide): number => {
-        if (leftSide.time < rightSide.time) {
-          return -1;
-        }
-        if (leftSide.time > rightSide.time) {
-          return 1;
-        }
-        return 0;
+      if (leftSide.time > rightSide.time) {
+        return 1;
       }
-    );
-    this.leaderboard.minesweeper.hard.sort(
-      (leftSide, rightSide): number => {
-        if (leftSide.time < rightSide.time) {
-          return -1;
-        }
-        if (leftSide.time > rightSide.time) {
-          return 1;
-        }
-        return 0;
+      return 0;
+    });
+    this.leaderboard.minesweeper.medium.sort((leftSide, rightSide): number => {
+      if (leftSide.time < rightSide.time) {
+        return -1;
       }
-    );
-    this.leaderboard.minesweeper.people.sort(
-      (leftSide, rightSide): number => {
-        if (leftSide.bomb_count > rightSide.bomb_count) {
+      if (leftSide.time > rightSide.time) {
+        return 1;
+      }
+      return 0;
+    });
+    this.leaderboard.minesweeper.hard.sort((leftSide, rightSide): number => {
+      if (leftSide.time < rightSide.time) {
+        return -1;
+      }
+      if (leftSide.time > rightSide.time) {
+        return 1;
+      }
+      return 0;
+    });
+    this.leaderboard.minesweeper.people.sort((leftSide, rightSide): number => {
+      if (leftSide.bomb_count > rightSide.bomb_count) {
+        return -1;
+      }
+      if (leftSide.bomb_count < rightSide.bomb_count) {
+        return 1;
+      } else {
+        if (leftSide.x < rightSide.x) {
           return -1;
         }
-        if (leftSide.bomb_count < rightSide.bomb_count) {
+        if (leftSide.x > rightSide.x) {
           return 1;
         } else {
-          if (leftSide.x < rightSide.x) {
+          if (leftSide.y < rightSide.y) {
             return -1;
           }
-          if (leftSide.x > rightSide.x) {
+          if (leftSide.y > rightSide.y) {
             return 1;
           } else {
-            if (leftSide.y < rightSide.y) {
+            if (leftSide.time < rightSide.time) {
               return -1;
             }
-            if (leftSide.y > rightSide.y) {
+            if (leftSide.time > rightSide.time) {
               return 1;
-            } else {
-              if (leftSide.time < rightSide.time) {
-                return -1;
-              }
-              if (leftSide.time > rightSide.time) {
-                return 1;
-              }
-              return 0;
             }
+            return 0;
           }
         }
       }
-    );
+    });
   }
 }
