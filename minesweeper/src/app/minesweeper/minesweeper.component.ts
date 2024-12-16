@@ -39,7 +39,7 @@ export class MinesweeperModalComponent implements DoCheck {
     } else {
       this.custom = false;
     }
-    this.max = this.size.sizeX * this.size.sizeY - 2;
+    this.max = this.size.sizeX * this.size.sizeY - 10;
   }
 
   done() {
@@ -391,7 +391,18 @@ export class MinesweeperComponent implements OnInit, OnDestroy {
       for (let i = 0; i < this.game.flags; i++) {
         const sx = this.random(0, this.game.sizeX - 1);
         const sy = this.random(0, this.game.sizeY - 1);
-        if (!this.game.fields[sx][sy].bomb && !(sx === x && sy === y)) {
+        if (
+          !this.game.fields[sx][sy].bomb &&
+          !(sx === x && sy === y) &&
+          !(sx === x && sy === y + 1) &&
+          !(sx === x && sy === y - 1) &&
+          !(sx === x + 1 && sy === y) &&
+          !(sx === x + 1 && sy === y + 1) &&
+          !(sx === x + 1 && sy === y - 1) &&
+          !(sx === x - 1 && sy === y) &&
+          !(sx === x - 1 && sy === y + 1) &&
+          !(sx === x - 1 && sy === y - 1)
+        ) {
           this.game.fields[sx][sy].bomb = true;
         } else {
           i--;
