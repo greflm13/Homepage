@@ -10,7 +10,7 @@ import { AlbumsService } from '../albums.service';
   styleUrls: ['./small.component.css']
 })
 export class SmallComponent implements OnInit {
-  @ViewChild('detail', { static: false }) elementView: ElementRef;
+  @ViewChild('detail') elementView: ElementRef;
 
   public album: Album = { album: null, artist: null, cover: null, date: null, lp_count: null, lps: null, release: null, _id: 0 };
   public loading = true;
