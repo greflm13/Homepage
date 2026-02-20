@@ -12,78 +12,90 @@
     (change)="onFileChange($event, 0, 0)"
     accept=".png,.jpg,.jpeg"
     required
-  /><br /><span class="sep"></span><br />
-  <label for="lps">Number of LPs: </label>
-  <input type="number" id="lps" [(ngModel)]="album.lp_count" name="nrlps" required min="1" (change)="onLpNrChange()" /><br /><span
+    /><br /><span class="sep"></span><br />
+    <label for="lps">Number of LPs: </label>
+    <input type="number" id="lps" [(ngModel)]="album.lp_count" name="nrlps" required min="1" (change)="onLpNrChange()" /><br /><span
     class="sep"
-  ></span
-  ><br />
-  <span *ngFor="let lp of album.lps; let j = index">
-    <h2>LP {{ j + 1 }}</h2>
-    <div class="side" *ngFor="let side of lp.sides; let i = index">
-      <h2>Side {{ i + 1 }}:</h2>
-      <!-- <label for="lp{{ i }}">Picture: </label> -->
-      <!-- <input type="file" id="lp{{ i }}" name="lp{{ i }}" [(ngModel)]="sides[j][i]" (change)="onFileChange($event, j + 1, i)" accept=".png,.jpg,.jpeg" required /><br /> -->
-      <label for="songs">Number of Songs on Side {{ i + 1 }}: </label>
-      <input
-        type="number"
-        id="songs"
-        [(ngModel)]="album.lps[j].sides[i].song_count"
-        name="songs"
-        required
-        min="0"
-        (change)="onSongNrChange(j, i)"
-      /><br />
-      <div class="song" *ngFor="let song of side.songs; let k = index; trackBy: trackByFn">
-        <label for="song{{ j }}{{ i }}{{ k }}">Song {{ k + 1 }}: </label>
+    ></span
+    ><br />
+    @for (lp of album.lps; track lp; let j = $index) {
+      <span>
+        <h2>LP {{ j + 1 }}</h2>
+        @for (side of lp.sides; track side; let i = $index) {
+          <div class="side">
+            <h2>Side {{ i + 1 }}:</h2>
+            <!-- <label for="lp{{ i }}">Picture: </label> -->
+            <!-- <input type="file" id="lp{{ i }}" name="lp{{ i }}" [(ngModel)]="sides[j][i]" (change)="onFileChange($event, j + 1, i)" accept=".png,.jpg,.jpeg" required /><br /> -->
+            <label for="songs">Number of Songs on Side {{ i + 1 }}: </label>
+            <input
+              type="number"
+              id="songs"
+              [(ngModel)]="album.lps[j].sides[i].song_count"
+              name="songs"
+              required
+              min="0"
+              (change)="onSongNrChange(j, i)"
+              /><br />
+              @for (song of side.songs; track trackByFn(k, song); let k = $index) {
+                <div class="song">
+                  <label for="song{{ j }}{{ i }}{{ k }}">Song {{ k + 1 }}: </label>
+                  <input
+                    type="text"
+                    id="song{{ j }}{{ i }}{{ k }}"
+                    [(ngModel)]="album.lps[j].sides[i].songs[k]"
+                    name="song{{ j }}{{ i }}{{ k }}"
+                    required
+                    placeholder="Name of the Song #{{ k + 1 }}"
+                    /><br />
+                  </div>
+                }
+                <span class="sep"></span><br />
+              </div>
+            }
+          </span>
+        }
+        <label for="date">Date aquired: </label>
         <input
-          type="text"
-          id="song{{ j }}{{ i }}{{ k }}"
-          [(ngModel)]="album.lps[j].sides[i].songs[k]"
-          name="song{{ j }}{{ i }}{{ k }}"
+          type="date"
+          id="date"
+          name="date"
+          pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+          placeholder="yyyy-mm-dd"
+          [(ngModel)]="date"
+          class="date"
           required
-          placeholder="Name of the Song #{{ k + 1 }}"
-        /><br />
-      </div>
-      <span class="sep"></span><br />
-    </div>
-  </span>
-  <label for="date">Date aquired: </label>
-  <input
-    type="date"
-    id="date"
-    name="date"
-    pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
-    placeholder="yyyy-mm-dd"
-    [(ngModel)]="date"
-    class="date"
-    required
-  /><br />
-  <label for="date">Release: </label>
-  <input
-    type="date"
-    id="release"
-    name="release"
-    pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
-    placeholder="yyyy-mm-dd"
-    [(ngModel)]="release"
-    class="date"
-    required
-  /><br /><br />
-  <button type="submit" [disabled]="newAlbum.form.invalid">
-    Submit
-  </button>
-</form>
-<div class="pre" [hidden]="newAlbum.form.invalid">
-  <h2>Preview:</h2>
-  <img [src]="album.cover" [style.width]="imgwidth" [style.height]="imgwidth" alt="No Cover" />
-  <span *ngFor="let lp of album.lps; let a = index">
-    <h3>LP {{ a + 1 }}:</h3>
-    <h4>Side 1:</h4>
-    <!-- <img [src]="lp.sides[0].picture" [style.width]="imgwidth" [style.height]="imgwidth" alt="No Picture" /><br /> -->
-    <span *ngFor="let song of lp.sides[0].songs; let i = index">#{{ i + 1 }} {{ song }}<br /></span>
-    <h4>Side 2:</h4>
-    <!-- <img [src]="lp.sides[1].picture" [style.width]="imgwidth" [style.height]="imgwidth" alt="No Picture" /><br /> -->
-    <span *ngFor="let song of lp.sides[1].songs; let i = index">#{{ i + 1 }} {{ song }}<br /></span>
-  </span>
-</div>
+          /><br />
+          <label for="date">Release: </label>
+          <input
+            type="date"
+            id="release"
+            name="release"
+            pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+            placeholder="yyyy-mm-dd"
+            [(ngModel)]="release"
+            class="date"
+            required
+            /><br /><br />
+            <button type="submit" [disabled]="newAlbum.form.invalid">
+              Submit
+            </button>
+          </form>
+          <div class="pre" [hidden]="newAlbum.form.invalid">
+            <h2>Preview:</h2>
+            <img [src]="album.cover" [style.width]="imgwidth" [style.height]="imgwidth" alt="No Cover" />
+            @for (lp of album.lps; track lp; let a = $index) {
+              <span>
+                <h3>LP {{ a + 1 }}:</h3>
+                <h4>Side 1:</h4>
+                <!-- <img [src]="lp.sides[0].picture" [style.width]="imgwidth" [style.height]="imgwidth" alt="No Picture" /><br /> -->
+                @for (song of lp.sides[0].songs; track song; let i = $index) {
+                  <span>#{{ i + 1 }} {{ song }}<br /></span>
+                }
+                <h4>Side 2:</h4>
+                <!-- <img [src]="lp.sides[1].picture" [style.width]="imgwidth" [style.height]="imgwidth" alt="No Picture" /><br /> -->
+                @for (song of lp.sides[1].songs; track song; let i = $index) {
+                  <span>#{{ i + 1 }} {{ song }}<br /></span>
+                }
+              </span>
+            }
+          </div>

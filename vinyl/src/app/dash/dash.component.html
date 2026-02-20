@@ -1,9 +1,17 @@
-<div class="parent" *ngIf="!loading">
-  <div *ngFor="let album of albums" [style.height]="imgwidth" [style.width]="imgwidth" class="child">
-    <img [src]="album.cover" [style.width]="imgwidth" [style.height]="imgwidth" (click)="click(album._id)"
-      (mouseenter)="enter($event)" (mouseleave)="leave($event)" style="cursor: pointer;" />
+@if (!loading) {
+  <div class="parent">
+    @for (album of albums; track album) {
+      <div [style.height]="imgwidth" [style.width]="imgwidth" class="child">
+        <img [src]="album.cover" [style.width]="imgwidth" [style.height]="imgwidth" (click)="click(album._id)"
+          (mouseenter)="enter($event)" (mouseleave)="leave($event)" style="cursor: pointer;" />
+      </div>
+    }
+    @if (hov) {
+      <img class="hover" [src]="hovsrc" [style.width]="hovwidth" [style.height]="hovwidth" [style.top]="hovtop"
+        [style.left]="hovleft" />
+    }
   </div>
-  <img *ngIf="hov" class="hover" [src]="hovsrc" [style.width]="hovwidth" [style.height]="hovwidth" [style.top]="hovtop"
-    [style.left]="hovleft" />
-</div>
-<img src="assets/load.gif" *ngIf="loading" class="load" [style.height]="imgwidth" [style.width]="imgwidth" />
+}
+@if (loading) {
+  <img src="assets/load.gif" class="load" [style.height]="imgwidth" [style.width]="imgwidth" />
+}

@@ -1,18 +1,30 @@
 <div class="container" [style.height]="bgheight">
-  <div class="bg" *ngIf="!loading" [style.background-image]="'url(' + album.cover + ')'">
-  </div>
-</div>
-<div class="detail" #detail *ngIf="!loading">
-  <h1 [style.color]="textColor">{{ album.artist }} - {{ album.album }}</h1>
-  <img [src]="album.cover" class="cover" />
-  <span *ngFor="let lp of album.lps; let i = index" [style.color]="textColor">
-    <h2 class="lp" [style.border-bottom-color]="textColor">LP {{ i + 1 }}</h2>
-    <div *ngFor="let side of lp.sides; let j = index" style="display: inline-block" [style.width]="lpwidth">
-      <h3><u>Side {{ j + 1 }}</u></h3>
-      <h4 *ngFor="let song of side.songs; ">{{ song }}</h4>
+  @if (!loading) {
+    <div class="bg" [style.background-image]="'url(' + album.cover + ')'">
     </div>
-  </span>
+  }
 </div>
-<img src="assets/load.gif" *ngIf="loading" class="load" [style.height]="imgwidth" [style.width]="imgwidth" />
+@if (!loading) {
+  <div class="detail" #detail>
+    <h1 [style.color]="textColor">{{ album.artist }} - {{ album.album }}</h1>
+    <img [src]="album.cover" class="cover" />
+    @for (lp of album.lps; track lp; let i = $index) {
+      <span [style.color]="textColor">
+        <h2 class="lp" [style.border-bottom-color]="textColor">LP {{ i + 1 }}</h2>
+        @for (side of lp.sides; track side; let j = $index) {
+          <div style="display: inline-block" [style.width]="lpwidth">
+            <h3><u>Side {{ j + 1 }}</u></h3>
+            @for (song of side.songs; track song) {
+              <h4>{{ song }}</h4>
+            }
+          </div>
+        }
+      </span>
+    }
+  </div>
+}
+@if (loading) {
+  <img src="assets/load.gif" class="load" [style.height]="imgwidth" [style.width]="imgwidth" />
+}
 
 <!-- trackBy: trackByFn -->

@@ -1,13 +1,19 @@
 <div class="container" [style.height]="bgheight">
-  <div class="bg" *ngIf="!loading" [style.background-image]="'url(' + album.cover + ')'">
-  </div>
+  @if (!loading) {
+    <div class="bg" [style.background-image]="'url(' + album.cover + ')'">
+    </div>
+  }
 </div>
-<div class="detail" #detail *ngIf="!loading">
-  <img [src]="album.cover" class="cover" />
-  <div class="list">
-    <h1 [style.color]="textColor">{{ album.artist }} - {{ album.album }}</h1>
-    <h2 [style.color]="textColor">LPs: {{nLPs}}</h2>
-    <h2 [style.color]="textColor">Songs: {{nSongs}}</h2>
+@if (!loading) {
+  <div class="detail" #detail>
+    <img [src]="album.cover" class="cover" />
+    <div class="list">
+      <h1 [style.color]="textColor">{{ album.artist }} - {{ album.album }}</h1>
+      <h2 [style.color]="textColor">LPs: {{nLPs}}</h2>
+      <h2 [style.color]="textColor">Songs: {{nSongs}}</h2>
+    </div>
   </div>
-</div>
-<img src="assets/load.gif" *ngIf="loading" class="load" [style.height]="imgwidth" [style.width]="imgwidth" />
+}
+@if (loading) {
+  <img src="assets/load.gif" class="load" [style.height]="imgwidth" [style.width]="imgwidth" />
+}
