@@ -6,7 +6,7 @@
     "prerestart": "npm run build",
     "restart": "scp -r dist/* $HOST:/home/pi/server",
     "start": "npm run build",
-    "build": "ng build --configuration production --build-optimizer --base-href=/vinyl/",
+    "build": "ng build --configuration production --base-href=/vinyl/",
     "test": "ng build --watch --base-href=/vinyl/",
     "lint": "ng lint",
     "e2e": "ng e2e"
