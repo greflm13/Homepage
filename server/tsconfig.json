@@ -2,7 +2,7 @@
   "compileOnSave": true,
   "compilerOptions": {
     /* Basic Options */
-    "target": "ESNEXT",
+    "target": "ES2020",
     "module": "commonjs",
     "jsx": "preserve",
     "sourceMap": true,
@@ -11,6 +11,7 @@
     /* Strict Type-Checking Options */
     "strict": true,
     "noImplicitAny": true,
+    "skipLibCheck": true,
 
     /* Additional Checks */
     "noUnusedLocals": true,

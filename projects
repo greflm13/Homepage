@@ -1,14 +1,1 @@
-PROJECTS=" \
-battleships \
-chat \
-discord \
-fahrtenbuch \
-films \
-game2048 \
-grafs \
-minecraft-server \
-minesweeper \
-snake \
-timeline \
-vinyl \
-"
+PROJECTS=" battleships chat discord fahrtenbuch films game2048 grafs minecraft-server minesweeper snake timeline vinyl"

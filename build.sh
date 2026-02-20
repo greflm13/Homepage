@@ -10,5 +10,5 @@ for APP in $PROJECTS; do
 	echo "building $APP..."
 	cd ../"$APP" || continue
 	nvm use "$(cat .nvmrc)"
-	pnpm run build
+	npm run build
 done

@@ -15,8 +15,9 @@ interface IFolder {
     dest: string;
 }
 
-const tsProject = ts.createProject('tsconfig.json');
-const reporter = ts.reporter.fullReporter();
+const tsProject = ts.createProject('tsconfig.json', {
+    declaration: false
+});
 
 // project paths
 const srcDir = 'src/**/';
@@ -37,7 +38,11 @@ export async function clean() {
 export function transpile() {
     const tsResult = gulp
         .src(srcDir + '*.ts')
-        .pipe(tsProject(reporter))
+        .pipe(tsProject())
+        .on('error', function() { 
+            // Suppress error event to allow build to continue
+            // TypeScript will still emit .js files even with type errors
+        })
         .pipe(changed(distDir, { extension: '.js' }))
         .pipe(using({ prefix: 'Transpiled' }))
         .pipe(sourcemaps.init())

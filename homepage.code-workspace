@@ -1,0 +1,71 @@
+{
+  "folders": [
+    {
+      "path": "server",
+      "name": "server"
+    },
+    {
+      "path": "battleships",
+      "name": "battleships"
+    },
+    {
+      "path": "chat",
+      "name": "chat"
+    },
+    {
+      "path": "discord",
+      "name": "discord"
+    },
+    {
+      "path": "fahrtenbuch",
+      "name": "fahrtenbuch"
+    },
+    {
+      "path": "filehost",
+      "name": "filehost"
+    },
+    {
+      "path": "films",
+      "name": "films"
+    },
+    {
+      "path": "game2048",
+      "name": "game2048"
+    },
+    {
+      "path": "grafs",
+      "name": "grafs"
+    },
+    {
+      "path": "minecraft-server",
+      "name": "minecraft-server"
+    },
+    {
+      "path": "minesweeper",
+      "name": "minesweeper"
+    },
+    {
+      "path": "snake",
+      "name": "snake"
+    },
+    {
+      "path": "timeline",
+      "name": "timeline"
+    },
+    {
+      "path": "vinyl",
+      "name": "vinyl"
+    }
+  ],
+  "settings": {
+    "git.openRepositoryInParentFolders": "always"
+  },
+  "extensions": {
+    "recommendations": [
+      "esbenp.prettier-vscode",
+      "Angular.ng-template",
+      "mikael.angular-beastmode",
+      "herrherrmann.angular-bootstrap"
+    ]
+  }
+}
