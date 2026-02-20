@@ -1,9 +1,13 @@
 <div>
-    <button class="tab" (click)="hostJoin(true)" [disabled]="host">Host</button>
-    <button class="tab" (click)="hostJoin(false)" [disabled]="!host">Join</button>
-    <div class="select" *ngIf="host">
-        <input type="checkbox">
-        <button>Start</button>
+  <button class="tab" (click)="hostJoin(true)" [disabled]="host">Host</button>
+  <button class="tab" (click)="hostJoin(false)" [disabled]="!host">Join</button>
+  @if (host) {
+    <div class="select">
+      <input type="checkbox">
+      <button>Start</button>
     </div>
-    <div class="select" *ngIf="!host"></div>
+  }
+  @if (!host) {
+    <div class="select"></div>
+  }
 </div>
