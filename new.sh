@@ -12,7 +12,7 @@ PROJ="${PROJECTS} ${name}"
 echo "PROJECTS=\"$PROJ\"" >./projects
 cp ./template "./server/src/$name.ts"
 sed -i "s/template/$name/g" "./server/src/$name.ts"
-ng new "$name" --skip-install --prefix="$name" --routing --skip-git --style=css --ssr --ai-config=none --package-manager=pnpm
+ng new "$name" --skip-install --prefix="$name" --routing --skip-git --style=css --ssr --ai-config=none --package-manager=npm
 cat <<<"$(jq '. | select (.scripts) .scripts.start = "npm run build"' ./$name/package.json)" >./$name/package.json
 cat <<<"$(jq '. | select (.scripts) .scripts.restart = "scp -r dist/* $HOST:/home/pi/server"' ./$name/package.json)" >./$name/package.json
 cat <<<"$(jq '. | select (.scripts) .scripts.prerestart = "npm run build"' ./$name/package.json)" >./$name/package.json
