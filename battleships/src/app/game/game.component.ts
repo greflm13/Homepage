@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'battleships-game',
-  templateUrl: './game.component.html',
-  styleUrls: ['./game.component.css']
+    selector: 'battleships-game',
+    templateUrl: './game.component.html',
+    styleUrls: ['./game.component.css'],
+    standalone: false
 })
 export class GameComponent implements OnInit {
   public playerField: Game = { rows: [] };
