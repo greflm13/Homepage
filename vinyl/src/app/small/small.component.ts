@@ -5,9 +5,10 @@ import { Album } from '../new/new.component';
 import { AlbumsService } from '../albums.service';
 
 @Component({
-  selector: 'vinyl-small',
-  templateUrl: './small.component.html',
-  styleUrls: ['./small.component.css']
+    selector: 'vinyl-small',
+    templateUrl: './small.component.html',
+    styleUrls: ['./small.component.css'],
+    standalone: false
 })
 export class SmallComponent implements OnInit {
   @ViewChild('detail') elementView: ElementRef;

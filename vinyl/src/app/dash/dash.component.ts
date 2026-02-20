@@ -5,9 +5,10 @@ import { Album } from '../new/new.component';
 import { AlbumsService } from '../albums.service';
 
 @Component({
-  selector: 'vinyl-dash',
-  templateUrl: './dash.component.html',
-  styleUrls: ['./dash.component.css']
+    selector: 'vinyl-dash',
+    templateUrl: './dash.component.html',
+    styleUrls: ['./dash.component.css'],
+    standalone: false
 })
 export class DashComponent implements OnInit {
   public loading = true;

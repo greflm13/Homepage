@@ -3,9 +3,10 @@ import { AlbumsService } from '../albums.service';
 import { Album } from '../new/new.component';
 
 @Component({
-  selector: 'vinyl-random',
-  templateUrl: './random.component.html',
-  styleUrls: ['./random.component.css']
+    selector: 'vinyl-random',
+    templateUrl: './random.component.html',
+    styleUrls: ['./random.component.css'],
+    standalone: false
 })
 export class RandomComponent implements OnInit {
   private albums: Album[];

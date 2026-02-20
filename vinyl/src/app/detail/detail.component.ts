@@ -5,9 +5,10 @@ import { Album } from '../new/new.component';
 import { AlbumsService } from '../albums.service';
 
 @Component({
-  selector: 'vinyl-detail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.css']
+    selector: 'vinyl-detail',
+    templateUrl: './detail.component.html',
+    styleUrls: ['./detail.component.css'],
+    standalone: false
 })
 export class DetailComponent implements OnInit {
   @ViewChild('detail') elementView: ElementRef;
