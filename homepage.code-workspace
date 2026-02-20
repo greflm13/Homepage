@@ -58,7 +58,8 @@
     }
   ],
   "settings": {
-    "git.openRepositoryInParentFolders": "always"
+    "git.openRepositoryInParentFolders": "always",
+    "npm.packageManager": "npm"
   },
   "extensions": {
     "recommendations": [
