@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "vinyl:build"
+            "buildTarget": "vinyl:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "vinyl:build:production"
+              "buildTarget": "vinyl:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "vinyl:build"
+            "buildTarget": "vinyl:build"
           }
         },
         "test": {
