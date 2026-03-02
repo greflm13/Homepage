@@ -8,12 +8,8 @@ import { HttpputService } from './httpput.service';
 import { FieldsizeService } from './fieldsize.service';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
-@NgModule({
-    declarations: [AppComponent, Game2048Component, Save2048Component],
-    imports: [BrowserModule, FormsModule, NgbModule, HttpClientModule],
-    providers: [HttpgetService, HttpputService, FieldsizeService],
-    bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [AppComponent, Game2048Component, Save2048Component],
+    bootstrap: [AppComponent], imports: [BrowserModule, FormsModule, NgbModule], providers: [HttpgetService, HttpputService, FieldsizeService, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {}
