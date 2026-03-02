@@ -22,11 +22,8 @@
     "@angular/platform-browser": "^17.3.12",
     "@angular/platform-browser-dynamic": "^17.3.12",
     "@angular/router": "^17.3.12",
-    "@ng-bootstrap/ng-bootstrap": "^15.1.2",
-    "@popperjs/core": "^2.11.8",
+    "@ng-bootstrap/ng-bootstrap": "^16.0.0",
     "bootstrap": "^5.3.8",
-    "core-js": "^3.9.1",
-    "rxjs": "^6.6.7",
     "tslib": "^2.0.0",
     "zone.js": "~0.14.10"
   },
@@ -35,19 +32,8 @@
     "@angular/cli": "^17.3.17",
     "@angular/compiler-cli": "^17.3.12",
     "@angular/language-service": "^17.3.12",
-    "@types/jasmine": "~3.6.0",
-    "@types/jasminewd2": "~2.0.8",
-    "@types/node": "^16.18.126",
-    "jasmine-core": "~3.8.0",
-    "jasmine-spec-reporter": "~5.0.0",
-    "karma": "~6.4.4",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage-istanbul-reporter": "~3.0.2",
-    "karma-jasmine": "~4.0.0",
-    "karma-jasmine-html-reporter": "^1.5.0",
-    "protractor": "~7.0.0",
+    "@types/node": "^18.19.130",
     "ts-node": "~8.3.0",
-    "tslint": "~6.1.0",
     "typescript": "~5.4.5"
   }
 }
