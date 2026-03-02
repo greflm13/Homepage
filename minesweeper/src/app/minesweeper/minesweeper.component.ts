@@ -6,8 +6,9 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FieldsizeService } from '../fieldsize.service';
 
 @Component({
-  selector: 'app-minesweeper-modal',
-  templateUrl: './modal.html',
+    selector: 'app-minesweeper-modal',
+    templateUrl: './modal.html',
+    standalone: false
 })
 export class MinesweeperModalComponent implements DoCheck {
   public size: GameSize = {
@@ -58,8 +59,9 @@ export class MinesweeperModalComponent implements DoCheck {
 }
 
 @Component({
-  selector: 'app-minesweeper-modal',
-  templateUrl: './save.html',
+    selector: 'app-minesweeper-modal',
+    templateUrl: './save.html',
+    standalone: false
 })
 export class SaveComponent {
   @Input() time;
@@ -92,9 +94,10 @@ export class SaveComponent {
 }
 
 @Component({
-  selector: 'app-minesweeper',
-  templateUrl: './minesweeper.component.html',
-  styleUrls: ['./minesweeper.component.css'],
+    selector: 'app-minesweeper',
+    templateUrl: './minesweeper.component.html',
+    styleUrls: ['./minesweeper.component.css'],
+    standalone: false
 })
 export class MinesweeperComponent implements OnInit, OnDestroy {
   public game: Game = {
