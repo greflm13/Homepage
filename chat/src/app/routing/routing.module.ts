@@ -7,7 +7,7 @@ import { HomeComponent } from '../home/home.component';
 const routes: Routes = [{ path: 'chatWindow', component: ChatComponent }, { path: '', component: HomeComponent }];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class RoutingModule {}
