@@ -6,13 +6,15 @@
     <th>Kilometer danach</th>
     <th>Differenz</th>
   </thead>
-  <tr *ngFor="let trip of data.trips">
-    <td>{{ trip.date | date }}</td>
-    <td>{{ trip.name }}</td>
-    <td>{{ trip.before }}</td>
-    <td>{{ trip.after }}</td>
-    <td>{{ trip.diff }}</td>
-  </tr>
+  @for (trip of data.trips; track trip) {
+    <tr>
+      <td>{{ trip.date | date }}</td>
+      <td>{{ trip.name }}</td>
+      <td>{{ trip.before }}</td>
+      <td>{{ trip.after }}</td>
+      <td>{{ trip.diff }}</td>
+    </tr>
+  }
 </table>
 
 <form class="footer">
