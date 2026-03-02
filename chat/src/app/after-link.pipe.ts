@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'afterLink'
+    name: 'afterLink',
+    standalone: false
 })
 export class AfterLinkPipe implements PipeTransform {
   transform(value: string, args?: any): string {
