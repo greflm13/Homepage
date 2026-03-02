@@ -61,18 +61,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "game2048:build"
+            "buildTarget": "game2048:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "game2048:build:production"
+              "buildTarget": "game2048:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "game2048:build"
+            "buildTarget": "game2048:build"
           }
         },
         "test": {
