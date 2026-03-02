@@ -2,9 +2,10 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 import { HttpService } from '../http.service';
 
 @Component({
-  selector: 'fahrtenbuch-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+    selector: 'fahrtenbuch-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.css'],
+    standalone: false
 })
 export class HomeComponent implements OnInit, DoCheck {
   public data: Data;
