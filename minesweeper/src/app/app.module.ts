@@ -10,10 +10,9 @@ import { HttpputService } from './httpput.service';
 import { FieldsizeService } from './fieldsize.service';
 
 @NgModule({
-  declarations: [AppComponent, MinesweeperComponent, MinesweeperModalComponent, SaveComponent],
-  imports: [BrowserModule, NgbModule, FormsModule],
-  providers: [HttpgetService, HttpputService, FieldsizeService],
-  entryComponents: [MinesweeperModalComponent, SaveComponent],
-  bootstrap: [AppComponent]
+    declarations: [AppComponent, MinesweeperComponent, MinesweeperModalComponent, SaveComponent],
+    imports: [BrowserModule, NgbModule, FormsModule],
+    providers: [HttpgetService, HttpputService, FieldsizeService],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}
