@@ -14,7 +14,8 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": {
-              "base": "dist/game2048"
+              "base": "dist/game2048",
+              "browser": ""
             },
             "index": "src/index.html",
             "polyfills": [
