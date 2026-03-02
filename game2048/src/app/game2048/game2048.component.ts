@@ -7,8 +7,9 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FieldsizeService } from '../fieldsize.service';
 
 @Component({
-  selector: 'app-minesweeper-modal',
-  templateUrl: './save.html'
+    selector: 'app-minesweeper-modal',
+    templateUrl: './save.html',
+    standalone: false
 })
 export class Save2048Component {
   @Input() time;
@@ -40,9 +41,10 @@ export class Save2048Component {
 }
 
 @Component({
-  selector: 'app-game2048',
-  templateUrl: './game2048.component.html',
-  styleUrls: ['./game2048.component.css']
+    selector: 'app-game2048',
+    templateUrl: './game2048.component.html',
+    styleUrls: ['./game2048.component.css'],
+    standalone: false
 })
 export class Game2048Component implements OnInit, DoCheck {
   public game: Game = { fields: [], lose: false, score: 0, win: false, running: false, time: 0 };
