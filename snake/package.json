@@ -31,7 +31,7 @@
     "@angular/cli": "^20.3.18",
     "@angular/compiler-cli": "^20.3.17",
     "@angular/language-service": "^20.3.17",
-    "@types/node": "^18.19.130",
+    "@types/node": "^22.19.13",
     "ts-node": "~7.0.0",
     "typescript": "~5.8.3"
   }
