@@ -11,10 +11,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [AppComponent, Game2048Component, Save2048Component],
-  imports: [BrowserModule, FormsModule, NgbModule, HttpClientModule],
-  providers: [HttpgetService, HttpputService, FieldsizeService],
-  entryComponents: [Save2048Component],
-  bootstrap: [AppComponent]
+    declarations: [AppComponent, Game2048Component, Save2048Component],
+    imports: [BrowserModule, FormsModule, NgbModule, HttpClientModule],
+    providers: [HttpgetService, HttpputService, FieldsizeService],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}
