@@ -3,9 +3,10 @@ import { HttpService } from '../http.service';
 import { Square } from './square';
 
 @Component({
-  selector: 'snake-game',
-  templateUrl: './game.component.html',
-  styleUrls: ['./game.component.css']
+    selector: 'snake-game',
+    templateUrl: './game.component.html',
+    styleUrls: ['./game.component.css'],
+    standalone: false
 })
 export class GameComponent implements OnInit, OnDestroy {
   @ViewChild('canvas', { static: true }) canvas: ElementRef<HTMLCanvasElement>;
