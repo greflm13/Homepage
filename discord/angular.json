@@ -14,7 +14,7 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": {
-              "base": "dist/discord"
+              "base": "dist"
             },
             "index": "src/index.html",
             "polyfills": [
