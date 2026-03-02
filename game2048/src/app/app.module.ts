@@ -8,11 +8,11 @@ import { HttpputService } from './httpput.service';
 import { FieldsizeService } from './fieldsize.service';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, Game2048Component, Save2048Component],
-  imports: [BrowserModule, FormsModule, NgbModule.forRoot(), HttpModule],
+  imports: [BrowserModule, FormsModule, NgbModule, HttpClientModule],
   providers: [HttpgetService, HttpputService, FieldsizeService],
   entryComponents: [Save2048Component],
   bootstrap: [AppComponent]

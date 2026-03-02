@@ -1,20 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Leaderboard } from './game2048/2048';
 
 @Injectable()
 export class HttpputService {
-  private headers = new Headers({ 'Content-Type': 'application/json' });
+  private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-  constructor(private http: Http) {}
+  constructor(private http: HttpClient) {}
 
   putLeaderboard(leaderboard: Leaderboard): Promise<Leaderboard> {
     return this.http
-      .post('leaderboard', JSON.stringify(leaderboard), {
-        headers: this.headers
-      })
+      .post<Leaderboard>('leaderboard', leaderboard, { headers: this.headers })
       .toPromise()
-      .then(res => res.json() as Leaderboard)
       .catch(this.handleError);
   }
 

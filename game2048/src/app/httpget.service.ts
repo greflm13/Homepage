@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Leaderboard } from './game2048/2048';
 
 @Injectable()
 export class HttpgetService {
-  constructor(private http: Http) {}
+  constructor(private http: HttpClient) {}
 
   getLeaderboard(): Promise<Leaderboard> {
     return this.http
-      .get('leaderboard')
+      .get<Leaderboard>('leaderboard')
       .toPromise()
-      .then(response => response.json() as Leaderboard)
       .catch(this.handleError);
   }
 
