@@ -61,18 +61,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "minesweeper:build"
+            "buildTarget": "minesweeper:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "minesweeper:build:production"
+              "buildTarget": "minesweeper:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "minesweeper:build"
+            "buildTarget": "minesweeper:build"
           }
         },
         "test": {
