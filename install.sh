@@ -6,8 +6,8 @@ echo ""
 echo "installing server..."
 cd server || exit 1
 nvm install "$(cat .nvmrc)"
-npm install
-npm install --global gulp
+npm install --no-audit --no-fund
+npm install --global gulp --no-audit --no-fund
 cd ..
 for APP in $PROJECTS; do
 	echo ""
@@ -15,7 +15,7 @@ for APP in $PROJECTS; do
 	cd "$APP" || continue
 	jq '.devDependencies.["@types/node"]' <package.json | grep -Eo "\".{0,2}[[:digit:]]+" | grep -Eo "[[:digit:]]+" >.nvmrc
 	nvm install "$(cat .nvmrc)"
-	npm install
+	npm install --no-audit --no-fund
 	# npm install typescript@"$(jq -r '.devDependencies.["typescript"]' <package.json | sed 's/\^/~/g')"
 	cd ..
 done

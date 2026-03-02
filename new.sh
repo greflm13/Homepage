@@ -23,6 +23,6 @@ echo Installing dependencies...
 cd "$name" || exit 1
 jq '.devDependencies.["@types/node"]' <package.json | grep -Eo "\".{0,2}[[:digit:]]+" | grep -Eo "[[:digit:]]+" >.nvmrc
 nvm install "$(cat .nvmrc)"
-pnpm install
+npm install --no-audit --no-fund
 echo Done.
 read -r
