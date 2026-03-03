@@ -2,9 +2,10 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { HttpService } from './http.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
+    standalone: false
 })
 export class AppComponent implements OnInit {
   public windowWidth = window.innerWidth;
