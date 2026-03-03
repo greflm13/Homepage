@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -26,13 +26,12 @@ registerLocaleData(localeDe, 'de-AT');
     ChatComponent,
     HomeComponent,
     AutofocusDirective,
-    FormatStringPipe,
     BeforeLinkPipe,
     AfterLinkPipe,
     LinkTextPipe
   ],
-  imports: [BrowserModule.withServerTransition({ appId: 'serverApp' }), HttpClientModule, FormsModule, RoutingModule, PickerModule],
-  providers: [HttpClient, HttpService, { provide: LOCALE_ID, useValue: 'de-AT' }],
+  imports: [BrowserModule, HttpClientModule, FormsModule, RoutingModule, PickerModule, FormatStringPipe],
+  providers: [HttpClient, HttpService, { provide: LOCALE_ID, useValue: 'de-AT' }, provideClientHydration(withEventReplay())],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

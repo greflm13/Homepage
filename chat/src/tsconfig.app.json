@@ -2,14 +2,19 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
-    "types": []
+    "module": "es2022",
+    "types": [
+      "node"
+    ]
   },
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
   ],
   "files": [
-    "src/main.server.ts",
-    "server.ts"
+    "main.server.ts",
+    "server.ts",
+    "main.ts",
+    "polyfills.ts"
   ]
 }
