@@ -8,13 +8,9 @@ import { MatSelectModule } from '@angular/material/select';
 
 import { AppComponent } from './app.component';
 import { HttpService } from './http.service';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
-@NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, MatTooltipModule, MatDatepickerModule, MatSelectModule, HttpClientModule, FormsModule],
-  providers: [HttpService, HttpClient],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [AppComponent],
+    bootstrap: [AppComponent], imports: [BrowserModule, BrowserAnimationsModule, MatTooltipModule, MatDatepickerModule, MatSelectModule, FormsModule], providers: [HttpService, HttpClient, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {}
