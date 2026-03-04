@@ -25,4 +25,3 @@ jq '.devDependencies.["@types/node"]' <package.json | grep -Eo "\".{0,2}[[:digit
 nvm install "$(cat .nvmrc)"
 npm install --no-audit --no-fund
 echo Done.
-read -r
