@@ -4,9 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-sub-folder',
-  templateUrl: './sub-folder.component.html',
-  styleUrls: ['./sub-folder.component.css']
+    selector: 'app-sub-folder',
+    templateUrl: './sub-folder.component.html',
+    styleUrls: ['./sub-folder.component.css'],
+    standalone: false
 })
 export class SubFolderComponent implements OnInit {
   public current = '';
