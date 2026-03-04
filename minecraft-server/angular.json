@@ -50,18 +50,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "minecraft-server:build"
+            "buildTarget": "minecraft-server:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "minecraft-server:build:production"
+              "buildTarget": "minecraft-server:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "minecraft-server:build"
+            "buildTarget": "minecraft-server:build"
           }
         },
         "test": {
