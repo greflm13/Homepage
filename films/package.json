@@ -21,19 +21,18 @@
     "@angular/platform-browser": "^21.2.0",
     "@angular/platform-browser-dynamic": "^21.2.0",
     "@angular/router": "^21.2.0",
-    "core-js": "^2.6.4",
-    "rxjs": "^6.4.0",
+    "core-js": "^3.48.0",
+    "rxjs": "^7.8.2",
     "tslib": "^2.0.0",
-    "zone.js": "~0.15.1"
+    "zone.js": "~0.16.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^21.2.0",
     "@angular/cli": "^21.2.0",
     "@angular/compiler-cli": "^21.2.0",
     "@angular/language-service": "^21.2.0",
-    "@types/node": "^8.10.39",
     "protractor": "~7.0.0",
-    "ts-node": "^5.0.1",
+    "ts-node": "^10.9.2",
     "typescript": "5.9.3"
   }
 }
