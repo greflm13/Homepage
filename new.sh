@@ -12,7 +12,7 @@ PROJ="${PROJECTS} ${name}"
 echo "PROJECTS=\"$PROJ\"" >./projects
 cp ./template "./server/src/$name.ts"
 sed -i "s/template/$name/g" "./server/src/$name.ts"
-ng new "$name" --skip-install --prefix="$name" --routing --skip-git --style=css --ssr=false --ai-config=none --package-manager=npm --skip-tests --commit
+ng new "$name" --skip-install --prefix="$name" --routing --skip-git --style=css --ssr=false --ai-config=none --package-manager=npm --skip-tests
 cat <<<"$(jq '. | select (.scripts) .scripts.start = "npm run build"' ./$name/package.json)" >./$name/package.json
 cat <<<"$(jq '. | select (.scripts) .scripts.restart = "scp -r dist/* $HOST:/home/pi/server"' ./$name/package.json)" >./$name/package.json
 cat <<<"$(jq '. | select (.scripts) .scripts.prerestart = "npm run build"' ./$name/package.json)" >./$name/package.json
@@ -21,7 +21,7 @@ cat <<<"$(jq '. | select (.scripts) .scripts.test = "ng build --watch --base-hre
 cat <<<"$(jq '.folders[.folders| length] |= . + {"path": "'"$name"'", "name": "'"$name"'" }' ./homepage.code-workspace)" >./homepage.code-workspace
 echo Installing dependencies...
 cd "$name" || exit 1
-jq '.devDependencies.["@types/node"]' <package.json | grep -Eo "\".{0,2}[[:digit:]]+" | grep -Eo "[[:digit:]]+" >.nvmrc
+echo "20" >.nvmrc
 nvm install "$(cat .nvmrc)"
 npm install --no-audit --no-fund
 echo Done.
