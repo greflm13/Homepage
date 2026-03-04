@@ -1,13 +1,23 @@
-<span *ngFor="let folder of folders">
-    <p *ngIf="folder.type === 'd'">
+@for (folder of folders; track folder) {
+  <span>
+    @if (folder.type === 'd') {
+      <p>
         <a routerLink="/{{folder.name}}"><img src="assets/folder.svg" width="20px">{{folder.name}}</a>
-    </p>
-    <p *ngIf="folder.name === 'No such file or directory'">
+      </p>
+    }
+    @if (folder.name === 'No such file or directory') {
+      <p>
         No such file or directory!
-    </p>
-</span>
-<span *ngFor="let folder of folders">
-    <p *ngIf="folder.type === '-'">
+      </p>
+    }
+  </span>
+}
+@for (folder of folders; track folder) {
+  <span>
+    @if (folder.type === '-') {
+      <p>
         <a routerLink="/viewer/{{folder.name}}">{{folder.name}}</a>
-    </p>
-</span>
+      </p>
+    }
+  </span>
+}
