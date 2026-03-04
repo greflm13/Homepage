@@ -21,7 +21,7 @@ cat <<<"$(jq '. | select (.scripts) .scripts.test = "ng build --watch --base-hre
 cat <<<"$(jq '.folders[.folders| length] |= . + {"path": "'"$name"'", "name": "'"$name"'" }' ./homepage.code-workspace)" >./homepage.code-workspace
 echo Installing dependencies...
 cd "$name" || exit 1
-echo "20" >.nvmrc
+jq '.packages.["node_modules/@angular/cli"].engines.node' <package-lock.json | grep -Eo "\".{0,2}[[:digit:]]+" | grep -Eo "[[:digit:]]+" >.nvmrc
 nvm install "$(cat .nvmrc)"
 npm install --no-audit --no-fund
 echo Done.
