@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from './http.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html'
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    standalone: false
 })
 export class AppComponent implements OnInit {
   public minecraft: Status = {
