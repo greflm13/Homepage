@@ -1,6 +1,7 @@
 process.env['DEBUG'] = '*::INFO, *::WARN, *::ERR, *::SEVERE, *::';
 process.env['DEBUG_COLORS'] = 'true';
 process.env['DEBUG_STREAM'] = 'stdout';
+process.env['DEBUG_TIME'] = 'yyyy-mm-dd HH:MM:ss.l';
 
 import express from 'express';
 import path from 'path';
@@ -34,25 +35,25 @@ const consolelogger: debugsx.IHandler = debugsx.createConsoleHandler('stdout', '
   { level: 'FINE', color: 'white', inverse: true },
   { level: 'SEVERE', color: 'black', inverse: true },
   { level: 'ERR', color: 'red', inverse: true },
-  { level: 'WARN', color: 'yellow', inverse: true }
+  { level: 'WARN', color: 'yellow', inverse: true },
 ]);
 let filelogger: debugsx.IHandler;
 filelogger = debugsx.createFileHandler(
   __dirname +
-  '/log/' +
-  'server_' +
-  date.getFullYear() +
-  '-' +
-  ('0' + (date.getMonth() + 1)).slice(-2) +
-  '-' +
-  ('0' + date.getDate()).slice(-2) +
-  '_' +
-  ('0' + date.getHours()).slice(-2) +
-  '.' +
-  ('0' + date.getMinutes()).slice(-2) +
-  '.' +
-  ('0' + date.getSeconds()).slice(-2) +
-  '.log',
+    '/log/' +
+    'server_' +
+    date.getFullYear() +
+    '-' +
+    ('0' + (date.getMonth() + 1)).slice(-2) +
+    '-' +
+    ('0' + date.getDate()).slice(-2) +
+    '_' +
+    ('0' + date.getHours()).slice(-2) +
+    '.' +
+    ('0' + date.getMinutes()).slice(-2) +
+    '.' +
+    ('0' + date.getSeconds()).slice(-2) +
+    '.log',
   '*::INFO, *::FINE, *::SEVERE, *::ERR, *::WARN',
   '-*',
   [
@@ -60,8 +61,8 @@ filelogger = debugsx.createFileHandler(
     { level: 'FINE', color: 'white', inverse: true },
     { level: 'SEVERE', color: 'black', inverse: true },
     { level: 'ERR', color: 'red', inverse: true },
-    { level: 'WARN', color: 'yellow', inverse: true }
-  ]
+    { level: 'WARN', color: 'yellow', inverse: true },
+  ],
 );
 debugsx.addHandler(filelogger, consolelogger);
 
@@ -131,7 +132,7 @@ export class Server {
       res.sendFile(path.join(__dirname, '/views/no.html'));
     });
     this._appredirect.get('/err', (err: any, req: express.Request, res: express.Response, next: express.NextFunction) =>
-      this.errorHandler(err, req, res, next)
+      this.errorHandler(err, req, res, next),
     );
     this._appredirect.get('*', function (req, res) {
       res.redirect('https://' + req.headers.host + req.url);
@@ -150,7 +151,7 @@ export class Server {
           server.on('close', () => {
             log.fine('Server stopped.');
           });
-          server.on('err', err => {
+          server.on('err', (err) => {
             log.warn(err);
           });
         });
@@ -160,7 +161,7 @@ export class Server {
           httpserver.on('close', () => {
             log.fine('HTTP Server stopped.');
           });
-          httpserver.on('err', err => {
+          httpserver.on('err', (err) => {
             log.severe(err);
           });
         });
@@ -171,7 +172,7 @@ export class Server {
           server.on('close', () => {
             log.fine('Server stopped.');
           });
-          server.on('err', err => {
+          server.on('err', (err) => {
             log.warn(err);
           });
         });
@@ -205,9 +206,8 @@ export class Server {
       res.status(500).render('error500.pug', {
         time: ts,
         err: err,
-        href:
-          'mailto:sorogon.developer@gmail.com?subject=Server failed;&body=https://www.sorogon.eu/ failed at ' + ts + ' with Error: ' + err,
-        serveradmin: 'Florian Greistorfer'
+        href: 'mailto:sorogon.developer@gmail.com?subject=Server failed;&body=https://www.sorogon.eu/ failed at ' + ts + ' with Error: ' + err,
+        serveradmin: 'Florian Greistorfer',
       });
       process.abort();
     }
