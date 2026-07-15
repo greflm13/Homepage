@@ -89,6 +89,7 @@ export class Server {
     this._express.use(cookieparser());
     this._express.use(requestLanguage({ languages: ['en-GB', 'en-US', 'de-DE', 'de-AT'] }));
     this._express.set('views', path.join(__dirname, '/views'));
+    this._express.set('trust proxy', true);
     const pugEngine = this._express.set('view engine', 'pug');
     pugEngine.locals.pretty = true;
     this._express.use((req, res, next) => this.logger(req, res, next, 'Main'));
@@ -191,8 +192,7 @@ export class Server {
   }
 
   private error404Handler(req: express.Request, res: express.Response, _next: express.NextFunction) {
-    const clientSocket = req.socket.remoteAddress + ':' + req.socket.remotePort;
-    log.warn('Error 404 for %s %s from %s', req.method, req.url, clientSocket);
+    log.warn('Error 404 for %s %s from %s', req.method, req.url, req.ip);
     res.status(404).sendFile(path.join(__dirname, './views/error404.html'));
   }
 
@@ -214,8 +214,7 @@ export class Server {
   }
 
   private logger(req: express.Request, _res: express.Response, next: express.NextFunction, server: string) {
-    const clientSocket = req.socket.remoteAddress + ':' + req.socket.remotePort;
-    log.info(server + ':', req.method, req.url, clientSocket);
+    log.info(server + ':', req.method, req.url, req.ip);
     next();
   }
 }
