@@ -1,27 +1,27 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
-import { HttpService } from '../http.service';
+import { Component, OnInit, OnDestroy, HostListener } from "@angular/core";
+import { HttpService } from "../http.service";
 
 @Component({
-    selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css'],
-    standalone: false
+  selector: "app-home",
+  templateUrl: "./home.component.html",
+  styleUrls: ["./home.component.css"],
+  standalone: false,
 })
 export class HomeComponent implements OnInit, OnDestroy {
   private users: User[] = [];
-  private me: User = { name: '', id: '', iat: 0, color: '' };
+  private me: User = { name: "", id: "", iat: 0, color: "" };
   private inter;
   public cookies = false;
   public name = false;
   public emoji = false;
-  public names = '';
-  public texte = '';
+  public names = "";
+  public texte = "";
   public mobile = false;
   public innerWidth: number;
 
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService) {}
 
-  @HostListener('window:resize', ['$event'])
+  @HostListener("window:resize", ["$event"])
   onResize(event) {
     this.innerWidth = window.innerWidth;
     if (this.innerWidth < 768) {
@@ -33,42 +33,52 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   keyPress(event: any) {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       this.enter();
     }
   }
 
   enter() {
-    if (this.texte !== '') {
-      const message = { user: this.me.name, color: this.me.color, text: this.texte, time: Date.now() + 3600000 };
+    if (this.texte !== "") {
+      const message = {
+        user: this.me.name,
+        color: this.me.color,
+        text: this.texte,
+        time: Date.now() + 3600000,
+      };
       const Mona = { message: message, user: this.me };
-      this.http.post('/chat/chat', Mona).then(res => {
+      this.http.post("/chat/chat", Mona).then((res) => {
         this.users = res;
       });
-      this.texte = '';
-    } else if (this.me.id !== '') {
+      this.texte = "";
+    } else if (this.me.id === "") {
       this.nameEntered();
     }
   }
 
   nameEntered() {
-    if (this.names !== '') {
+    if (this.names !== "") {
       this.me.name = this.names;
-      this.names = '';
+      this.names = "";
       this.name = true;
       this.me.color = this.randomColor();
       const name = { name: this.me.name, color: this.me.color };
-      this.http.post('/chat/new', name).then(res => {
-        this.users.push({ name: res.name, id: res.id, iat: res.iat, color: res.color });
+      this.http.post("/chat/new", name).then((res) => {
+        this.users.push({
+          name: res.name,
+          id: res.id,
+          iat: res.iat,
+          color: res.color,
+        });
         this.me = res;
       });
       this.inter = setInterval(() => {
         this.http
-          .get('/chat/users')
-          .then(res => {
+          .get("/chat/users")
+          .then((res) => {
             this.users = res;
           })
-          .catch(err => {
+          .catch((err) => {
             if (err === 403) {
               clearInterval(this.inter);
               this.name = false;
@@ -82,11 +92,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.emoji = !this.emoji;
   }
 
-  addEmoji(emoji, event) {
+  addEmoji(event: any) {
     this.texte += event.emoji.native;
   }
 
   ngOnInit() {
+    this.me = this.parseUser();
+    this.cookies = this.parseCookie();
     this.innerWidth = window.innerWidth;
     if (this.innerWidth < 768) {
       this.mobile = true;
@@ -94,17 +106,15 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (this.innerWidth >= 768) {
       this.mobile = false;
     }
-    if (document.cookie !== '') {
+    if (this.me.name !== "") {
       this.name = true;
-      this.me = this.parseUser();
-      this.cookies = this.parseCookie();
       this.inter = setInterval(() => {
         this.http
-          .get('/chat/users')
-          .then(res => {
+          .get("/chat/users")
+          .then((res) => {
             this.users = res;
           })
-          .catch(err => {
+          .catch((err) => {
             if (err === 403) {
               clearInterval(this.inter);
               this.name = false;
@@ -122,23 +132,25 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (this.str_obj(document.cookie).user) {
       return JSON.parse(decodeURIComponent(this.str_obj(document.cookie).user));
     } else {
-      return { name: '', id: '', iat: 0, color: '' };
+      return { name: "", id: "", iat: 0, color: "" };
     }
   }
 
   parseCookie(): boolean {
     if (this.str_obj(document.cookie).cookie) {
-      return JSON.parse(decodeURIComponent(this.str_obj(document.cookie).cookie));
+      return JSON.parse(
+        decodeURIComponent(this.str_obj(document.cookie).cookie),
+      );
     } else {
       return false;
     }
   }
 
-  str_obj(str) {
-    str = str.split('; ');
-    const result: Cookie = { user: '', cookie: '' };
-    for (let i = 0; i < str.length; i++) {
-      const cur = str[i].split('=');
+  str_obj(str: string) {
+    let strarr = str.split("; ");
+    const result: Cookie = { user: "", cookie: "" };
+    for (let i = 0; i < strarr.length; i++) {
+      const cur = strarr[i].split("=");
       result[cur[0]] = cur[1];
     }
     return result;
@@ -149,8 +161,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   randomColor() {
-    let color = '#';
-    const possible = '0123456789ABCDEF';
+    let color = "#";
+    const possible = "0123456789ABCDEF";
 
     for (let i = 0; i < 6; i++) {
       color += possible.charAt(Math.floor(Math.random() * possible.length));
@@ -160,8 +172,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   randomString(min: number, max: number) {
-    let text = '';
-    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let text = "";
+    const possible =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
     for (let i = 0; i < this.random(min, max); i++) {
       text += possible.charAt(Math.floor(Math.random() * possible.length));
@@ -177,26 +190,27 @@ export class HomeComponent implements OnInit, OnDestroy {
     } else if (input.createTextRange) {
       const range = input.createTextRange();
       range.collapse(true);
-      range.moveEnd('character', selectionEnd);
-      range.moveStart('character', selectionStart);
+      range.moveEnd("character", selectionEnd);
+      range.moveStart("character", selectionStart);
       range.select();
     }
   }
 
-  deleteCookie(cname) {
+  deleteCookie(cname: string) {
     const d = new Date();
     d.setTime(d.getTime() - 1000 * 60 * 60 * 24);
-    const expires = 'expires=' + d.toUTCString();
-    window.document.cookie = cname + '=' + '; ' + expires;
+    const expires = "expires=" + d.toUTCString();
+    window.document.cookie = cname + "=" + "; " + expires;
+    window.location.reload();
   }
 
   cookie(): void {
-    window.document.cookie = 'cookie=true;';
+    window.document.cookie = "cookie=true;";
     this.cookies = !this.cookies;
   }
 
   changeName(): void {
-    this.deleteCookie('user');
+    this.deleteCookie("user");
   }
 }
 
@@ -210,4 +224,5 @@ interface User {
 interface Cookie {
   user: string;
   cookie: string;
+  [key: string]: string;
 }

@@ -1,22 +1,22 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { HttpService } from '../http.service';
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { HttpService } from "../http.service";
 
 @Component({
-    selector: 'app-chat',
-    templateUrl: './chat.component.html',
-    styleUrls: ['./chat.component.css'],
-    standalone: false
+  selector: "app-chat",
+  templateUrl: "./chat.component.html",
+  styleUrls: ["./chat.component.css"],
+  standalone: false,
 })
 export class ChatComponent implements OnInit {
-  @ViewChild('scrollMe', { static: true })
+  @ViewChild("scrollMe", { static: true })
   private myScrollContainer: ElementRef;
-  chat: Message[] = [];
+  public chat: Message[] = [];
 
   constructor(private http: HttpService) {}
 
   ngOnInit() {
     setInterval(() => {
-      this.http.get('/chat/chat').then(res => {
+      this.http.get("/chat/chat").then((res) => {
         this.chat = res;
         this.scrollToBottom();
       });
@@ -25,8 +25,11 @@ export class ChatComponent implements OnInit {
 
   scrollToBottom(): void {
     try {
-      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-    } catch (err) {}
+      this.myScrollContainer.nativeElement.scrollTop =
+        this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) {
+      console.error(err);
+    }
   }
 }
 

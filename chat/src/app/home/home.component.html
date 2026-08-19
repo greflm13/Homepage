@@ -46,7 +46,7 @@
     }
     @if (cookies && name && emoji) {
       <div style="z-index: 1070; width: 50%; left:50%; bottom: 4%" class="fixed-bottom">
-        <emoji-mart set="google" title="" emoji="" isNative="true" showPreview="false" (emojiClick)="addEmoji(emoji, $event)">
+        <emoji-mart set="google" title="" emoji="" [isNative]="true" [showPreview]="false" (emojiClick)="addEmoji( $event)">
         </emoji-mart>
       </div>
     }
@@ -64,7 +64,7 @@
     }
     @if (!name && cookies) {
       <div>
-        <input #myInputField type="text" placeholder="Name" class="form-control" [(ngModel)]="names" (keypress)="keyPress($event, MyInputField)"
+        <input #myInputField type="text" placeholder="Name" class="form-control" [(ngModel)]="names" (keypress)="keyPress($event)"
           autofocus>
       </div>
     }
